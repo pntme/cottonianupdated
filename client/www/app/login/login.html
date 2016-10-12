@@ -1,0 +1,41 @@
+<ion-view hide-nav-bar="true">
+    <ion-content scroll="false">
+        <div id="loginContainer">
+            <div class="text-center m-t-30">
+                   <h2 class="colBlue">COTTONIAN</h2>
+            </div>
+            <form name="LoginForm" novalidate>
+                <div class="list m-t-30">
+                    <label class="item item-input loginInputField" style="    border-top: none;">
+                        <span class="input-label font100">
+                            <i class="ion-ios-email-outline colBlue"></i>&nbsp;&nbsp;Email
+                        </span>
+                        <input type="text" ng-model="Login.email" name="email" required>
+                        </label>
+                        <label class="item item-input loginInputField">
+                            <span class="input-label font100">
+                                <i class="ion-locked Outline colBlue"></i>&nbsp;&nbsp;Password
+                            </span>
+                            <input type="password"  ng-model="Login.password" name="password" required>
+                            </label>
+                        </div>
+                       <div class="AbsoluteCenterBottom">
+                            <button class="button button-block button-default LoginButton" ng-disabled="LoginForm.email.$invalid||LoginForm.password.$invalid" ng-click = "Login.DoLogin()">Login</button>
+                        </div>
+                         <div class="AbsoluteCenterBottom m-t-15">
+                            <button class="button button-block  LoginButton FbLogin">Connect with <i class="ion-social-facebook"></i></button>
+                        </div>
+                          <div class="AbsoluteCenterBottom m-t-15">
+                            <button class="button button-block  LoginButton GmailLogin">Connect with <i class="ion-social-googleplus"></i></button>
+                        </div>
+                            <div class="col-xs-12 no-pad-left-right"> 
+                                <div class="text-center m-t-15 m-b-15">
+                                        <span class="font17 input-label" style="display: initial;">Don't have an account?
+                                            <a ui-sref="signup"> Sign Up</a>
+                                        </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </ion-content>
+            </ion-view>
