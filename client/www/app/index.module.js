@@ -3,7 +3,8 @@
    angular.module('cot', [
    	'ionic',
    	'starter.controllers',
-   	'starter.services'
+   	'starter.services',
+   	'ngStorage'
 
    	 ]);
 })();
