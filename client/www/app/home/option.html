@@ -1,0 +1,25 @@
+<ion-modal-view>
+    <ion-header-bar class='BgBlue'>
+        <h1 class="title ColWhite font23">{{OptionData.title}}</h1>
+        <button class="button icon ion-close-round model-close" on-tap="hide()"></button>
+    </ion-header-bar>
+    <ion-content scroll="false" has-header='true'>
+       <div class="padding">
+         <div class="list center">
+  <label class="item item-input item-floating-label floatingFormText">
+    <span class="input-label">First Name</span>
+    <input type="text" placeholder="First Name">
+  </label>
+  <label class="item item-input item-floating-label floatingFormText">
+    <span class="input-label">Last Name</span>
+    <input type="text" placeholder="Last Name">
+  </label>
+    <div class="AbsoluteCenterBottom">
+                            <button class="button button-block button-default LoginButton" ng-disabled="LoginForm.email.$invalid||LoginForm.password.$invalid" ng-click = "Login.DoLogin()">Login</button>
+                        </div>
+  
+</div>
+
+       </div>
+    </ion-content>
+</ion-modal-view>

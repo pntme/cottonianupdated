@@ -26,63 +26,62 @@
     controller: 'SignupCtrl',
     controllerAs: 'Signup'
   })
-  .state('home', {
-    url: '/home',
-    cache: false,
-    templateUrl: 'app/home/home.html',
-    controller: 'HomeCtrl',
-    controllerAs: 'Home'
-  })
+  
  
  
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html',
+    templateUrl: 'app/menu/menu.html',
     controller: 'MenuCtrl',
     controllerAs: 'Menu'
   })
 
   // Each tab has its own nav history stack:
 
-
-
-
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+.state('tab.home', {
+    url: '/home',
+    cache: false,
+      views: {
+      'tab-home': {
+        templateUrl: 'app/home/home.html',
+         controller: 'HomeCtrl',
+         controllerAs: 'Home'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.feed', {
+    url: '/feed',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-feed': {
+        templateUrl: 'app/feed/feed.html',
+        controller: 'feedCtrl',
+        controllerAs: 'Feed'
+      }
+    }
+  })
+
+  .state('tab.event', {
+      url: '/event',
+      views: {
+        'tab-event': {
+          templateUrl: 'app/event/event.html',
+          controller: 'EventCtrl',
+          controllerAs: 'Event'
+        }
+      }
+    })
+  
+
+  .state('tab.jobs', {
+    url: '/job',
+    views: {
+      'tab-job': {
+        templateUrl: 'app/jobs/jobs.html',
+        controller: 'jobCtrl',
+        controllerAs: 'Job'
       }
     }
   });

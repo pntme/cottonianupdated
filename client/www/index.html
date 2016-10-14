@@ -23,17 +23,18 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
+    <script src="lib/lodash.js"></script>
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ng-storage.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-
+    <script src='lib/moment.js'></script>
     <!-- your app's js -->
     <script src = "app/index.module.js"></script>
     <script src = "app/index.run.js"></script>
+    <script src = "app/common/uservalidate.service.js"></script>
     <script src = "app/index.constant.js"></script>
     <script src = "app/index.route.js"></script>
     <script src = "js/controllers.js"></script>
@@ -49,7 +50,10 @@
     <script src = "app/index.constant.js"></script>
     <script src = "app/signup/signup.controller.js"></script>
     <script src = "app/common/toast.service.js"></script>
-    <script src = "app/home/home.controller.js"></script>
+    <script src = "app/home/home.controller.js"></script> 
+    <script src = "app/feed/feed.controller.js"></script>
+    <script src = "app/event/event.controller.js"></script>
+    <script src = "app/jobs/jobs.controller.js"></script>
   </head>
   <body ng-app="cot">
     <div id="fb-root">

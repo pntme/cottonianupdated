@@ -1,0 +1,36 @@
+<ion-modal-view>
+    <ion-header-bar class='BgBlue'>
+        <h1 class="title ColWhite font23">{{OptionData.title}}</h1>
+        <button class="button icon ion-close-round model-close" on-tap="hide()"></button>
+    </ion-header-bar>
+    <ion-content scroll="false" has-header='true'>
+        <img ng-src="{{OptionData.image}}" class='OptionImage m-t-30'>
+        <div class="list m-t-30">
+            <div class="item">
+               <div class="pull-left colBlue">
+                   Time
+               </div>
+               <div class = "pull-right">
+                  {{OptionData.date_time}}
+               </div>
+            </div>
+            <div class="item" ng-hide="HidePublisher">
+               <div class="pull-left colBlue">
+                  Publisher
+               </div>
+               <div class = "pull-right">
+                   {{OptionData.user}}
+               </div>
+            </div>
+           <div class="item" style='background: #F5F5F5;padding: 10px;'>
+             <div class="colBlue" style="text-align: center;">Description</div> 
+            <!--  <br/>
+
+               {{OptionData.description}} -->
+            </div>
+            <div class="padding">
+              {{OptionData.description}}
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

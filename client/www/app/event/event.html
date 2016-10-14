@@ -1,0 +1,12 @@
+<ion-view view-title="Events">
+  <ion-content scroll ='true'>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="data in Event.eventData" type="item-text-wrap" ng-click="Event.ShowDetails(data)">
+        <img ng-src="{{data.image}}">
+        <h2>{{data.title}}</h2>
+        <p>{{data.description}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -42,7 +42,7 @@ else{
       echo 0;
     }
    }else{
-            while ($row = mysql_fetch_assoc($result)) {
+      while ($row = mysql_fetch_assoc($result)) {
         $arrayd[] = $row;
         $total++;
     }

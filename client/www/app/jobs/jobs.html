@@ -1,0 +1,12 @@
+<ion-view view-title="Jobs">
+  <ion-content scroll = 'true'>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="data in Job.jobData" type="item-text-wrap" ng-click="Job.ShowDetails(data)">
+        <img ng-src="{{data.image}}">
+        <h2>{{data.title}}</h2>
+        <p>{{data.description}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

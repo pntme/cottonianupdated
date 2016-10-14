@@ -30,7 +30,7 @@
 
 }
 .m-t-15{
-	margin-top: 15px;
+	margin-top: 15px !important;
 }
 .no-pad-left-right{
     padding-left: 0px!important;
@@ -79,7 +79,61 @@ font-family: 'MTCORSVA';
     behavior: url(PIE.htc); /* remove if you don't care about IE8 */
 }
 .type3 {
-width: 100px;
+    width: 100px;
     height: 100px;
-    padding: 17px;
+    padding: 22px;  
+}
+.GridText{
+	font-size: 9px;
+}
+.ColWhite{
+	color: #fff;
+}
+.BgWhite{
+	background: #fff;
+}
+
+.ColBlue{
+	color: blue;
+
+}
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    opacity: 1.9 !important;
+}
+ion-tabs.tabs-color-active-positive .tab-item {
+    color: #fff;
+    opacity: 1.9;
+}
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
+    color: blue;
+}
+
+.button icon .ion-close-round {
+    background: #00A9D4 !important;
+}
+.font23{
+    font-size: 23px !important;
+}
+.OptionImage{
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+.pull-left{
+ float: left;
+}
+.pull-right{
+    float: right;
+}
+.list .center{
+    max-width: 350px;
+    display: block;
+    margin: 0 auto;
+}
+.floatingFormText{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #cec9c9;
 }

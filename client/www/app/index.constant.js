@@ -9,7 +9,10 @@ angular.module('cot').constant('configuration',{
      googleRedirecturl:"http://localhost",
      googleSecret:"JmNx0MWcd3E_RrHtW1G7aB_W",
      googleApiKey:"AIzaSyBpCEsTFOFht1BoXiopSd7Z6buBaboibRA",
-     googleScope:"https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me"
+     googleScope:"https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me",
+     DefaultNewsLogo: "http://truecvs.com/cottonianupdated/images/news.png",
+     DefaultEventLogo: "http://truecvs.com/cottonianupdated/images/event.png",
+     DefaultJobLogo:"http://truecvs.com/cottonianupdated/images/job.png"
    });
 
 
