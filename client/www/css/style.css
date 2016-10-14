@@ -1,4 +1,10 @@
 /* Empty. Add your own CSS if you like */
+ion-scroll[direction=x] {
+  width: 100vw;
+}
+ion-scroll[direction=y] {
+  height: 100vh;
+}
 .BgBlue{
 	background: #00A9D4 !important;
 	color: #fff !important;
@@ -136,4 +142,14 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #cec9c9;
+}
+.ChoosePicDiv{
+      width: 100px;
+    height: 100px;
+    border: 1px solid rgb(206, 201, 201);
+    display: block;
+    margin: 0 auto;
+    font-size: 13px;
+    text-align: center;
+   color:rgb(113, 109, 109);
 }

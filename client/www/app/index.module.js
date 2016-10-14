@@ -4,7 +4,8 @@
    	'ionic',
    	'starter.controllers',
    	'starter.services',
-   	'ngStorage'
+   	'ngStorage',
+   	'ngFileUpload'
 
    	 ]);
 })();

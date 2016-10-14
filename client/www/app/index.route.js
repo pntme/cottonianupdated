@@ -26,6 +26,13 @@
     controller: 'SignupCtrl',
     controllerAs: 'Signup'
   })
+  .state('formdata', {
+    url: '/formdata/:FormTitle/:api',
+    cache: false,
+    templateUrl: 'app/formdata/formdata.html',
+    controller: 'FormdataCtrl',
+    controllerAs: 'Formdata'
+  })
   
  
  
