@@ -84,7 +84,6 @@
         };
         service.validateToken = function(token, def) {
             $log.info('Code: ' + token);
-             $ionicLoading.show();
             var http = $http({
                 url: 'https://www.googleapis.com/oauth2/v3/token',
                 method: 'POST',

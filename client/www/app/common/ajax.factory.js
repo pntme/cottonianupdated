@@ -3,7 +3,7 @@
     angular
         .module('cot')
         .factory('ajaxRequest',ajaxRequest);
-    function ajaxRequest($http, $q, configuration) {
+    function ajaxRequest($http, $q, configuration, tostService, $ionicLoading, $rootScope) {
         return {
             send: function(api, data, method) {
                 var def = $q.defer();
@@ -17,6 +17,9 @@
                 }).success(function(data) {
                     def.resolve(data);
                 }).error(function() {
+                    tostService.notify('Operation failed, Review your network settings','top');
+                    $ionicLoading.hide();
+                    $rootScope.spinner = false;
                     def.reject('500');
                 });
                 return def.promise;

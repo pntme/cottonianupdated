@@ -1,23 +1,26 @@
-<ion-view hide-nav-bar="false" view-title="{{Formdata.navtitle}}" hide-back-button="false"  has-footer = 'true' has-tabs="true">
+<ion-view hide-nav-bar="false" view-title="{{Formdata.navtitle}}" hide-back-button="true"  has-footer = 'true' has-tabs="true">
        <ion-content scroll="false" has-header='true'>
         <div class="padding">
+        <form name = 'data' novalidate>
             <div class="list center">
                 <label class="item item-input item-floating-label floatingFormText">
                     <span class="input-label">Title</span>
-                    <input type="text" placeholder="Title"  id="FormTitle">
+                    <input type="text" placeholder="Title"  ng-model = 'Formdata.title' name= 'ftitle' required>
                 </label>
                 <label class="item item-input item-floating-label floatingFormText">
                     <span class="input-label">Description</span>
-                    <input type = 'text' placeholder="Description"  id="FormDesc">
+                    <input type = 'text' placeholder="Description"  ng-model = 'Formdata.description' name='fdesc' required>
                 </label>
-                <div class='ChoosePicDiv m-t-15' ng-click='select()'>
-                  <p style='margin-top: 38px;'>Select Logo</p>
+                <div class='m-t-15' ng-click='select()'  ng-class="{'ChoosePicDiv': !Formdata.picture, 'OptionImage':  Formdata.picture } ">
+                  <p style='margin-top: 38px;'  ng-if='!Formdata.picture'>Select Picture</p>
+                  <img ng-src='{{Formdata.picture}}' ng-if = 'Formdata.picture' class="OptionImage">
                 </div> 
-                <div class="AbsoluteCenterBottom m-t-15">
-                    <button class="button button-block button-default LoginButton"  ng-click="publish()" style='border-color: rgb(206, 201, 201);'>Publish</button>
-                </div>
 
+                <div class="AbsoluteCenterBottom m-t-15">
+                    <button class="button button-block button-default LoginButton"  ng-click="publish()" style='border-color: rgb(206, 201, 201);' ng-disabled="data.ftitle.$invalid||data.fdesc.$invalid">Publish</button>
+                </div>
             </div>
+        </form>
         </div>
     </ion-content>
   </ion-view>  

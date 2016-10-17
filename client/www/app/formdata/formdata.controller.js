@@ -12,28 +12,31 @@
         var FinalApi = $stateParams.api;
          $scope.publish = function() {
             $ionicLoading.show();
-            var title = document.getElementById('FormTitle').value;
-            var description = document.getElementById('FormDesc').value;
             if (FinalFile)
-                FileUpload(FinalFile, FinalApi, title, description);
+                FileUpload(FinalFile, FinalApi, self.title, self.description);
             else {
                 ajaxRequest.send(FinalApi, {
-                    title: title,
-                    description: description,
+                    title: self.title,
+                    description: self.description,
                     user: user
                 }, 'POST').then(function(res) {
                     $ionicLoading.hide();
-                    tostService.notify('Uploaded successfully', 'top');
+                    if(res == 1){
+                       tostService.notify('Uploaded successfully', 'top');
+                       $state.go('tab.home');
+                    }else
+                       tostService.notify('Failed to submit, Please try again', 'top');
+                   
+
                 });
 
             }
         }
 
-
         $scope.select = function() {
             Image.takePhoto1('Profile photo').then(function(blob) {
                 FinalFile = blob;
-                self.UserPic = "data:image/jpeg;base64," + Image.binary;
+                self.picture = "data:image/jpeg;base64," + Image.binary;
             });
         }
 
@@ -45,25 +48,29 @@
                   if(data.status == 200 && data.statusText == "OK"){
                     var filename = data.data.replace(/(\r\n|\n|\r)/gm,"");
                        ajaxRequest.send(FinalApi, {
-                          title: title,
-                          description: description,
+                          title: self.title,
+                          description: self.description,
                           user: user,
                           image : filename  
                        }, 'POST').then(function(res) {
-                            $scope.hide();
                             $ionicLoading.hide();
-                            tostService.notify('Submitted successfully', 'top');
+                            if(res == 1){
+                              tostService.notify('Submitted successfully', 'top');
+                              $state.go('tab.home');
+                            }
+
+                            else
+                              tostService.notify('Failed to submit, Please try again', 'top'); 
                       });
                   }
                   else{
-                            $scope.hide();
-                            $ionicLoading.hide();                   
+                          
+                    $ionicLoading.hide();                   
                     tostService.notify('Failed to submit, Please try again', 'top'); 
                   }
                }).catch(function(e){
-                 console.log(e);
-                                            $scope.hide();
-                            $ionicLoading.hide();
+                  console.log(e);
+                  $ionicLoading.hide();
                   tostService.notify('Failed to submit, Please try again', 'top');
                })
         }

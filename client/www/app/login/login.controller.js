@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('cot').controller('LoginCtrl', LoginCtrl);
-  function LoginCtrl(ajaxRequest, facebookLogin, $ionicLoading, googleLogin, loginApi, $state){
+  function LoginCtrl(ajaxRequest, facebookLogin, googleLogin, loginApi, $state, tostService, $ionicLoading){
     var self = this;
     self.DoLogin = function(){
       $ionicLoading.show();
@@ -23,7 +23,8 @@
                    });
                }
            }, function(data) {
-               console.log(data);
+                tostService.notify('Operation failed, Review your network settings','top');
+                $ionicLoading.hide();
            });
        };
 
@@ -43,8 +44,8 @@
     
 
   self.GLogin = function(){
-    $ionicLoading.show();
   	  googleLogin.startLogin().then(function(response) {
+          $ionicLoading.show();
                loginApi.fireApi(
                   'gmail',
                   response.email,

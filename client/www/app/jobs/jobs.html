@@ -1,7 +1,10 @@
 <ion-view view-title="Jobs">
-  <ion-content scroll = 'true'>
+  <ion-content class="has-header" scroll="true" overflow-scroll="false">
+   <div id='center' ng-if='!Job.jobData'>
+    <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Job.jobData && spinner'></ion-spinner>
+  </div>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="data in Job.jobData" type="item-text-wrap" ng-click="Job.ShowDetails(data)">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in Job.jobData" type="item-text-wrap" ng-click="Job.ShowDetails(data)">
         <img ng-src="{{data.image}}">
         <h2>{{data.title}}</h2>
         <p>{{data.description}}</p>

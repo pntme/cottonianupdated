@@ -153,3 +153,17 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     text-align: center;
    color:rgb(113, 109, 109);
 }
+.CenteredSpinner{
+position: absolute;
+    top: 50%;
+    left: 45%;
+    margin-top: -47px;
+    margin-left: -14px;
+}
+.scroll{
+    height: 100%;
+   }
+#center .spinner svg {
+    width: 25% !important;
+    height: 85px !important;
+  }

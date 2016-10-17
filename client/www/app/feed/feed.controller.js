@@ -1,18 +1,23 @@
 (function() {
     'use strict';
     angular.module('cot').controller('feedCtrl', feedCtrl);
+
     function feedCtrl(ajaxRequest, configuration, $state, $ionicModal, $scope) {
         var self = this;
         ajaxRequest.send('fetchhome.php', '', 'GET').then(function(res) {
             self.feedData = res;
             _.forEach(res, function(value) {
-                if (!value.image)
+                if (!value.image) {
                     value.image = configuration.DefaultNewsLogo;
-                    value.date_time = moment(value.date_time).add(24, 'hours').format('LLL');
+                } else {
+                    value.image = configuration.ImageUrl + value.image;
+                }
+
+                value.date_time = moment(value.date_time).add(24, 'hours').format('LLL');
             });
         });
 
-    $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
+        $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
             self.option = $ionicModal;
         }, {
             scope: $scope

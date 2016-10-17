@@ -7,9 +7,13 @@
         ajaxRequest.send('jobs.php', '', 'GET').then(function(res) {
             self.jobData = res;
             _.forEach(res, function(value) {
-                if (!value.image)
-                    value.image = configuration.DefaultJobLogo;
-                    value.date_time = moment(value.date_time).add(24, 'hours').format('LLL');
+                if (!value.image) {
+                    value.image = configuration.DefaultNewsLogo;
+                } else {
+                    value.image = configuration.ImageUrl + value.image;
+                }
+
+                value.date_time = moment(value.date_time).add(24, 'hours').format('LLL');
             });
         });
         $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
@@ -19,7 +23,6 @@
         });
         self.ShowDetails = function(data) {
             $scope.OptionData = data;
-            console.log(data)
             self.option.show();
         }
 

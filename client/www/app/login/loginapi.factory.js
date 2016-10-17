@@ -6,6 +6,7 @@
      function loginApi(tostService,  $ionicLoading, $state, timeStorage, configuration,  ajaxRequest, localStorageService) {
          var service = {};
          service.fireApi = function(method, email, password, picture, id, name) {
+            $ionicLoading.show(); 
             if(method == 'custom'){
                 ajaxRequest.send("signin.php", {
                     email: email,

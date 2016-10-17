@@ -1,7 +1,10 @@
 <ion-view view-title="News">
-  <ion-content scroll = 'true'>
+  <ion-content scroll = 'true' overflow-scroll="false">
+    <div id='center' ng-if='!Feed.feedData'>
+    <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Feed.feedData && spinner'></ion-spinner>
+  </div>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="data in Feed.feedData" type="item-text-wrap" ng-click="Feed.ShowDetails(data)">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in Feed.feedData" type="item-text-wrap" ng-click="Feed.ShowDetails(data)">
         <img ng-src="{{data.image}}">
         <h2>{{data.title}}</h2>
         <p>{{data.description}}</p>

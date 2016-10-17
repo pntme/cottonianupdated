@@ -8,12 +8,13 @@
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.scrolling.jsScrolling(false);  
   $stateProvider
 
   // setup an abstract state for the tabs directive
 
   .state('login', {
-    url: '/login',
+    url: '/',
     cache: false,
     templateUrl: 'app/login/login.html',
     controller: 'LoginCtrl',
@@ -61,6 +62,7 @@
 
   .state('tab.feed', {
     url: '/feed',
+    cache: false,
     views: {
       'tab-feed': {
         templateUrl: 'app/feed/feed.html',
@@ -72,6 +74,7 @@
 
   .state('tab.event', {
       url: '/event',
+      cache: false,
       views: {
         'tab-event': {
           templateUrl: 'app/event/event.html',
@@ -84,6 +87,7 @@
 
   .state('tab.jobs', {
     url: '/job',
+    cache: false,
     views: {
       'tab-job': {
         templateUrl: 'app/jobs/jobs.html',
@@ -94,7 +98,10 @@
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+   $urlRouterProvider.otherwise(function($injector, $location) {
+            var $state = $injector.get("$state");
+            $state.go('login');
+        });
 
 });
 

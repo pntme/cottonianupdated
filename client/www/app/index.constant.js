@@ -12,7 +12,8 @@ angular.module('cot').constant('configuration',{
      googleScope:"https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me",
      DefaultNewsLogo: "http://truecvs.com/cottonianupdated/images/news.png",
      DefaultEventLogo: "http://truecvs.com/cottonianupdated/images/event.png",
-     DefaultJobLogo:"http://truecvs.com/cottonianupdated/images/job.png"
+     DefaultJobLogo:"http://truecvs.com/cottonianupdated/images/job.png",
+     ImageUrl:"http://truecvs.com/cottonianupdated/images/"
    });
 
 
