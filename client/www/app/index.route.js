@@ -1,13 +1,30 @@
 (function(){
  'use strict';
   angular.module('cot')
-  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicCloudProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $ionicConfigProvider.tabs.position('bottom');
+     $ionicCloudProvider.init({
+    "core": {
+      "app_id": "0a99e665"
+    },
+    "push": {
+      "sender_id": "1077335849429",
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true
+        },
+        "android": {
+          "iconColor": "#343434"
+        }
+      }
+    }
+  });
   $ionicConfigProvider.scrolling.jsScrolling(false);  
   $stateProvider
 
