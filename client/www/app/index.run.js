@@ -1,7 +1,7 @@
   (function(){
 'use strict';
  angular.module('cot')
-.run(function($ionicPlatform, userValidate, $state, pushNotificationService, $rootScope, $ionicPush, tostService, $timeout , $ionicHistory) {
+.run(function($ionicPlatform, userValidate, $state, $rootScope, $ionicPush, tostService, $timeout , $ionicHistory) {
    userValidate.validUser();
    $rootScope.spinner = true;
   $ionicPlatform.ready(function() {

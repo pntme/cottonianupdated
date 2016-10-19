@@ -1,32 +1,44 @@
 <?php
-error_reporting(E_ALL);
-$msg = "Hello";
-$user ="hiii";
+$to="fyZCbA7hgvA:APA91bGwHwwGrJZsBRy3_iJA7IwuDTfUXIcolmDE885y1i4SOsX81lsaOv45t6lJ8F921DNAg_6uglATE8PICQg2UyFHqq0J3t3_u79dlsrWhy0VgAJvvzvHf85EWDsqVjdvfeSXMENi";
+$title="Push Notification Title";
+$message="Push Notification Message";
+sendPush($to,$title,$message);
+echo "clear one";
+function sendPush($to,$title,$message)
+{
+// API access key from Google API's Console
+// replace API
+	echo "clear two";
+define( 'API_ACCESS_KEY', 'AIzaSyDpG1nEX1LOzlKF1ne1THZxHI0PnpgtONM');
+$registrationIds = array($to);
+$msg = array
+(
+'message' => $message,
+'title' => $title,
+'vibrate' => 1,
+'sound' => 1
 
-$device_token="dXXSbhv1QPY:APA91bEFzJCV75kKdIyByY9PHqS5e8nnwOcuh8dSByOsECtzubWimceN9bni6kVPn9ZO3Pviu7riDJV7t_rwbU8nimvwjggVfhHBC6GcxdX84RLRU_lfSqx-NTTIdMwWRgzEX18jegtX";
-
-
-$url = 'https://push.ionic.io/api/v1/push';
-
-$data = array(
-                  'tokens' => array($device_token), 
-                  'notification' => array('alert' => ''.$user.': '.$msg),      
-                  );
-
-
-      
-$content = json_encode($data);
-
+// you can also add images, additionalData
+);
+$fields = array
+(
+'registration_ids' => $registrationIds,
+'data' => $msg
+);
+$headers = array
+(
+'Authorization: key=' . API_ACCESS_KEY,
+'Content-Type: application/json'
+);
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, TRUE);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
-curl_setopt($ch, CURLOPT_USERPWD, "Private Api key" . ":" );  
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-'Content-Type: application/json',
-'X-Ionic-Application-Id: App-ID' 
-));
+curl_setopt( $ch,CURLOPT_URL, 'https://android.googleapis.com/gcm/send' );
+curl_setopt( $ch,CURLOPT_POST, true );
+curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 $result = curl_exec($ch);
-curl_close($ch);
-
+curl_close( $ch );
+echo $result;
+}
 ?>
