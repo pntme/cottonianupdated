@@ -1,16 +1,21 @@
 <?php
-$to="fyZCbA7hgvA:APA91bGwHwwGrJZsBRy3_iJA7IwuDTfUXIcolmDE885y1i4SOsX81lsaOv45t6lJ8F921DNAg_6uglATE8PICQg2UyFHqq0J3t3_u79dlsrWhy0VgAJvvzvHf85EWDsqVjdvfeSXMENi";
-$title="Push Notification Title";
-$message="Push Notification Message";
-sendPush($to,$title,$message);
-echo "clear one";
-function sendPush($to,$title,$message)
+header("Access-Control-Allow-Origin: *"); 
+include('db.php');
+$m = $_GET["msg"];
+$t = $_GET["title"];
+$query=mysql_query("select `push_id` from `phonegap_login`");
+$data= array();
+while($result=mysql_fetch_array($query))
 {
-// API access key from Google API's Console
-// replace API
-	echo "clear two";
+$data[]=$result[0];
+}
+
+sendPush($data, $t,$m);
+function sendPush($data, $title,$message)
+{
 define( 'API_ACCESS_KEY', 'AIzaSyDpG1nEX1LOzlKF1ne1THZxHI0PnpgtONM');
-$registrationIds = array($to);
+$registrationIds = $data;
+echo $registrationIds;
 $msg = array
 (
 'message' => $message,
@@ -38,7 +43,7 @@ curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
 curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
 curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 $result = curl_exec($ch);
-curl_close( $ch );
 echo $result;
+curl_close( $ch );
 }
 ?>

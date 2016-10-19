@@ -12,15 +12,15 @@ if($image){
 	 $sql1    = "insert into `news` (`title`,`date_time`,`description`,`user`,`image`) values('$title','$dat1e','$description','$user','$image')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
-	  	echo 1;
+	  	header("location:push.php?msg=$description&title=New news posted");
 	  }else{
 	  	echo 0;
 	  }
 }else{
 	 $sql1    = "insert into `news` (`id`,`title`,`date_time`,`description`,`user`) values('','$title','$dat1e','$description','$user')";
 	  $result1 = mysql_query($sql1);
-	  if($result1){
-	  	echo 1;
+	 if($result1){
+	  	header("location:push.php?msg=$description&title=New news posted");
 	  }else{
 	  	echo 0;
 	  }

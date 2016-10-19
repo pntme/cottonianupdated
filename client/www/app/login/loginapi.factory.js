@@ -3,7 +3,7 @@
      angular.module('cot')
          .factory('loginApi', loginApi);
 
-     function loginApi(tostService,  $ionicLoading, $state, timeStorage, configuration,  ajaxRequest, localStorageService) {
+     function loginApi(tostService,  $ionicLoading, pushNotificationService, $state, timeStorage, configuration,  ajaxRequest, localStorageService) {
          var service = {};
          service.fireApi = function(method, email, password, picture, id, name) {
             $ionicLoading.show(); 
@@ -38,6 +38,7 @@
 
             function validateLogin(res){
                localStorageService.set("UserData", res);
+               pushNotificationService.init();
                 $state.go('tab.home')
                
             }

@@ -21,12 +21,12 @@
                     user: user
                 }, 'POST').then(function(res) {
                     $ionicLoading.hide();
-                    if(res == 1){
+                    if(res == 0)
+                       tostService.notify('Failed to submit, Please try again', 'top');
+                    else{
                        tostService.notify('Uploaded successfully', 'top');
                        $state.go('tab.home');
-                    }else
-                       tostService.notify('Failed to submit, Please try again', 'top');
-                   
+                    }
 
                 });
 
@@ -54,14 +54,15 @@
                           image : filename  
                        }, 'POST').then(function(res) {
                             $ionicLoading.hide();
-                            if(res == 1){
-                              tostService.notify('Submitted successfully', 'top');
-                              $state.go('tab.home');
-                            }
-
-                            else
-                              tostService.notify('Failed to submit, Please try again', 'top'); 
+                            if(res == 1)
+                               tostService.notify('Failed to submit, Please try again', 'top');
+                            else{
+                                tostService.notify('Submitted successfully', 'top');
+                                $state.go('tab.home');
+                             }   
+                              
                       });
+                            
                   }
                   else{
                           

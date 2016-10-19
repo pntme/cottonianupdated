@@ -10,7 +10,7 @@ $id = $request->id;
 $picture = $request->picture;
 $fullname = $request->fullname;
 if($method == 'custom'){
-  $sql="select * from `phonegap_login` where `email`='$email' and `password`='$pass'";    
+	$sql="select * from `phonegap_login` where `email`='$email' and `password`='$pass'";		
     $result = mysql_query($sql);
     if (mysql_num_rows($result) == 0) {
        echo 0;
@@ -26,9 +26,9 @@ else{
    $sql="select * from `phonegap_login` where `email`='$email'";
    $result = mysql_query($sql);
    if (mysql_num_rows($result) == 0) {
-    $dat1e=date("d-m-y h:i:s");
-    $sql1="insert into `phonegap_login` (`reg_id`,`reg_date`,`fullname`,`email`,`login_method`, `social_id`, `profile_pic`) values('','$dat1e','$fullname','$email','$method', '$id', '$picture')";
-        $result1 = mysql_query($sql1);
+   	$dat1e=date("d-m-y h:i:s");
+   	$sql1="insert into `phonegap_login` (`reg_id`,`reg_date`,`fullname`,`email`,`login_method`, `social_id`, `profile_pic`) values('','$dat1e','$fullname','$email','$method', '$id', '$picture')";
+   	    $result1 = mysql_query($sql1);
     if ($result1) {
         $sql2="select * from `phonegap_login` where `email`='$email'";
         $result2 = mysql_query($sql2);
@@ -42,7 +42,7 @@ else{
       echo 0;
     }
    }else{
-      while ($row = mysql_fetch_assoc($result)) {
+            while ($row = mysql_fetch_assoc($result)) {
         $arrayd[] = $row;
         $total++;
     }

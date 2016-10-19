@@ -1,0 +1,12 @@
+[17-Oct-2016 06:45:44 UTC] PHP Notice:  Undefined property: stdClass::$image in /home/truecvs/public_html/cottonianupdated/savenews.php on line 9
+[17-Oct-2016 06:45:44 UTC] PHP Warning:  mysql_query(): Access denied for user 'truecvs'@'localhost' (using password: NO) in /home/truecvs/public_html/cottonianupdated/savenews.php on line 23
+[17-Oct-2016 06:45:44 UTC] PHP Warning:  mysql_query(): A link to the server could not be established in /home/truecvs/public_html/cottonianupdated/savenews.php on line 23
+[17-Oct-2016 06:47:10 UTC] PHP Notice:  Undefined property: stdClass::$image in /home/truecvs/public_html/cottonianupdated/savenews.php on line 10
+[17-Oct-2016 06:47:28 UTC] PHP Notice:  Undefined property: stdClass::$image in /home/truecvs/public_html/cottonianupdated/savenews.php on line 10
+[17-Oct-2016 08:14:16 UTC] PHP Notice:  Undefined property: stdClass::$description in /home/truecvs/public_html/cottonianupdated/savenews.php on line 8
+[17-Oct-2016 08:14:16 UTC] PHP Notice:  Undefined property: stdClass::$image in /home/truecvs/public_html/cottonianupdated/savenews.php on line 10
+[17-Oct-2016 08:15:22 UTC] PHP Notice:  Undefined property: stdClass::$title in /home/truecvs/public_html/cottonianupdated/savenews.php on line 7
+[17-Oct-2016 08:15:22 UTC] PHP Notice:  Undefined property: stdClass::$description in /home/truecvs/public_html/cottonianupdated/savenews.php on line 8
+[17-Oct-2016 08:15:22 UTC] PHP Notice:  Undefined property: stdClass::$image in /home/truecvs/public_html/cottonianupdated/savenews.php on line 10
+[17-Oct-2016 08:15:32 UTC] PHP Notice:  Undefined property: stdClass::$image in /home/truecvs/public_html/cottonianupdated/savenews.php on line 10
+[17-Oct-2016 08:19:21 UTC] PHP Notice:  Undefined property: stdClass::$image in /home/truecvs/public_html/cottonianupdated/savenews.php on line 10
