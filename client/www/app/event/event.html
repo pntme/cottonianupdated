@@ -1,5 +1,9 @@
 <ion-view view-title="Events">
   <ion-content scroll ='true' overflow-scroll="false">
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="Event.doRefresh()" spinner="android">
+  </ion-refresher>
   <div id='center' ng-if='!Event.eventData'>
     <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Event.eventData && spinner'></ion-spinner>
   </div>

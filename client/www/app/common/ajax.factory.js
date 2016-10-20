@@ -15,11 +15,13 @@
                     },
                     data: data,
                 }).success(function(data) {
+                    $rootScope.$broadcast('scroll.refreshComplete');
                     def.resolve(data);
                 }).error(function() {
                     tostService.notify('Operation failed, Review your network settings','top');
                     $ionicLoading.hide();
                     $rootScope.spinner = false;
+                    $rootScope.$broadcast('scroll.refreshComplete');
                     def.reject('500');
                 });
                 return def.promise;

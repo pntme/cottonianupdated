@@ -34,7 +34,7 @@
         }
 
         $scope.select = function() {
-            Image.takePhoto1('Profile photo').then(function(blob) {
+            Image.takePhoto1( $stateParams.FormTitle).then(function(blob) {
                 FinalFile = blob;
                 self.picture = "data:image/jpeg;base64," + Image.binary;
             });

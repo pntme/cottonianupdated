@@ -1,21 +1,9 @@
 (function() {
     'use strict';
     angular.module('cot').controller('jobCtrl', jobCtrl);
-
-    function jobCtrl(ajaxRequest, configuration, $ionicModal, $scope) {
+    function jobCtrl(ajaxRequest, configuration, $ionicModal, $scope, $q) {
         var self = this;
-        ajaxRequest.send('jobs.php', '', 'GET').then(function(res) {
-            self.jobData = res;
-            _.forEach(res, function(value) {
-                if (!value.image) {
-                    value.image = configuration.DefaultNewsLogo;
-                } else {
-                    value.image = configuration.ImageUrl + value.image;
-                }
-
-                value.date_time = moment(value.date_time).add(24, 'hours').format('LLL');
-            });
-        });
+       
         $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
             self.option = $ionicModal;
         }, {
@@ -29,5 +17,24 @@
         $scope.hide = function() {
             self.option.hide();
         }
+
+        self.doRefresh = function() {
+            ajaxRequest.send('jobs.php', '', 'GET').then(function(res) {
+                self.jobData = res;
+                _.forEach(res, function(value) {
+                    if (!value.image) {
+                        value.image = configuration.DefaultNewsLogo;
+                    } else {
+                        value.image = configuration.ImageUrl + value.image;
+                    }
+                    value.date_time = moment(value.date_time).add(24, 'hours').format('LLL');
+                });
+            });
+        }
+
+         self.doRefresh();
+
+
+
     }
 })();

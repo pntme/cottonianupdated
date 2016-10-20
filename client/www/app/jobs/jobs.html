@@ -1,6 +1,9 @@
 <ion-view view-title="Jobs">
   <ion-content class="has-header" scroll="true" overflow-scroll="false">
-  <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+ <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="Job.doRefresh()" spinner="android">
+  </ion-refresher>
    <div id='center' ng-if='!Job.jobData'>
     <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Job.jobData && spinner'></ion-spinner>
   </div>

@@ -1,5 +1,9 @@
 <ion-view view-title="News">
   <ion-content scroll = 'true' overflow-scroll="false">
+   <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="Feed.doRefresh()" spinner="android">
+  </ion-refresher>
     <div id='center' ng-if='!Feed.feedData'>
     <div ng-if='!Feed.feedData && spinner'>
       <ion-spinner icon="android" class='CenteredSpinner' ></ion-spinner>
@@ -14,5 +18,8 @@
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
+    <ion-infinite-scroll ng-if="!Feed.noMoreItemsAvailable" on-infinite="Feed.loadMore()" distance="10%"></ion-infinite-scroll>
+      
+   
   </ion-content>
 </ion-view>
