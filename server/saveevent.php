@@ -12,7 +12,7 @@ if($image){
 	 $sql1    = "insert into `event` (`title`,`date_time`,`description`,`user`,`image`) values('$title','$date','$description','$user','$image')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
-	  	header("location:push.php?msg=$description&title=New event posted");
+	  	echo 1;
 	  }else{
 	  	echo 0;
 	  }
@@ -20,10 +20,9 @@ if($image){
 	 $sql1    = "insert into `event` (`id`,`title`,`date_time`,`description`,`user`) values('','$title','$date','$description','$user')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
-	  	header("location:push.php?msg=$description&title=New event posted");
+	  	echo 1;
 	  }else{
 	  	echo 0;
 	  }
 }
-
 ?>

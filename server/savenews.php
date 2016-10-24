@@ -12,7 +12,7 @@ if($image){
 	 $sql1    = "insert into `news` (`title`,`date_time`,`description`,`user`,`image`) values('$title','$date','$description','$user','$image')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
-	  	header("location:push.php?msg=$description&title=New news posted");
+	  	echo 1;
 	  }else{
 	  	echo 0;
 	  }
@@ -20,7 +20,7 @@ if($image){
 	 $sql1    = "insert into `news` (`id`,`title`,`date_time`,`description`,`user`) values('','$title','$date','$description','$user')";
 	  $result1 = mysql_query($sql1);
 	 if($result1){
-	  	header("location:push.php?msg=$description&title=New news posted");
+	  	echo 1;
 	  }else{
 	  	echo 0;
 	  }

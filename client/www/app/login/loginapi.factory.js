@@ -20,6 +20,7 @@
                        validateLogin(res);
                  });
             } else {
+                console.log("picture =  "+ picture)
                 ajaxRequest.send("signin.php", {
                     email: email,
                     password: password,
@@ -37,8 +38,11 @@
             }
 
             function validateLogin(res){
-               localStorageService.set("UserData", res);
-               pushNotificationService.init();
+
+                console.log("response aa gya");
+                console.log(res)
+                localStorageService.set("UserData", res);
+                pushNotificationService.init();
                 $state.go('tab.home')
                
             }

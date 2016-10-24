@@ -23,10 +23,11 @@
             scope: $scope
         });
 
-        self.Open = function(data, api) {
+        self.Open = function(data, api, msg) {
            $state.go('formdata',{
             FormTitle : data,
-            api: api
+            api: api,
+            msg: msg
            });
   
         }
@@ -41,25 +42,58 @@
             self.optionProfile.show();
             $scope.OptionData = localStorageService.get('UserData')[0];
             $scope.OptionData.title = 'Profile';
-            if($scope.OptionData.profile_pic)
-                $scope.OptionData.image = $scope.OptionData.profile_pic;
-            else
+            if($scope.OptionData.profile_pic){
+                $scope.OptionData.image = $scope.OptionData.profile_pic;}
+            else{
                 $scope.OptionData.image = configuration.ImageUrl + 'user.jpg';
-            
-
+            }
         }
-
         $scope.hide = function() {
           self.optionProfile.hide();
         }
 
+        $scope.changePic = function() {
+             Image.takePhoto1().then(function(blob) {
+                FinalFile = blob;
+                self.picture = "data:image/jpeg;base64," + Image.binary;
+            });
+        }
 
+        function FileUpload(blob, title, description) {
+            var query = Image.upload({
+                file: blob
+            });
+            query.then(function(data) {
+                if (data.status == 200 && data.statusText == "OK") {
+                    var filename = data.data.replace(/(\r\n|\n|\r)/gm, "");
+                    ajaxRequest.send(FinalApi, {
+                        title: self.title,
+                        description: self.description,
+                        user: user,
+                        image: filename,
+                        date: moment().unix()
+                    }, 'POST').then(function(res) {
+                        $ionicLoading.hide();
+                        if (res == 1) {
+                            tostService.notify('Uploaded successfully', 'top');
+                            ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
+                                console.log(res);
+                            });
+                            $state.go('tab.home');
+                        } else
+                            tostService.notify('Failed to submit, Please try again', 'top');
 
+                    });
 
-
-
-
+                } else {
+                    $ionicLoading.hide();
+                    tostService.notify('Failed to submit, Please try again', 'top');
+                }
+            }).catch(function(e) {
+                console.log(e);
+                $ionicLoading.hide();
+                tostService.notify('Failed to submit, Please try again', 'top');
+            })
+        }
     }
-
-
-})();
+})();   
