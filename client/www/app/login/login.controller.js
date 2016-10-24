@@ -4,7 +4,7 @@
   function LoginCtrl(ajaxRequest, facebookLogin, googleLogin, loginApi, $state, tostService, $ionicLoading){
     var self = this;
     self.DoLogin = function(){
-      $ionicLoading.show();
+      $ionicLoading.show();   
       loginApi.fireApi('custom', self.email, self.password);
     }
 

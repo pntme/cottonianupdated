@@ -1,14 +1,28 @@
-<ion-view view-title="Events">
-  <ion-content scroll ='true' overflow-scroll="false">
+<ion-view view-title="Events" hide-nav-bar="Event.y">
+ <ion-nav-buttons side="right">
+      <button class="button button-calm" ng-click="Event.showSearch();">
+       <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
+      </button>
+    </ion-nav-buttons>
+<div class="bar bar-header item-input-inset" ng-show="Event.y">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input type="search" placeholder="Search Event" ng-model="searchingText">
+  </label>
+  <button class="button button-calm" ng-click="Event.cancel()">
+    Cancel
+  </button>
+</div>
+  <ion-content scroll ='true' overflow-scroll="false"  ng-style="Event.x && {'margin-top':'42px'} || !Event.x &&  {'margin-top':'-1px'}">
   <ion-refresher
     pulling-text="Pull to refresh..."
     on-refresh="Event.doRefresh()" spinner="android">
   </ion-refresher>
   <div id='center' ng-if='!Event.eventData'>
-    <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Event.eventData && spinner'></ion-spinner>
+    <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Event.eventData && Event.spinner'></ion-spinner>
   </div>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in Event.eventData" type="item-text-wrap" ng-click="Event.ShowDetails(data)">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in Event.eventData | filter:searchingText track by $index" type="item-text-wrap" ng-click="Event.ShowDetails(data)">
         <img ng-src="{{data.image}}">
         <h2>{{data.title}}</h2>
         <p>{{data.description}}</p>

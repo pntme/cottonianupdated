@@ -18,7 +18,7 @@
             tostService.notify("You are already registered, Please login", 'top');	
           else
             localStorageService.set("UserData", res);
-            $state.go('home')
+            $state.go('tab.home')
        });
        
 

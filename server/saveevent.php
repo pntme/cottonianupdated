@@ -7,9 +7,9 @@ $title       = $request->title;
 $description = $request ->description;
 $user = $request->user;
 $image = $request->image;
-$dat1e = date("d-m-y h:i:s");
+$date = $request->date;
 if($image){
-	 $sql1    = "insert into `event` (`title`,`date_time`,`description`,`user`,`image`) values('$title','$dat1e','$description','$user','$image')";
+	 $sql1    = "insert into `event` (`title`,`date_time`,`description`,`user`,`image`) values('$title','$date','$description','$user','$image')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	header("location:push.php?msg=$description&title=New event posted");
@@ -17,7 +17,7 @@ if($image){
 	  	echo 0;
 	  }
 }else{
-	 $sql1    = "insert into `event` (`id`,`title`,`date_time`,`description`,`user`) values('','$title','$dat1e','$description','$user')";
+	 $sql1    = "insert into `event` (`id`,`title`,`date_time`,`description`,`user`) values('','$title','$date','$description','$user')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	header("location:push.php?msg=$description&title=New event posted");

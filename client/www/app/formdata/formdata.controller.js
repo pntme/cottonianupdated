@@ -4,7 +4,7 @@
 
     function FormdataCtrl($state, $localStorage, Image,  $ionicLoading , $stateParams ,
     	$ionicModal, tostService, $scope, ajaxRequest, localStorageService) {
-        var self = this;
+        var self = this;     
         var FinalApi, FinalFile;
         var user = localStorageService.get('UserData')[0].email;
         console.log($stateParams)
@@ -18,7 +18,8 @@
                 ajaxRequest.send(FinalApi, {
                     title: self.title,
                     description: self.description,
-                    user: user
+                    user: user,
+                    date: moment().unix()
                 }, 'POST').then(function(res) {
                     $ionicLoading.hide();
                     if(res == 0)
@@ -51,7 +52,8 @@
                           title: self.title,
                           description: self.description,
                           user: user,
-                          image : filename  
+                          image : filename,
+                          date: moment().unix()  
                        }, 'POST').then(function(res) {
                             $ionicLoading.hide();
                             if(res == 1)
@@ -64,8 +66,7 @@
                       });
                             
                   }
-                  else{
-                          
+                  else{    
                     $ionicLoading.hide();                   
                     tostService.notify('Failed to submit, Please try again', 'top'); 
                   }

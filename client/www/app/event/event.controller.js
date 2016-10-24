@@ -4,7 +4,7 @@
 
     function EventCtrl(ajaxRequest, configuration, $ionicModal, $scope) {
         var self = this;
- 
+        self.spinner=true;
 
         $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
             self.option = $ionicModal;
@@ -27,14 +27,29 @@
                         value.image = configuration.ImageUrl + value.image;
                     }
 
-                    value.date_time = moment(value.date_time).add(24, 'hours').format('LLL');
+                     value.date_time = moment.unix(value.date_time).format("DD/MM/YYYY HH:mm");
                 });
-            });
+            }, function(e){
+            console.log(e);
+                 self.spinner=false;
+           });
         }
         self.doRefresh();
 
         $scope.hide = function() {
             self.option.hide();
         }
+
+        self.cancel = function(){
+            $scope.searchingText='';
+            self.y = false;
+            self.x =false;
+        }
+
+        self.showSearch = function(){
+            self.y = true;
+            self.x=true;
+        }
+
     }
 })();

@@ -5,44 +5,36 @@
                    <h1 class="colBlue cursive">Cottonian</h1>
             </div>
             <form name="SignupForm" novalidate>
-                <div class="list m-t-30">
-                    <label class="item item-input loginInputField" style="    border-top: none;">
-                        <span class="input-label font100">
-                            <i class="ion-person Outline colBlue"></i>&nbsp;&nbsp;Full Name
-                        </span>
-                        <input type="text" ng-model="Signup.fname" name="fname" required>
-                        </label>
-                        <label class="item item-input loginInputField">
-                            <span class="input-label font100">
-                                <i class="ion-ios-email-outline colBlue"></i>&nbsp;&nbsp;Email
-                            </span>
-                            <input type="email"  ng-model="Signup.email" name="email" required>
-                            </label>
-                             <label class="item item-input loginInputField">
-                            <span class="input-label font100">
-                                <i class="ion-locked Outline colBlue"></i>&nbsp;&nbsp;Password
-                            </span>
-                            <input type="password"  ng-model="Signup.password" name="password" required>
-                            </label>
-                             <label class="item item-input loginInputField">
-                            <span class="input-label font100">
-                                <i class="ion-pricetag Outline colBlue"></i>&nbsp;&nbsp;Schoool Batch (Opt.)
-                            </span>
-                            <input type="text"  ng-model="Signup.bno" name="bno" required>
-                            </label>
+              <div class="list">
+                    <label class="item item-input loginInputField" style="border-top: none;">
+                    <i class="ion-person Outline colBlue placeholder-icon" style="font-size: 25px;margin-top: 3px;"></i>
+                    <input type="text" ng-model="Signup.fname" name="fname" placeholder="Full name" required>
+                </label>
+                    <label class="item item-input loginInputField">
+                    <i class="ion-ios-email-outline colBlue placeholder-icon" style="font-size: 25px;margin-top: 3px;"></i>
+                    <input type="email"  ng-model="Signup.email" name="email" placeholder="Email" required>
+                </label>
+                <label class="item item-input loginInputField">
+                    <i class="ion-locked Outline  colBlue placeholder-icon" style="font-size: 25px;margin-top: 3px;"></i>
+                    <input type="password"  ng-model="Signup.password" name="password" placeholder='Password' required>
+                </label>
+                    <label class="item item-input loginInputField">
+                    <i class="ion-pricetag Outline colBlue placeholder-icon" style="font-size: 22px;margin-top: 4px;"></i>
+                    <input type="text"  ng-model="Signup.bno" name="bno" placeholder="Batch no (Opt.)" required>
+                </label>
+               </div>
+               <div class="AbsoluteCenterBottom">
+                    <button class="button button-block button-default LoginButton BgBlue" ng-disabled="SignupForm.email.$invalid||SignupForm.password.$invalid || SignupForm.fname.$invalid " ng-click = "Signup.DoSignup()">Signup</button>
+                </div>
+                
+                   <div class="col-xs-12 no-pad-left-right"> 
+                        <div class="text-center m-t-15 m-b-15">
+                                <span class="font17 input-label" style="display: initial;">Already have an account?
+                                    <a ui-sref="login">Login</a>
+                                </span>
                         </div>
-                       <div class="AbsoluteCenterBottom">
-                            <button class="button button-block button-default LoginButton BgBlue" ng-disabled="SignupForm.email.$invalid||SignupForm.password.$invalid || SignupForm.fname.$invalid " ng-click = "Signup.DoSignup()">Signup</button>
-                        </div>
-                        
-                           <div class="col-xs-12 no-pad-left-right"> 
-                                <div class="text-center m-t-15 m-b-15">
-                                        <span class="font17 input-label" style="display: initial;">Already have an account?
-                                            <a ui-sref="login">Login</a>
-                                        </span>
-                                </div>
-                            </div>
-                        </form>
                     </div>
-                </ion-content>
-            </ion-view>
+                </form>
+            </div>
+        </ion-content>
+    </ion-view>

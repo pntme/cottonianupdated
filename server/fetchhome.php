@@ -10,5 +10,4 @@ while($result=mysql_fetch_assoc($query))
 $data[]=$result;
 }
 echo json_encode($data);
-
 ?>
