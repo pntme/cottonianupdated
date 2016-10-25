@@ -183,3 +183,15 @@ position: absolute;
     font-size: 21px;
 }
 
+.profilePic{
+     width: 200px;
+    height: 200px;
+    padding: 22px;
+    border: 1px solid green;
+    border-radius: 50%;
+    behavior: url(PIE.htc);
+    margin: 0 auto;
+    background-size: cover;
+}
+
+    

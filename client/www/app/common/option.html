@@ -4,10 +4,10 @@
         <button class="button icon ion-close-round model-close" on-tap="hide()"></button>
     </ion-header-bar>
     <ion-content scroll="false" has-header='true'>
-    <div style="min-height: 50px;" ng-click = 'changePic();'>
-        <img ng-src="{{OptionData.image}}" class='OptionImage m-t-30'>
-     </div>   
-        <div class="list m-t-30">
+
+    <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}}); border-color: #fff;' ng-if = "OptionData.title != 'Profile'" ></div>
+     <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}})' ng-click = 'changePic();' ng-if = "OptionData.title == 'Profile'"></div>
+        <div class="list m-t-15">
             <div class="item" ng-if='OptionData.date_time'>
                 <div class="pull-left colBlue">
                     Time
@@ -55,6 +55,16 @@
                 </div>
                 <div class="pull-right">
                     {{OptionData.user}}
+                </div>
+            </div>
+             <div ng-click = 'AddBatch()'>
+                <div class="item" style='background: #F5F5F5;' ng-if="!OptionData.school_batch && OptionData.title == 'Profile'">
+                    <div class="colBlue text-center" style="margin-left: 3px;">Add Batch no.</div>
+                </div>
+            </div>
+            <div ng-if = "OptionData.title == 'Profile'" ng-click = 'ChangePassword()'>
+                <div class="item" style='background: #F5F5F5; margin-top: 2px;' >
+                    <div class="colBlue text-center" style="margin-left: 3px;">Change Password</div>
                 </div>
             </div>
             <div ng-if="OptionData.description">
