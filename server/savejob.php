@@ -8,8 +8,10 @@ $description = $request ->description;
 $user = $request->user;
 $image = $request->image;
 $date = $request->date;
+$title1=mysql_real_escape_string(htmlspecialchars(trim($title)));
+$description1=mysql_real_escape_string(htmlspecialchars(trim($description)));
 if($image){
-	 $sql1    = "insert into `jobs` (`title`,`date_time`,`description`,`user`,`image`) values('$title','$date','$description','$user','$image')";
+	 $sql1    = "insert into `jobs` (`title`,`date_time`,`description`,`user`,`image`) values('$title1','$date','$description1','$user','$image')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
         echo 1;
@@ -17,7 +19,7 @@ if($image){
 	  	echo 0;
 	  }
 }else{
-	 $sql1    = "insert into `jobs` (`id`,`title`,`date_time`,`description`,`user`) values('','$title','$date','$description','$user')";
+	 $sql1    = "insert into `jobs` (`id`,`title`,`date_time`,`description`,`user`) values('','$title1','$date','$description1','$user')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	    echo 1;

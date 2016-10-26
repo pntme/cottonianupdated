@@ -5,6 +5,7 @@
     function EventCtrl(ajaxRequest, configuration, $ionicModal, $scope) {
         var self = this;
         self.spinner=true;
+        offset = 2;
 
         $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
             self.option = $ionicModal;
@@ -18,8 +19,9 @@
         }
 
         self.doRefresh = function(){
-           ajaxRequest.send('fetchevent.php', '', 'GET').then(function(res) {
+           ajaxRequest.send('fetchevent.php?offset='+offset, '', 'GET').then(function(res) {
                 self.eventData = res;
+                offset = offset+2;
                 _.forEach(res, function(value) {
                     if (!value.image) {
                         value.image = configuration.DefaultNewsLogo;
