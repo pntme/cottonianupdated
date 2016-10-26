@@ -77,8 +77,6 @@
                 tostService.notify('Failed to submit, Please try again', 'top');
             })
         }
-
-
     }
 
 })();

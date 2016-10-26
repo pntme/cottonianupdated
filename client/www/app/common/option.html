@@ -6,7 +6,7 @@
     <ion-content scroll="false" has-header='true'>
 
     <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}}); border-color: #fff;' ng-if = "OptionData.title != 'Profile'" ></div>
-     <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}})' ng-click = 'changePic();' ng-if = "OptionData.title == 'Profile'"></div>
+     <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}})' ng-click = 'select();' ng-if = "OptionData.title == 'Profile'"></div>
         <div class="list m-t-15">
             <div class="item" ng-if='OptionData.date_time'>
                 <div class="pull-left colBlue">

@@ -27,7 +27,7 @@ else{
    $result = mysql_query($sql);
    if (mysql_num_rows($result) == 0) {
    	$dat1e=date("d-m-y h:i:s");
-   	$sql1="insert into `phonegap_login` (`reg_id`,`reg_date`,`fullname`,`email`,`login_method`, `social_id`, `profile_pic`) values('','$dat1e','$fullname','$email','$method', '$id', '$picture')";
+   	$sql1="insert into `phonegap_login` (`reg_id`,`reg_date`,`fullname`,`email`,`login_method`, `social_id`) values('','$dat1e','$fullname','$email','$method', '$id')";
    	    $result1 = mysql_query($sql1);
     if ($result1) {
         $sql2="select * from `phonegap_login` where `email`='$email'";

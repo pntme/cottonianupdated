@@ -20,7 +20,6 @@
                        validateLogin(res);
                  });
             } else {
-                console.log("picture =  "+ picture)
                 ajaxRequest.send("signin.php", {
                     email: email,
                     password: password,
@@ -32,15 +31,18 @@
                     $ionicLoading.hide();
                     if(res == 0)
                       tostService.notify("Something went wrong, Please try again", 'top');
-                    else
-                      validateLogin(res);  
+                    else{
+                        if(!res[0].profile_pic)
+                            res[0].profile_pic = picture;
+                        validateLogin(res);
+                         
+                       
+
+                      }
                  });   
             }
 
             function validateLogin(res){
-
-                console.log("response aa gya");
-                console.log(res)
                 localStorageService.set("UserData", res);
                 pushNotificationService.init();
                 $state.go('tab.home')
