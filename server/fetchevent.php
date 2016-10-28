@@ -3,12 +3,12 @@ header("Access-Control-Allow-Origin: *");
 include('db.php');
 session_start();
 $username=$_SESSION['email'];
-$query=mysql_query("select * from event order by id desc");
+$sql = "select * from stuffs where type = 'event' order by id desc";
+$query=mysql_query($sql);
 $data= array();
 while($result=mysql_fetch_assoc($query))
 {
 $data[]=$result;
 }
 echo json_encode($data);
-
 ?>

@@ -24,6 +24,7 @@
         self.doRefresh = function(){
            ajaxRequest.send('fetchhome.php','', 'GET').then(function(res) {  
                 self.feedData = res;
+                console.log(res)
                 _.forEach(res, function(value) {
                     if (!value.image) {
                         value.image = configuration.DefaultNewsLogo;

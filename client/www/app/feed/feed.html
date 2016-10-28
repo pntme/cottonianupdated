@@ -1,39 +1,34 @@
-<ion-view view-title="News" hide-nav-bar="Feed.y">
- <ion-nav-buttons side="right">
-      <button class="button button-calm" ng-click="Feed.showSearch();">
+<ion-view view-title="Feed" hide-nav-bar="Feed.y">
+    <ion-nav-buttons side="right">
+        <button class="button button-calm" ng-click="Feed.showSearch();">
        <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
       </button>
     </ion-nav-buttons>
-
-
-<div class="bar bar-header item-input-inset" ng-show="Feed.y">
-  <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="search" placeholder="Search Feed" ng-model="searchingText">
-  </label>
-  <button class="button button-calm" ng-click="Feed.cancel()">
-    Cancel
-  </button>
-</div>
-
-  <ion-content scroll = 'true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}">
-   <ion-refresher
-    pulling-text="Pull to refresh..."
-    on-refresh="Feed.doRefresh()" spinner="android">
-  </ion-refresher>
-    <div id='center' ng-if='!Feed.feedData'>
-    <div ng-if='!Feed.feedData && Feed.spinner'>
-      <ion-spinner icon="android" class='CenteredSpinner' ></ion-spinner>
+    <div class="bar bar-header item-input-inset" ng-show="Feed.y">
+        <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search Feed" ng-model="searchingText">
+    </label>
+        <button class="button button-calm" ng-click="Feed.cancel()">
+      Cancel
+    </button>
     </div>
-    
-  </div>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in Feed.feedData | filter:searchingText track by $index" type="item-text-wrap" ng-click="Feed.ShowDetails(data)">
-        <img ng-src="{{data.image}}">
-        <h2>{{data.title}}</h2>
-        <p>{{data.description}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-    </ion-list>   
-  </ion-content>
+    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="Feed.doRefresh()" spinner="android">
+        </ion-refresher>
+        <div id='center' ng-if='!Feed.feedData'>
+            <div ng-if='!Feed.feedData && Feed.spinner'>
+                <ion-spinner icon="android" class='CenteredSpinner'></ion-spinner>
+            </div>
+
+        </div>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in Feed.feedData | filter:searchingText track by $index" type="item-text-wrap" ng-click="Feed.ShowDetails(data)">
+                <img ng-src="{{data.image}}">
+                <h2>{{data.title}}</h2>
+                <p>{{data.description}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>
