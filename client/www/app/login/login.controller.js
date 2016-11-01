@@ -1,8 +1,9 @@
 (function(){
   'use strict';
   angular.module('cot').controller('LoginCtrl', LoginCtrl);
-  function LoginCtrl(ajaxRequest, facebookLogin, googleLogin, loginApi, $state, tostService, $ionicLoading){
+  function LoginCtrl(ajaxRequest, facebookLogin, googleLogin, $ionicSideMenuDelegate, loginApi, $state, tostService, $ionicLoading){
     var self = this;
+    $ionicSideMenuDelegate.canDragContent(false);
     self.DoLogin = function(){
       $ionicLoading.show();   
       loginApi.fireApi('custom', self.email, self.password);

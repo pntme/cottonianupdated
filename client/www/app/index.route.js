@@ -1,12 +1,13 @@
 (function(){
  'use strict';
   angular.module('cot')
-  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicCloudProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $cryptoProvider, $ionicCloudProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+  $cryptoProvider.setCryptographyKey('ABCD123');
   $ionicConfigProvider.tabs.position('bottom');
      $ionicCloudProvider.init({
     "core": {
@@ -50,6 +51,13 @@
     templateUrl: 'app/formdata/formdata.html',
     controller: 'FormdataCtrl',
     controllerAs: 'Formdata'
+  })
+   .state('stuff', {
+    url: '/stuff/:title',
+    cache: false,
+    templateUrl: 'app/mystuffs/stuff.html',
+    controller: 'stuffCtrl',
+    controllerAs: 'stuff'
   })
   
  

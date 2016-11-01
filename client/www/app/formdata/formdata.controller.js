@@ -3,7 +3,7 @@
     angular.module('cot').controller('FormdataCtrl', FormdataCtrl);
 
     function FormdataCtrl($state, $localStorage, Image, $ionicLoading, $stateParams,
-        $ionicModal, tostService, $scope, ajaxRequest, localStorageService) {
+        $ionicModal, tostService, $scope, ajaxRequest, $crypto, localStorageService) {
         var self = this;
         var FinalApi, FinalFile;
         var user = localStorageService.get('UserData')[0].email;
@@ -15,8 +15,8 @@
                 FileUpload(FinalFile, FinalApi, self.title, self.description);
             else {
                 ajaxRequest.send(FinalApi, {
-                    title: self.title,
-                    description: self.description,
+                    title: $crypto.encrypt(self.title),
+                    description: $crypto.encrypt(self.description),
                     user: user,
                     date: moment().unix()
                 }, 'POST').then(function(res) {
@@ -49,8 +49,8 @@
                 if (data.status == 200 && data.statusText == "OK") {
                     var filename = data.data.replace(/(\r\n|\n|\r)/gm, "");
                     ajaxRequest.send(FinalApi, {
-                        title: self.title,
-                        description: self.description,
+                        title: $crypto.encrypt(self.title),
+                        description: $crypto.encrypt(self.description),
                         user: user,
                         image: filename,
                         date: moment().unix()

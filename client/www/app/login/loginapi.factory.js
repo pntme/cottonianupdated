@@ -3,7 +3,7 @@
      angular.module('cot')
          .factory('loginApi', loginApi);
 
-     function loginApi(tostService,  $ionicLoading, pushNotificationService, $state, timeStorage, configuration,  ajaxRequest, localStorageService) {
+     function loginApi(tostService,  $ionicLoading, $rootScope, pushNotificationService, $state, timeStorage, configuration,  ajaxRequest, localStorageService) {
          var service = {};
          service.fireApi = function(method, email, password, picture, id, name) {
             $ionicLoading.show(); 
@@ -35,9 +35,6 @@
                         if(!res[0].profile_pic)
                             res[0].profile_pic = picture;
                         validateLogin(res);
-                         
-                       
-
                       }
                  });   
             }
@@ -45,8 +42,8 @@
             function validateLogin(res){
                 localStorageService.set("UserData", res);
                 pushNotificationService.init();
-                $state.go('tab.home')
-               
+                $rootScope.$emit("profile_changed"); 
+                $state.go('tab.home');    
             }
          }
          return service;

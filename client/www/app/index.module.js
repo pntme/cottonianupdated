@@ -5,7 +5,9 @@
    	"ngCordova",
    	'ngStorage',
    	'ngFileUpload',
-   	'ionic.cloud'
+   	'ionic.cloud',
+   	'mdo-angular-cryptography',
+   	'ng-mfb'
 
    	 ]);
 })();

@@ -2,7 +2,7 @@
     'use strict';
     angular.module('cot').controller('EventCtrl', EventCtrl);
 
-    function EventCtrl(ajaxRequest, configuration, $ionicModal, $scope) {
+    function EventCtrl(ajaxRequest, configuration, $ionicModal, formatData, $scope) {
         var self = this;
         self.spinner=true;
 
@@ -19,16 +19,7 @@
 
         self.doRefresh = function(){
            ajaxRequest.send('fetchevent.php', '', 'GET').then(function(res) {
-                self.eventData = res;
-                _.forEach(res, function(value) {
-                    if (!value.image) {
-                        value.image = configuration.DefaultNewsLogo;
-                    } else {
-                        value.image = configuration.ImageUrl + value.image;
-                    }
-
-                     value.date_time = moment.unix(value.date_time).format("DD/MM/YYYY HH:mm");
-                });
+                self.eventData = formatData.format(res);;
             }, function(e){
             console.log(e);
                  self.spinner=false;

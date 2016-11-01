@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('cot').controller('SignupCtrl', SignupCtrl);
-  function SignupCtrl(ajaxRequest, tostService, $state, $ionicLoading, localStorageService){
+  function SignupCtrl(ajaxRequest, tostService, $state, $scope, $ionicLoading, localStorageService){
     var self = this;
     self.DoSignup = function(){
        $ionicLoading.show();
@@ -17,6 +17,7 @@
           else if(res == 2)
             tostService.notify("You are already registered, Please login", 'top');	
           else
+            $scope.$broadcast('profile_changed');
             localStorageService.set("UserData", res);
             $state.go('tab.home')
        });

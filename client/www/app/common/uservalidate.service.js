@@ -12,7 +12,7 @@
                         if (userData) {
                             if (toState.name == 'tab.home' || toState.name == 'tab.dash' || toState.name == 'tab.chats' || toState.name == 'tab.account' || toState.name == 'tab.feed' 
                                 || toState.name =='tab.feedDetails' || toState.name =='tab.event'
-                                || toState.name == 'tab.jobs' || toState.name == 'formdata'
+                                || toState.name == 'tab.jobs' || toState.name == 'formdata' || toState.name == 'stuff'
                                 ) {
                             } else {
                                 $state.transitionTo('tab.home');

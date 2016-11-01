@@ -1,41 +1,34 @@
 (function() {
-    'use strict';
-    angular.module('cot').controller('HomeCtrl', HomeCtrl);
+    angular.module('cot').controller('sidemenuCtrl', sidemenuCtrl);
 
-    function HomeCtrl($state, $localStorage, Image, configuration,$ionicLoading, $ionicPopup, $timeout, $ionicModal, tostService, $scope, ajaxRequest, localStorageService) {
+    function sidemenuCtrl($scope, $ionicSideMenuDelegate,$rootScope, $ionicPopup , Image, $ionicLoading, ajaxRequest, tostService,$ionicModal, configuration, $localStorage, $state, localStorageService) {
         var self = this;
-        var FinalApi, FinalFile;
-        var user = localStorageService.get('UserData')[0].email;
-        $scope.AddBatch = {
-            AddBatch: ''
+       $rootScope.$on('profile_changed', function(){
+       	console.log('kkkk')
+	       	if (localStorageService.get('UserData')[0].profile_pic)
+	           $scope.image = localStorageService.get('UserData')[0].profile_pic;
+	        else
+	           $scope.image = configuration.ImageUrl + 'user.jpg';
+       });
+
+
+        $scope.opensidemenu = function() {
+            $ionicSideMenuDelegate.toggleLeft();
         }
-        self.Go = function(r) {
-            $state.go('tab.' + r);
-        }
-        self.Logout = function() {
+
+        $scope.Logout = function() {
             $localStorage.$reset();
             $state.go('login');
         }
-        $ionicModal.fromTemplateUrl('app/home/option.html', function($ionicModal) {
-            self.option = $ionicModal;
 
-        }, {
-            scope: $scope
-        });
-        self.Open = function(data, api, msg) {
-            $state.go('formdata', {
-                FormTitle: data,
-                api: api,
-                msg: msg
-            });
 
-        }
-        $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
+           $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
             self.optionProfile = $ionicModal;
         }, {
             scope: $scope
         });
-        self.openProfile = function() {
+        $scope.openProfile = function() {
+        	console.log('hfjhd')
             self.optionProfile.show();
             $scope.OptionData = localStorageService.get('UserData')[0];
             $scope.OptionData.title = 'Profile';
@@ -160,5 +153,12 @@
                 }]
             });
         }
+        
+        $scope.Go = function(title){
+            $state.go('stuff',{"title": title})
+        }
+
+
+
     }
 })();

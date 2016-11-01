@@ -1,0 +1,29 @@
+        <ion-side-menus>
+      
+      <ion-pane ion-side-menu-content>
+        <ion-nav-bar class="bar-stable">
+         <ion-nav-buttons side="primary">
+      <button class="button" ng-click="opensidemenu()" style="    border: none;
+    background: #00A9D4;
+    color: #fff;">
+    <i class="ion-navicon-round" style="font-size: 30px;"></i>
+      </button>
+    </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view></ion-nav-view>
+      </ion-pane>
+
+      <ion-side-menu side="left">
+        <ion-content has-header="true">
+          <div class="profilePic m-t-15" style = 'background-image: url({{image}}); border-color: #fff; width: 150px;height: 150px;'></div>
+          <ion-list>
+           <ion-item ui-sref="tab.feed" menu-close class='m-t-15'>Feed</ion-item>
+           <ion-item ng-click="Go('News')" menu-close>My News</ion-item>
+            <ion-item ng-click="Go('Job')" menu-close >My Jobs</ion-item>
+            <ion-item ng-click="Go('Event')" menu-close>My Events</ion-item>
+            <ion-item ng-click="openProfile();"  menu-close>My Profile</ion-item>
+            <ion-item ng-click="Logout();" menu-close>Logout</ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus> 

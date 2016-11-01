@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -24,12 +24,16 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
     <script src="lib/lodash.js"></script>
+    <script src='lib/crypto.js'></script>
     <!-- ionic/angularjs js -->
     <script src="lib/bluebird.min.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ionic.cloud.min.js"></script>
     <script src="lib/ng-storage.js"></script>
     <script src="lib/ng-fileupload.js"></script>
+    <script type='text/javascript' src="js/aes.js"></script>
+    <script type='text/javascript' src="lib/mdo-angular-cryptography.js"></script>
+    <script type='text/javascript' src="lib/mfb.directive.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova.js"></script>
@@ -42,6 +46,8 @@
     <script src = "app/common/uservalidate.service.js"></script>
     <script src = "app/index.constant.js"></script>
     <script src = "app/index.route.js"></script>
+    <script src = "app/common/sidemenu.directive.js"></script>
+    <script src = "app/menu/sidemenu.controller.js"></script>
     <script src = "app/login/login.controller.js"></script>
     <script src = "app/login/facebook.service.js"></script>
     <script src = "app/login/google.service.js"></script>
@@ -59,23 +65,14 @@
     <script src = "app/jobs/jobs.controller.js"></script>
     <script src = "app/common/upload.service.js"></script>
     <script src = "app/formdata/formdata.controller.js"></script>
-    <script src = "app/common/push.service.js"></script>
+    <script src = "app/common/push.service.js"></script> 
+    <script src = "app/common/formatdata.factory.js"></script>
+    <script src = "app/mystuffs/stuff.controller.js"></script>
+
   </head>
   <body ng-app="cot">
     <div id="fb-root">
     </div>
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-    <ion-nav-bar class="bar-stable" align-title="center">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-      </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
-    <ion-nav-view></ion-nav-view>
+    <sidemenu></sidemenu>
   </body>
 </html>
