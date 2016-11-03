@@ -1,7 +1,10 @@
 <ion-view view-title="{{stuff.title}}" hide-nav-bar="stuff.y">
 <ion-nav-buttons side="right">
-      <button class="button button-calm" ng-click="stuff.showSearch();">
-       <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
+      <button class="button button-calm" ng-click="stuff.showSearch();" ng-if = "!stuff.showDelete">
+        <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
+      </button>
+      <button class="button button-calm" ng-click="stuff.delete();" ng-if = "stuff.showDelete">
+        <i class="icon ion-trash-b" style="color: #E40A5D;opacity: 3;" ></i>
       </button>
 </ion-nav-buttons>
 <div class="bar bar-header item-input-inset" ng-show="stuff.y">
@@ -17,9 +20,9 @@
    <nav mfb-menu position="br" effect="zoomin" 
      active-icon="ion-close-round" resting-icon="ion-plus-round"
      toggling-method="click">
-  <button mfb-button icon="ion-android-person-add" label="Post Job" ng-click = "stuff.Open('Create Job', 'savejob.php', 'New job posted')"></button>
-  <button mfb-button icon="ion-android-create" label="Make an Event" ng-click = "stuff.Open('Create Event', 'saveevent.php', 'New event posted')"></button>
-  <button mfb-button icon="ion-ios-paper" label="Publish News" ng-click = "stuff.Open('Create News', 'savenews.php','New news Posted')"></button>
+  <button mfb-button icon="ion-android-person-add" label="Post Job" ng-click = "stuff.Open('Job', 'savejob.php', 'New job posted')"></button>
+  <button mfb-button icon="ion-android-create" label="Make an Event" ng-click = "stuff.Open('Event', 'saveevent.php', 'New event posted')"></button>
+  <button mfb-button icon="ion-ios-paper" label="Publish News" ng-click = "stuff.Open('News', 'savenews.php','New news Posted')"></button>
 </nav>
   <ion-content class="has-header" scroll="true" overflow-scroll="false" ng-style="stuff.x && {'margin-top':'42px'} || !stuff.x &&  {'margin-top':'-1px'}">
  <ion-refresher
@@ -31,15 +34,10 @@
     <ion-spinner icon="android" class='CenteredSpinner' ng-if='!stuff.stuffData && stuff.spinner'></ion-spinner>
   </div>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-button-right " collection-repeat="data in stuff.stuffData | filter:searchingText track by $index" type="item-text-wrap" >
-        <img ng-src="{{data.image}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in stuff.stuffData | filter:searchingText track by $index" type="item-text-wrap" ng-click="stuff.select(data)" ng-class="{ active: data.selected }">
+        <img ng-src="{{data.image}}" >
         <h2>{{data.title}}</h2>
         <p>{{data.description}}</p>
-        <div class="buttons" style="position: absolute;top: 16px;right: 6px;">
-         <button class="button button-assertive" style="margin:0px;" ng-click="stuff.delete(data);">
-         <i class="ion-close"></i>
-      </button>
-        </div>
       </ion-item>
     </ion-list>
   </ion-content>

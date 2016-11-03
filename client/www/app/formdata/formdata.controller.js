@@ -7,7 +7,8 @@
         var self = this;
         var FinalApi, FinalFile;
         var user = localStorageService.get('UserData')[0].email;
-        self.navtitle = $stateParams.FormTitle;
+        var fullname = localStorageService.get('UserData')[0].fullname;
+        self.navtitle = "Create " + $stateParams.FormTitle;
         var FinalApi = $stateParams.api;
         $scope.publish = function() {
             $ionicLoading.show();
@@ -18,7 +19,8 @@
                     title: $crypto.encrypt(self.title),
                     description: $crypto.encrypt(self.description),
                     user: user,
-                    date: moment().unix()
+                    date: moment().unix(),
+                    fullname: fullname
                 }, 'POST').then(function(res) {
                     $ionicLoading.hide();
                     if (res == 1) {
@@ -26,7 +28,9 @@
                         ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
                             console.log(res);
                         });
-                        $state.go('tab.home');
+                        $state.go('stuff',{
+                            title: $stateParams.FormTitle
+                        });
                     } else
                         tostService.notify('Failed to submit, Please try again', 'top');
                 });
@@ -53,7 +57,8 @@
                         description: $crypto.encrypt(self.description),
                         user: user,
                         image: filename,
-                        date: moment().unix()
+                        date: moment().unix(),
+                        fullname: fullname
                     }, 'POST').then(function(res) {
                         $ionicLoading.hide();
                         if (res == 1) {
@@ -61,7 +66,9 @@
                             ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
                                 console.log(res);
                             });
-                            $state.go('tab.home');
+                                                    $state.go('stuff',{
+                            title: $stateParams.FormTitle
+                        });
                         } else
                             tostService.notify('Failed to submit, Please try again', 'top');
 

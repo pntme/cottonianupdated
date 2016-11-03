@@ -24,12 +24,13 @@
                     {{OptionData.type}}
                 </div>
             </div>
-            <div class="item" ng-if='OptionData.fullname'>
+            <div class="item">
                 <div class="pull-left colBlue">
-                    Name
+                    <span ng-if = "OptionData.title == 'Profile'">Name</span>
+                    <span ng-if = "OptionData.title != 'Profile'">Publisher</span>
                 </div>
                 <div class="pull-right">
-                    {{OptionData.fullname}}
+                    {{OptionData.fullname | capitalize}}
                 </div>
             </div>
             <div class="item" ng-if='OptionData.email'>
@@ -54,15 +55,6 @@
                 </div>
                 <div class="pull-right">
                     {{OptionData.contact}}
-                </div>
-            </div>
-
-            <div class="item" ng-if='OptionData.user'>
-                <div class="pull-left colBlue">
-                    Publisher
-                </div>
-                <div class="pull-right">
-                    {{OptionData.user}}
                 </div>
             </div>
              <div ng-click = 'AddBatch()'>

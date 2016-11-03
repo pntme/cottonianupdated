@@ -8,10 +8,11 @@ $description = $request ->description;
 $user = $request->user;
 $image = $request->image;
 $date = $request->date;
+$fullname = $request->fullname;
 // $title1=mysql_real_escape_string(htmlspecialchars(trim($title)));
 // $description1=mysql_real_escape_string(htmlspecialchars(trim($description)));
 if($image){
-	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`image`, `type`) values('$title','$date','$description','$user','$image', 'Job')";
+	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`image`, `type`, `fullname`) values('$title','$date','$description','$user','$image', 'Job', '$fullname')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	echo 1;
@@ -19,7 +20,7 @@ if($image){
 	  	echo 0;
 	  }
 }else{
-	 $sql1    = "insert into `stuffs` (`id`,`title`,`date_time`,`description`,`user`, `type`) values('','$title','$date','$description','$user',  'Job')";
+	 $sql1    = "insert into `stuffs` (`id`,`title`,`date_time`,`description`,`user`, `type`, `fullname`) values('','$title','$date','$description','$user',  'Job', '$fullname')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	echo 1;

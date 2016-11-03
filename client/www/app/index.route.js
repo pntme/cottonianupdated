@@ -72,18 +72,6 @@
 
   // Each tab has its own nav history stack:
 
-.state('tab.home', {
-    url: '/home',
-    cache: false,
-      views: {
-      'tab-home': {
-        templateUrl: 'app/home/home.html',
-         controller: 'HomeCtrl',
-         controllerAs: 'Home'
-      }
-    }
-  })
-
 
   .state('tab.feed', {
     url: '/feed',

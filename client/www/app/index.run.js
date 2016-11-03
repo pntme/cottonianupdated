@@ -21,7 +21,7 @@
     document.addEventListener("deviceready", function() {
             var count = 0;
             $ionicPlatform.registerBackButtonAction(function(event) {
-               if($state.current.name == 'tab.home' || $state.current.name == 'login'){
+               if($state.current.name == 'tab.feed' || $state.current.name == 'login'){
                        if (count == 0) {
                         count++;
                         tostService.notify('Press Back Again To Exit App', 'top');

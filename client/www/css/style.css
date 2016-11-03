@@ -68,6 +68,9 @@ color: #fff;
 .font17{
 	font-size: 17px;
 }
+.font19{
+    font-size: 19px;
+}
 .Outline{
     -webkit-text-fill-color: transparent !important;
     -webkit-text-stroke-width: 1px !important;
@@ -193,5 +196,55 @@ position: absolute;
     margin: 0 auto;
     background-size: cover;
 }
+.sidemenuCustom{
+    background: #1C1C1C;
+}
+.sidemenuCustom .item-content{
+     background: #1C1C1C !important;
+}
+.sidemenuItem{
+    border: none;
+    background: #1C1C1C;
+    margin-left: 47px;
+    color: #fff;
+}
+.sidemenuCustom.item-content.activated{
+     background: #1C1C1C !important;
+}
+#sidemenu .item.activated{
+     background: #1C1C1C !important;
 
-    
+}
+.homechild {
+display: none;
+}
+.dashchild{
+    display: none;
+}
+.showsidemenuitem{
+    display: block;
+}
+.home
+{
+    color:#fff;
+       
+}
+.child
+{
+    display: none;
+    color: #fff;
+    border: 1px solid red;
+    opacity: 0.5;
+    transform: rotate(20deg);
+     
+     
+}
+.home:hover + .child
+{
+     display: block;
+     -webkit-transition:all 5s  ease-in-out;
+     -moz-transition:  all 5s ease-in-out;
+     -ms-transition: all 5s ease-in-out;
+     -o-transition: all 5s ease-in-out;
+     transition:  all 5s ease-in-out;
+}

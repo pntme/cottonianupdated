@@ -43,7 +43,7 @@
                 localStorageService.set("UserData", res);
                 pushNotificationService.init();
                 $rootScope.$emit("profile_changed"); 
-                $state.go('tab.home');    
+                $state.go('tab.feed');    
             }
          }
          return service;

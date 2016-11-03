@@ -19,7 +19,7 @@
           else
             $scope.$broadcast('profile_changed');
             localStorageService.set("UserData", res);
-            $state.go('tab.home')
+            $state.go('tab.feed')
        });
        
 

@@ -3,8 +3,8 @@
 
     function sidemenuCtrl($scope, $ionicSideMenuDelegate,$rootScope, $ionicPopup , Image, $ionicLoading, ajaxRequest, tostService,$ionicModal, configuration, $localStorage, $state, localStorageService) {
         var self = this;
+         $scope.image = configuration.ImageUrl + 'user.jpg';
        $rootScope.$on('profile_changed', function(){
-       	console.log('kkkk')
 	       	if (localStorageService.get('UserData')[0].profile_pic)
 	           $scope.image = localStorageService.get('UserData')[0].profile_pic;
 	        else
@@ -28,7 +28,6 @@
             scope: $scope
         });
         $scope.openProfile = function() {
-        	console.log('hfjhd')
             self.optionProfile.show();
             $scope.OptionData = localStorageService.get('UserData')[0];
             $scope.OptionData.title = 'Profile';
@@ -76,7 +75,7 @@
                       alert('Faild, please try again');
                }).catch(function(e){
                  console.log(e);
-                 $ionicLoading.hide();
+                 $ionicLoading.hide();  
                  alert('Failed to upload image, Please try again', 'top');
                })
         }
@@ -101,7 +100,6 @@
                                 'reg_id': localStorageService.get('UserData')[0].reg_id,
                                 'bno': $scope.Modeldata.bno
                             }, 'POST').then(function(res) {
-                                console.log(res);
                                 $ionicLoading.hide();
                                 if (res == 0)
                                     tostService.notify('Failed to update data, Please try agin', 'top');

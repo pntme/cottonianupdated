@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('cot').controller('stuffCtrl', stuffCtrl);
-    function stuffCtrl(ajaxRequest, configuration, $state, $ionicModal, $scope, formatData, $q, $stateParams, localStorageService) {
+    function stuffCtrl(ajaxRequest, tostService, $ionicLoading, configuration, $state, $ionicModal, $ionicPopup, $scope, formatData, $q, $stateParams, localStorageService) {
         var self = this;
         self.title = "My "+$stateParams.title;
         self.subject =  $stateParams.title;
@@ -21,6 +21,7 @@
         }
         self.doRefresh = function() {
             ajaxRequest.send('mystuff.php?type='+$stateParams.title+'&user='+localStorageService.get('UserData')[0].email, '', 'GET').then(function(res) {
+                $ionicLoading.hide();
                 if(res == 2){
                     self.spinner = false;
                     self.dataNotavailable = true;
@@ -30,6 +31,7 @@
                    
             }, function(e){
             console.log(e);
+                 $ionicLoading.hide();
                  self.spinner=false;
            });
         }
@@ -55,10 +57,48 @@
             });
 
         }
+         var selected =[];
+         self.select = function (data) {
+            var index = selected.indexOf(data.id);
+            if (index > -1) {
+               selected.splice(index, 1);
+                data.selected = false;
+            } else {
+                selected.push(data.id);
+                data.selected = true;
+            }
 
-        self.delete = function(data){
-            console.log(data)
+            if(selected.length  == 0)
+                self.showDelete = false;
+            else
+                self.showDelete = true;
         }
-        
+
+
+        self.delete = function(){
+              var confirmPopup = $ionicPopup.confirm({
+                   title: 'Warning',
+                   template: 'Selected items will be deleted permanently'
+                 });
+                 confirmPopup.then(function(res) {
+                   if(res) {
+                    $ionicLoading.show();
+                     ajaxRequest.send('deletestuff.php',{
+                        ids: selected
+                     }, 'POST').then(function(res){
+                        if(res == 1){
+                            tostService.notify("Deleted successfully",'top');
+                            self.stuffData = '';
+                            self.doRefresh();
+                        }else{
+                            tostService.notify("Operation failed, Please try again",'top');
+                        }
+                     });
+                   } else {
+                     console.log('You are not sure');
+                   }
+                 });
+        }
+
     }
 })();
