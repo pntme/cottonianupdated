@@ -5,9 +5,14 @@ session_start();
 $username=$_SESSION['email'];
 $query=mysql_query("select * from stuffs order by id desc");
 $data= array();
+$total = 0;
 while($result=mysql_fetch_assoc($query))
 {
 $data[]=$result;
+$total++;
 }
-echo json_encode($data);
+if($total > 0)
+  echo json_encode($data);
+else
+   echo 2;
 ?>

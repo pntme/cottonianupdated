@@ -19,7 +19,11 @@
         }
         self.doRefresh = function() {
             ajaxRequest.send('jobs.php', '', 'GET').then(function(res) {
-                self.jobData = formatData.format(res);
+                self.spinner=false;
+                if(res == 2)
+                     self.dataNotavailable = true;
+                else
+                    self.jobData = formatData.format(res);
             }, function(e){
             console.log(e);
                  self.spinner=false;

@@ -14,24 +14,31 @@
       </ion-pane>
 
       <ion-side-menu side="left">
-        <ion-content has-header="true" class="sidemenuCustom" id = 'sidemenu'>
-          <div class="profilePic m-t-15" style = 'background-image: url({{image}}); border-color: #fff; width: 150px;height: 150px;'></div>
-   <!--        <div class="demo">
-            <span class="home">Home</span>
-            <small class="child">Home driven</small>
-          </div> -->
+        <ion-content has-header="false" class="sidemenuCustom" id = 'sidemenu'>
+          <div class="sidemenuheader BgBlue" >
+             <div class="sidemenuprofilepic" style = 'background-image: url({{image}});'></div>     <a class="sidemenuUsername">{{userName | capitalize}}</a><br/>
+                  <a class="sidemenuUsername" style="    margin-top: 0px;
+    font-size: 14px;">{{userEmail}}</a>       
+          </div>
           <ion-list>
+          <ion-item   class='sidemenuItem colBlue' ng-click ="homeClicked()"><i class=" ion-home font19"></i>&nbsp;&nbsp;Home
+             <i class="ion-chevron-down" style="float: right;font-size: 16px;" ng-if="showChild"></i>
+             <i class="ion-chevron-left" style="float: right;font-size: 16px;" ng-if="!showChild"></i>
+          </ion-item>
+           <ion-item ui-sref="tab.feed" menu-close class='sidemenuItem' ng-show="showChild"  id="dashContent"><i class="ion-document  font19"></i>&nbsp;&nbsp;News</ion-item>
+           <ion-item ui-sref="tab.event" menu-close class='sidemenuItem' ng-show="showChild"  id="dashContent"><i class="ion-calendar  font19"></i>&nbsp;&nbsp;Event</ion-item>
+           <ion-item ui-sref="tab.jobs" menu-close class='sidemenuItem' ng-show="showChild"  id="dashContent"><i class=" ion-ribbon-a font19 Outline"></i>&nbsp;&nbsp;Job</ion-item>
+           <ion-item  class='sidemenuItem colBlue' id="dashboard" ng-click="dashClicked();"><i class="ion-ios-speedometer font19" style="margin-left: 0px;"></i>&nbsp;&nbsp;Dashboard<i class="ion-chevron-down" style="float: right;font-size: 16px;" ng-if="dashclicked"></i>
+            <i class="ion-chevron-left" style="float: right;font-size: 16px;" ng-if="!dashclicked"></i>
+           </ion-item>
+           <ion-item ng-click="Go('News')" menu-close ng-show='dashclicked' id="dashContent"><i class="ion-document  font19"></i>&nbsp;&nbsp;My News</ion-item></ion-item>
+          
 
-          <ion-item   class='m-t-15 sidemenuItem' ng-click ="showChild = !showChild"><i class=" ion-home font19"></i>&nbsp;&nbsp;Home</ion-item>
-           <ion-item ui-sref="tab.feed" menu-close class='sidemenuItem' ng-class="(showChild) ? 'enabled' : 'disabled'">Feed</ion-item>
-           <ion-item ui-sref="tab.feed" menu-close class='sidemenuItem homechild' ng-if='homeclicked'>Event</ion-item>
-           <ion-item ui-sref="tab.feed" menu-close class='sidemenuItem homechild' ng-if='homeclicked'>News</ion-item>
-           <ion-item ui-sref="tab.feed" menu-close class='sidemenuItem' ><i class="ion-ios-speedometer font19"></i>&nbsp;&nbsp;Dashboard</ion-item>
-           <ion-item ng-click="Go('News')" menu-close class="sidemenuItem dashchild" ng-if='dashclicked'>My News</ion-item>
-            <ion-item ng-click="Go('Job')" menu-close class="sidemenuItem dashchild"  ng-if='dashclicked'>My Jobs</ion-item>
-            <ion-item ng-click="Go('Event')" menu-close class="sidemenuItem dashchild"  ng-if='dashclicked'>My Events</ion-item>
-            <ion-item ng-click="openProfile();"  menu-close class="sidemenuItem"><i class="ion-person font19"></i>&nbsp;&nbsp;My Profile</ion-item>
-            <ion-item ng-click="Logout();" menu-close class="sidemenuItem"><i class="icon ion-android-exit"></i>&nbsp;&nbsp;Logout</ion-item>
+            <ion-item ng-click="Go('Event')" menu-close  ng-show='dashclicked' id="dashContent"><i class="ion-calendar  font19" ></i>&nbsp;&nbsp;My Event</ion-item>
+              <ion-item ng-click="Go('Job')" menu-close   ng-show='dashclicked' id="dashContent"><i class=" ion-ribbon-a font19 Outline" ></i>&nbsp;&nbsp;My Job</ion-item>
+
+            <ion-item ng-click="openProfile();"  menu-close class="sidemenuItem colBlue"><i class="ion-person font19"></i>&nbsp;&nbsp;My Profile</ion-item>
+            <ion-item ng-click="Logout();" menu-close class="sidemenuItem colBlue"><i class="icon ion-android-exit"></i>&nbsp;&nbsp;Logout</ion-item>
           </ion-list>
         </ion-content>
       </ion-side-menu>

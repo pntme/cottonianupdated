@@ -18,6 +18,7 @@
     pulling-text="Pull to refresh..."
     on-refresh="Event.doRefresh()" spinner="android">
   </ion-refresher>
+   <div class="font17 m-t-30" style="text-align: center; color:#444;" ng-if='Event.dataNotavailable'><span>We have not any Event right now, Please check again later.</span></div>
   <div id='center' ng-if='!Event.eventData'>
     <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Event.eventData && Event.spinner'></ion-spinner>
   </div>

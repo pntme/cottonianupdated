@@ -1,4 +1,4 @@
-<ion-view view-title="Feed" hide-nav-bar="Feed.y">
+<ion-view view-title="News" hide-nav-bar="Feed.y">
     <ion-nav-buttons side="right">
         <button class="button button-calm" ng-click="Feed.showSearch();">
        <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
@@ -16,6 +16,7 @@
     <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="Feed.doRefresh()" spinner="android">
         </ion-refresher>
+        <div class="font17 m-t-30" style="text-align: center; color:#444;" ng-if='Feed.dataNotavailable'><span>We have not any News right now, Please check again later.</span></div>
         <div id='center' ng-if='!Feed.feedData'>
             <div ng-if='!Feed.feedData && Feed.spinner'>
                 <ion-spinner icon="android" class='CenteredSpinner'></ion-spinner>

@@ -3,8 +3,10 @@
 
     function sidemenuCtrl($scope, $ionicSideMenuDelegate,$rootScope, $ionicPopup , Image, $ionicLoading, ajaxRequest, tostService,$ionicModal, configuration, $localStorage, $state, localStorageService) {
         var self = this;
-         $scope.image = configuration.ImageUrl + 'user.jpg';
+        $scope.image = configuration.ImageUrl + 'user.jpg';
        $rootScope.$on('profile_changed', function(){
+          $scope.userName = localStorageService.get('UserData')[0].fullname;
+          $scope.userEmail = localStorageService.get('UserData')[0].email;
 	       	if (localStorageService.get('UserData')[0].profile_pic)
 	           $scope.image = localStorageService.get('UserData')[0].profile_pic;
 	        else
@@ -155,7 +157,14 @@
         $scope.Go = function(title){
             $state.go('stuff',{"title": title})
         }
+     
+        $scope.homeClicked = function(){
+            $scope.showChild = !$scope.showChild;
+        }
 
+        $scope.dashClicked = function(){
+            $scope.dashclicked = !$scope.dashclicked;
+        }
 
 
     }

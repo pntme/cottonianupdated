@@ -21,6 +21,7 @@
     pulling-text="Pull to refresh..."
     on-refresh="Job.doRefresh()" spinner="android">
   </ion-refresher>
+   <div class="font17 m-t-30" style="text-align: center; color:#444;" ng-if='Job.dataNotavailable'><span>We have not any Job right now, Please check again later.</span></div>
    <div id='center' ng-if='!Job.jobData'>
     <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Job.jobData && Job.spinner'></ion-spinner>
   </div>

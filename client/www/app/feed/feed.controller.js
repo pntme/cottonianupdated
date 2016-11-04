@@ -23,7 +23,11 @@
 
         self.doRefresh = function(){
            ajaxRequest.send('fetchhome.php','', 'GET').then(function(res) {  
-                self.feedData = formatData.format(res);
+                 self.spinner=false;
+                if(res == 2)
+                     self.dataNotavailable = true;
+                else
+                    self.feedData = formatData.format(res);
            }, function(e){
             console.log(e);
                  self.spinner=false;

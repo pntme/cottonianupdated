@@ -19,7 +19,11 @@
 
         self.doRefresh = function(){
            ajaxRequest.send('fetchevent.php', '', 'GET').then(function(res) {
-                self.eventData = formatData.format(res);;
+                self.spinner=false;
+                if(res == 2)
+                     self.dataNotavailable = true;
+                else
+                     self.eventData = formatData.format(res);;
             }, function(e){
             console.log(e);
                  self.spinner=false;

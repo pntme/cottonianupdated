@@ -12,7 +12,9 @@ angular.module('cot').constant('configuration',{
      DefaultNewsLogo: "http://truecvs.com/cottonian/images/news.png",
      DefaultEventLogo: "http://truecvs.com/cottonian/images/event.png",
      DefaultJobLogo:"http://truecvs.com/cottonian/images/job.png",
-     ImageUrl:"http://truecvs.com/cottonian/images/"
+     ImageUrl:"http://truecvs.com/cottonian/images/",
+     GeoCoder:"https://maps.googleapis.com/maps/api/geocode/json?",
+     googleApiKey:"AIzaSyBdl3kdKg2iIoN2N_ocDi2-QAWeMXz90Jg"
    });
 
 
