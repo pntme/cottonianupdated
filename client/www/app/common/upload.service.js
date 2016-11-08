@@ -31,10 +31,12 @@
            return buf;
        };
        image.baseUpload = function (imageBase64, name) {
-           var binary = image.fixBinary(atob(imageBase64));
-           var blob = new Blob([binary], {type: 'image/png', name: name});
+        
+           var binary = image.fixBinary(btoa(imageBase64));
+           var blob = new Blob([binary], {type: 'video/webm', name: name});
            blob.name = name;
            blob.$ngfName = name;
+           console.log(blob);
            return blob;
        };
        image.defer = '';
@@ -53,7 +55,8 @@
        };
        image.binary='';
        image.successCallback = function (imageBase64) {
-           var name = new Date().valueOf() + '.png';
+        console.log(imageBase64)
+           var name = new Date().valueOf() + '.mp4';
            image.binary=imageBase64;
            var blob = image.baseUpload(imageBase64, name);
            image.defer.resolve(blob);
@@ -124,7 +127,7 @@
                           saveToPhotoAlbum: false
                         };
 
-                        image.takePhoto(index).then(function(blob) {
+                        image.takeVideo1(index).then(function(blob) {
                                 q.resolve(blob);
                         }, function(err) {
                             q.reject(err);
@@ -134,6 +137,29 @@
                 });
                return q.promise;
             };
+
+
+
+            image.takeVideo1 = function(index){
+              console.log('video')
+                         image.defer = $q.defer();
+           try {
+               var options = {
+                      quality: 50,
+                      destinationType: Camera.DestinationType.FILE_URI,
+                      sourceType: index,
+                      mediaType:Camera.MediaType.VIDEO
+               };
+               navigator.camera.getPicture(image.successCallback, image.errorCallback, options);
+           } catch (e) {
+               image.errorCallback();
+           }
+           return image.defer.promise;
+
+
+
+
+            }
        return image;
    }
    ;

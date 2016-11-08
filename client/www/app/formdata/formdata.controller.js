@@ -3,7 +3,7 @@
     angular.module('cot').controller('FormdataCtrl', FormdataCtrl);
 
     function FormdataCtrl($state, $localStorage, Image, $ionicLoading, $stateParams,
-        $ionicModal, tostService, $scope, ajaxRequest, $crypto, localStorageService, location, configuration) {
+        $ionicModal, tostService, $scope, ajaxRequest, video, $sce, $crypto, localStorageService, location, configuration) {
         var self = this;
         var FinalApi, FinalFile;
         var user = localStorageService.get('UserData')[0].email;
@@ -44,6 +44,8 @@
                 self.picture = "data:image/jpeg;base64," + Image.binary;
             });
         }
+
+    
 
         function FileUpload(blob, title, description) {
             var query = Image.upload({
@@ -122,10 +124,21 @@
        self.mediaChanged = function(value){
         if(value == 'image')
             $scope.select();
-        else
-            console.log(value)
+        else if(value == 'video')
+            $scope.video();
        }
 
+
+           $scope.video = function() {
+            Image.takevideo($stateParams.FormTitle).then(function(blob) {
+                FinalFile = blob;
+                 self.picture = '';
+                console.log(Image.binary)
+                self.picture = Image.binary;
+                video.play(self.picture);
+                // self.picture = 'http://player.vimeo.com/external/85569724.sd.mp4?s=43df5df0d733011263687d20a47557e4';
+            });
+        }
 
     }
 
