@@ -3,7 +3,7 @@
     angular.module('cot').controller('FormdataCtrl', FormdataCtrl);
 
     function FormdataCtrl($state, $localStorage, Image, $ionicLoading, $stateParams,
-        $ionicModal, tostService, $scope, ajaxRequest, $crypto, localStorageService) {
+        $ionicModal, tostService, $scope, ajaxRequest, $crypto, localStorageService, location, configuration) {
         var self = this;
         var FinalApi, FinalFile;
         var user = localStorageService.get('UserData')[0].email;
@@ -84,6 +84,49 @@
                 tostService.notify('Failed to submit, Please try again', 'top');
             })
         }
+
+
+
+        self.locationHeading = 'At your location';
+        self.locationSwitched = function(value){
+            if(value == true)
+                self.locationHeading = 'At other location';
+            else
+               self.locationHeading = 'At your location'; 
+
+        }
+
+       self.location = 'Location';
+       self.locationAV = false;
+       self.FindAddress = function(){
+         self.locationSpinner = true;
+         self.locationRefresher = false;
+        location.nearBy().then(function(res) {
+            var lat = res.coords.latitude;
+            var lng = res.coords.longitude;
+            ajaxRequest.GoogleApi(configuration.GeoCoder + 'latlng=' + lat + ',' + lng + '&key=' + configuration.googleApiKey, '', 'GET').then(function(res1) {
+                self.locationAV = true;
+                self.location = res1.results[1].formatted_address;
+                self.locationSpinner = false;
+            });
+        }).catch(function(e) {
+            self.locationSpinner = false;
+            self.locationRefresher = true;
+            console.log(e);
+        })
+       } 
+       self.FindAddress();
+
+
+
+       self.mediaChanged = function(value){
+        if(value == 'image')
+            $scope.select();
+        else
+            console.log(value)
+       }
+
+
     }
 
 })();

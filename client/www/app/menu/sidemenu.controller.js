@@ -5,6 +5,7 @@
         var self = this;
         $scope.image = configuration.ImageUrl + 'user.jpg';
        $rootScope.$on('profile_changed', function(){
+        console.log('red')
           $scope.userName = localStorageService.get('UserData')[0].fullname;
           $scope.userEmail = localStorageService.get('UserData')[0].email;
 	       	if (localStorageService.get('UserData')[0].profile_pic)

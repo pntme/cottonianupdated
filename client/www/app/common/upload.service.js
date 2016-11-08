@@ -97,6 +97,43 @@
                 });
                return q.promise;
             };
+
+
+
+              image.takevideo = function(title) {
+               var q = $q.defer();
+                var hideSheet = $ionicActionSheet.show({
+                    buttons: [{
+                        text: '<p class="text-center"><i class="ion-images"></i> Gallery</p>'
+                    }, {
+                        text: '<p class="text-center"><i class="ion-camera"></i> Camera</p>'
+                    }],
+                    titleText: title,
+                    cancelText: 'Cancel',
+                    cancel: function() {},
+                    buttonClicked: function(index) {
+                        var options = {
+                          quality : 75, 
+                          destinationType : Camera.DestinationType.DATA_URL, 
+                          sourceType : Camera.PictureSourceType.CAMERA, 
+                          allowEdit : true,
+                          encodingType: Camera.EncodingType.JPEG,
+                          targetWidth: 300,
+                          targetHeight: 300,
+                          popoverOptions: CameraPopoverOptions,
+                          saveToPhotoAlbum: false
+                        };
+
+                        image.takePhoto(index).then(function(blob) {
+                                q.resolve(blob);
+                        }, function(err) {
+                            q.reject(err);
+                        });
+                        return true;
+                    }
+                });
+               return q.promise;
+            };
        return image;
    }
    ;

@@ -2,7 +2,7 @@
     'use strict';
     angular.module('cot').controller('SignupCtrl', SignupCtrl);
 
-    function SignupCtrl(ajaxRequest, tostService, location, $state, $scope, $ionicLoading, localStorageService, configuration) {
+    function SignupCtrl(ajaxRequest, $rootScope, tostService, location, $state, $scope, $ionicLoading, localStorageService, configuration) {
         var self = this;
         self.location = 'Location';
         self.locationAV = false;
@@ -25,25 +25,31 @@
        } 
        self.FindAddress();
         self.DoSignup = function() {
+          if(self.location == 'Location')
+             tostService.notify('Unable to fetch location, Make sure location is on and then click on refresh icon','top');  
+          else{
             $ionicLoading.show();
             ajaxRequest.send('signup.php', {
                 fullname: self.fname,
                 email: self.email,
                 password: self.password,
-                batch: self.bno
+                batch: self.bno,
+                location: self.location,
+                business_area: self.businessarea
             }, 'POST').then(function(res) {
                 $ionicLoading.hide();
                 if (res == 0)
                     tostService.notify("Something went wrong, Please try again", 'top');
                 else if (res == 2)
                     tostService.notify("You are already registered, Please login", 'top');
-                else
-                    $scope.$broadcast('profile_changed');
-                localStorageService.set("UserData", res);
-                $state.go('tab.feed')
+                else{
+                        localStorageService.set("UserData", res);
+                        localStorageService.set("SignupPic", "NotSelected");
+                        $rootScope.$emit("profile_changed"); 
+                        $state.go('profile_pic');
+                    }
             });
-
-
+          }
         }
 
     }

@@ -59,6 +59,13 @@
     controller: 'stuffCtrl',
     controllerAs: 'stuff'
   })
+  .state('profile_pic', {
+    url: '/profile_pic',
+    cache: false,
+    templateUrl: 'app/signup/profilephoto.html',
+    controller: 'ppCtrl',
+    controllerAs: 'pp'
+  })  
   
  
  

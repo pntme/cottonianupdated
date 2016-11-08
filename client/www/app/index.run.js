@@ -34,6 +34,7 @@
                     }
                    
                 } else{
+                  if($state.current.name != 'profile_pic')
                      $ionicHistory.goBack(); 
                 }
             

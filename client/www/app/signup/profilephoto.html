@@ -1,0 +1,12 @@
+<ion-view hide-nav-bar="true">
+    <ion-content scroll="false">
+      <h1 class="colBlue" style="text-align: center;font-size: 21px;margin-top: 43px;">PROFILE PICTURE</h1>
+     <div class="SignupProfilePicture" style="background-image: url({{pp.image}})" ng-click="pp.select()">
+     </div>
+     <h1 style="text-align: center;font-size: 21px;margin-top: 27px;color: #5b5c5d;">{{pp.username | capitalize}}</h1>
+      <h1 style="text-align: center;font-size: 17px;margin-top: 27px;color: #5b5c5d;" class="colBlue padding">Tap on circle to select your profile picture.</h1>
+     <ion-footer-bar align-title="center" class="bar-balanced" style="height: 61px;" ng-click='pp.upload()'>
+         <h1 class="title" style="margin-top: 7px;"><i class="ion-arrow-right-c" style="font-size: 35px;"></i></h1>
+       </ion-footer-bar>
+    </ion-content>
+</ion-view>

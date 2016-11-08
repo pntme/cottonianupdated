@@ -8,11 +8,13 @@ $email       = $request->email;
 $pass        = $request->password;
 $method      = "custom";
 $batch       = $request->batch;
+$location    = $request->location;
+$businessarea = $request->business_area;
 $dat1e       = date("d-m-y h:i:s");
 $checksql    = "select * from `phonegap_login` where `email`='$email'";
 $checkresult = mysql_query($checksql);
 if (mysql_num_rows($checkresult) == 0) {
-    $sql1    = "insert into `phonegap_login` (`reg_id`,`reg_date`,`fullname`,`email`,`login_method`, `social_id`, `profile_pic`, `password`, `school_batch`) values('','$dat1e','$fullname','$email','$method', '$id', '$picture', '$pass', '$batch')";
+    $sql1    = "insert into `phonegap_login` (`reg_id`,`reg_date`,`fullname`,`email`,`login_method`, `social_id`, `profile_pic`, `password`, `school_batch`, `location`, `businessarea`) values('','$dat1e','$fullname','$email','$method', '$id', '$picture', '$pass', '$batch', '$location', '$businessarea')";
     $result1 = mysql_query($sql1);
     if ($result1) {
         $sql2    = "select * from `phonegap_login` where `email`='$email'";
