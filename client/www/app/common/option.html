@@ -3,9 +3,14 @@
         <h1 class="title ColWhite font23">{{OptionData.title}}</h1>
         <button class="button icon ion-close-round model-close" on-tap="hide()"></button>
     </ion-header-bar>
-    <ion-content scroll="false" has-header='true'>
+    <ion-content scroll="true" has-header='true'>
 
-    <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}}); border-color: #fff;' ng-if = "OptionData.title != 'Profile'" ></div>
+    <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}}); border-color: #fff;' ng-if = "OptionData.title != 'Profile' && !OptionData.video" ></div>
+
+  <div ng-click = 'downloadFile(OptionData.video)'>
+    <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}}); border-color: #fff;' ng-if = "OptionData.title != 'Profile' && OptionData.video &&  !$scope.videocame" id="videoArea">
+    </div>
+  </div>  
      <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}})' ng-click = 'select();' ng-if = "OptionData.title == 'Profile'"></div>
         <div class="list m-t-15">
             <div class="item" ng-if='OptionData.date_time'>

@@ -1,36 +1,10 @@
-<!-- <ion-view hide-nav-bar="false" view-title="{{Formdata.navtitle}}" hide-back-button="true"  has-footer = 'true' has-tabs="true">
-       <ion-content scroll="false" has-header='true'>
-        <div class="padding">
-        <form name = 'data' novalidate>
-            <div class="list center">
-                <label class="item item-input item-floating-label floatingFormText">
-                    <span class="input-label">Title</span>
-                    <input type="text" placeholder="Title"  ng-model = 'Formdata.title' name= 'ftitle' required>
-                </label>
-                <label class="item item-input item-floating-label floatingFormText">
-                    <span class="input-label">Description</span>
-                    <input type = 'text' placeholder="Description"  ng-model = 'Formdata.description' name='fdesc' required>
-                </label>
-                <div class='m-t-15' ng-click='select()'  ng-class="{'ChoosePicDiv': !Formdata.picture, 'OptionImage':  Formdata.picture } ">
-                  <p style='margin-top: 38px;'  ng-if='!Formdata.picture'>Select Picture</p>
-                  <img ng-src='{{Formdata.picture}}' ng-if = 'Formdata.picture' class="OptionImage">
-                </div> 
-
-                <div class="AbsoluteCenterBottom m-t-15">
-                    <button class="button button-block button-default LoginButton"  ng-click="publish()" style='border-color: rgb(206, 201, 201);' ng-disabled="data.ftitle.$invalid||data.fdesc.$invalid">Publish</button>
-                </div>
-            </div>
-        </form>
-        </div>
-    </ion-content>
-  </ion-view>   -->
 <ion-view hide-nav-bar="true">
-    <ion-content scroll="true">
+    <ion-content scroll="true" class="padding">
         <div id="loginContainer">
             <div class="text-center m-t-30">
                 <h1 class="colBlue">{{Formdata.navtitle}}</h1>
             </div>
-            <form name="data" class="padding " novalidate>
+            <form name="data"  novalidate>
                 <div class="list" style="margin-bottom: 0px;">
                     <label class="item item-input loginInputField" style="border-top: none;">
                     <i class="ion-compose  colBlue placeholder-icon" style="font-size: 25px;margin-top: 3px;"></i>
@@ -56,7 +30,7 @@
 
                 <label class="item item-input loginInputField" ng-if="Formdata.switchedHeading">
                     <i class="ion-android-pin Outline colBlue placeholder-icon" style="font-size: 22px;margin-top: 4px;"></i>
-                    <input type="text"  ng-model="Login.password" name="password" placeholder='Enter the location' required>
+                    <input type="text"   ng-model = 'Formdata.customLocation' placeholder='Enter the location' required>
                 </label>
 
 
@@ -77,12 +51,16 @@
                       <option value="video">Video</option>
                    </select>
                 </label>
-               <!--   <img ng-src='{{Formdata.picture}}' ng-if = 'Formdata.picture' class="img-responsive"> -->
-            <video id="video" class="img-responsive" controls></video>
-            </form>
+           <div id="videoArea">
+            
+           </div>
+           <div ng-if="Formdata.picture">
+              <img ng-src='{{Formdata.picture}}' ng-if = 'Formdata.picture' class="img-responsive">
+           </div>   
+        </form>
        </div>
     </ion-content>
-              <ion-footer-bar align-title="center" class="bar-balanced" style="height: 61px;" ng-click='pp.upload()'>
-                    <h1 class="title" style="margin-top: 7px;">Submit</h1>
-                </ion-footer-bar>
+    <ion-footer-bar align-title="center" class="bar-balanced" style="height: 61px;" ng-click="publish()">
+          <h1 class="title" style="margin-top: 7px;">Submit</h1>
+      </ion-footer-bar>
 </ion-view>

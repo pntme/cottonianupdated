@@ -6,8 +6,13 @@
     function formatData(configuration, $crypto) {
         return {
             format: function(res) {
+                console.log(res);
                   _.forEach(res, function(value) {
-                    if (!value.image) {
+                    if(value.video){
+                        value.image = configuration.DefaultVideo;
+                        value.TextInstruction = 'Video found, Click on icon to play';
+                    }
+                    else if (!value.image) {
                         if(value.type == 'News')
                            value.image = configuration.DefaultNewsLogo;
                         if(value.type == 'Job')

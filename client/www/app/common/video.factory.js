@@ -2,12 +2,13 @@
 'use strict';
 angular.module('cot').factory('video', video);
 function video($document){
-  var videoElement = $document[0].getElementById('video');
+ var videoElement;
  return {
           videoElement: videoElement,
           play: function(filename) {
+             videoElement = $document[0].getElementById('video');
              videoElement.src = filename;
-             videoElement.play();
+             //videoElement.play();
           },
           resume: function() {
              videoElement.play();

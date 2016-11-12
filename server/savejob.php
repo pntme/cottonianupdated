@@ -9,10 +9,18 @@ $user = $request->user;
 $image = $request->image;
 $date = $request->date;
 $fullname = $request->fullname;
-// $title1=mysql_real_escape_string(htmlspecialchars(trim($title)));
-// $description1=mysql_real_escape_string(htmlspecialchars(trim($description)));
+$video = $request->video;
+
 if($image){
 	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`image`, `type`, `fullname`) values('$title','$date','$description','$user','$image', 'Job', '$fullname')";
+	  $result1 = mysql_query($sql1);
+	  if($result1){
+	  	echo 1;
+	  }else{
+	  	echo 0;
+	  }
+}else if($video){
+	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`video`, `type`, `fullname`) values('$title','$date','$description','$user','$video', 'Event', '$fullname')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	echo 1;
