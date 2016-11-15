@@ -13,9 +13,7 @@
       Cancel
     </button>
     </div>
-    <searchbutton></searchbutton>
-
-    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}">
+    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}" has-subheader = 'true'>
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="Feed.doRefresh()" spinner="android">
         </ion-refresher>
         <div class="font17 m-t-30" style="text-align: center; color:#444;" ng-if='Feed.dataNotavailable'><span>We have not any News right now, Please check again later.</span></div>
@@ -23,15 +21,33 @@
             <div ng-if='!Feed.feedData && Feed.spinner'>
                 <ion-spinner icon="android" class='CenteredSpinner'></ion-spinner>
             </div>
-
         </div>
-        <ion-list>
-            <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in Feed.feedData | filter:searchingText track by $index" type="item-text-wrap" ng-click="Feed.ShowDetails(data)">
-                <img ng-src="{{data.image}}">
-                <h2>{{data.title}}</h2>
-                <p>{{data.description}}</p>
-                <i class="icon ion-chevron-right icon-accessory"></i>
-            </ion-item>
-        </ion-list>
+        <div ng-repeat="data in Feed.feedData | filter:searchingText track by $index">
+            <div class="list card"   >
+              <div class="item item-avatar">
+                <img ng-src="{{data.titlePic}}">
+                <h2>{{data.fullname}}</h2>
+                <p>{{data.date_time}}</p>
+              </div>
+              <div class="item item-body">
+               <img class="cardmainimg" ng-src="{{data.image}}" ng-if='!data.video'>
+               <div style="min-width: 100px; min-height: 135px; background: black;" ng-if='data.video' >
+                    <div class = 'playButton' id ='playButton'>
+                       <i class="ion-android-arrow-dropright-circle" ng-if = '!data.downloading && !data.videoAvailable' ng-click = 'downloadFile(data)'></i>
+                      <ion-spinner icon = 'android' ng-if='data.downloading'></ion-spinner>
+                    </div>
+                     <div id = "{{'video'+data.id}}" ng-if= 'data.video'></div>
+                </div>             
+                 <h2>{{data.title}}</h2>
+                <p>
+                {{data.description}}
+                </p>
+                <p>
+                  <a href="#" class="subdued colBlue" ng-click = 'Feed.accept(data)'>Accept</a> 
+                  <a href="#" class="subdued colBlue">Apply</a>
+                </p>
+              </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

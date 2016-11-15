@@ -5,6 +5,11 @@ function video($document){
  var videoElement;
  return {
           videoElement: videoElement,
+          playDownloaded: function(filename, id) {
+             videoElement = $document[0].getElementById(id);
+             videoElement.src = filename;
+             //videoElement.play();
+          },
           play: function(filename) {
              videoElement = $document[0].getElementById('video');
              videoElement.src = filename;
