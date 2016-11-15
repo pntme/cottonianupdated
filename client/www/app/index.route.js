@@ -66,6 +66,14 @@
     controller: 'ppCtrl',
     controllerAs: 'pp'
   })  
+
+  .state('player', {
+    url: '/player/:video',
+    cache: false,
+    templateUrl: 'app/player/player.html',
+    controller: 'playerCtrl',
+    controllerAs: 'player'
+  })  
   
  
  

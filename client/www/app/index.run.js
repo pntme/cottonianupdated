@@ -1,10 +1,14 @@
   (function(){
 'use strict';
  angular.module('cot')
-.run(function($ionicPlatform, userValidate, $state, pushNotificationService, localStorageService, $rootScope, $ionicPush, tostService, $timeout , $ionicHistory) {
+.run(function($ionicPlatform, userValidate, $state, createfolder, pushNotificationService, localStorageService, $rootScope, $ionicPush, tostService, $timeout , $ionicHistory) {
    userValidate.validUser();
    $rootScope.spinner = true;
   $ionicPlatform.ready(function() {
+  var isAndroid = ionic.Platform.isAndroid();
+   if(isAndroid){
+       createfolder.create();
+   } 
     if(localStorageService.get('UserData'))
           pushNotificationService.init();
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
