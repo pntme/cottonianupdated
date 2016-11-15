@@ -9,11 +9,12 @@ if($_FILES['file']['name']){
  $file_type = $_FILES['file']['type'];
  $file_ext = strtolower(end(explode('.', $_FILES['file']['name'])));
  $fname = rand(22,2100).".".$file_ext;
-      if (!move_uploaded_file($file_tmp, "images/".  $fname)) {
+      if (!move_uploaded_file($file_tmp, "video/".  $fname)) {
       echo 0;
       die;
   }else{
    echo $fname;
   } 
 }
+
 ?>
