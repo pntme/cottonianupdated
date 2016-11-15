@@ -32,11 +32,13 @@
            <ion-item ng-click="Go('News')" menu-close ng-show='dashclicked' id="dashContent" class='colBlue'><i class="ion-document colBlue  font19"></i>&nbsp;&nbsp;My News</ion-item></ion-item>
           
 
-            <ion-item ng-click="Go('Event')" menu-close  ng-show='dashclicked' id="dashContent" class="colBlue"><i class="ion-calendar  font19" ></i>&nbsp;&nbsp;My Event</ion-item>
+            <ion-item ui-sref="fellows"  menu-close  ng-show='dashclicked' id="dashContent" class="colBlue"><i class="ion-calendar  font19" ></i>&nbsp;&nbsp;My Event</ion-item>
               <ion-item ng-click="Go('Job')" menu-close   ng-show='dashclicked' id="dashContent" class="colBlue"><i class=" ion-ribbon-a font19 Outline" class="colBlue" ></i>&nbsp;&nbsp;My Job</ion-item>
 
-            <ion-item ng-click="openProfile();"  menu-close class="sidemenuItem colBlue"><i class="ion-person font19"></i>&nbsp;&nbsp;My Profile</ion-item>
-            <ion-item ng-click="Logout();" menu-close class="sidemenuItem colBlue"><i class="icon ion-android-exit"></i>&nbsp;&nbsp;Logout</ion-item>
+            <ion-item  ng-click="Go('Event')"  menu-close class="sidemenuItem colBlue"><i class="ion-person font19"></i>&nbsp;&nbsp;My Profile</ion-item>
+            <ion-item ng-click="Logout();" menu-close class="sidemenuItem colBlue"><i class="icon ion-ios-people"></i>&nbsp;&nbsp;Fellows</ion-item>
+
+             <ion-item ng-click="Logout();" menu-close class="sidemenuItem colBlue"><i class="icon ion-android-exit"></i>&nbsp;&nbsp;Logout</ion-item>
           </ion-list>
         </ion-content>
       </ion-side-menu>
