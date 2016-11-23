@@ -1,0 +1,53 @@
+<ion-modal-view>
+    <ion-header-bar class='BgBlue' align-title="center">
+        <h1 class="title ColWhite font23">{{OptionData.title}}</h1>
+        <button class="button icon ion-close-round model-close" on-tap="hide()"></button>
+    </ion-header-bar>
+    <ion-content scroll="true" has-header='true'>
+
+ 
+     <div class="profilePic m-t-15" style = 'background-image: url({{OptionData.image}})' ></div>
+        <div class="list m-t-15">
+            <div class="item">
+                <div class="pull-left colBlue">
+                    <span>Name</span> 
+                </div>
+                <div class="pull-right">
+                    {{OptionData.fullname | capitalize}}
+                </div>
+            </div>
+            <div class="item" ng-if='OptionData.email'>
+                <div class="pull-left colBlue">
+                    Email
+                </div>
+                <div class="pull-right">
+                    {{OptionData.email}}
+                </div>
+            </div>
+            <div class="item" ng-if='OptionData.school_batch'>
+                <div class="pull-left colBlue">
+                    School batch
+                </div>
+                <div class="pull-right">
+                    {{OptionData.school_batch}}
+                </div>
+            </div>
+            <div class="item" ng-if='OptionData.businessarea'>
+                <div class="pull-left colBlue">
+                   Business Area
+                </div>
+                <div class="pull-right">
+                    {{OptionData.businessarea}}
+                </div>
+            </div>
+            <div class="item" ng-if='OptionData.Contact'>
+                <div class="pull-left colBlue">
+                    Contact
+                </div>
+                <div class="pull-right">
+                    {{OptionData.contact}}
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

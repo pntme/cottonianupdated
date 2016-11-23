@@ -1,31 +1,64 @@
 (function() {
     angular.module('cot').controller('sidemenuCtrl', sidemenuCtrl);
 
-    function sidemenuCtrl($scope, $ionicSideMenuDelegate,$rootScope, $ionicPopup , Image, $ionicLoading, ajaxRequest, tostService,$ionicModal, configuration, $localStorage, $state, localStorageService) {
+    function sidemenuCtrl($scope, $ionicSideMenuDelegate,$rootScope, $ionicPopup , $interval,   $ionicPopover, Image, $ionicLoading, ajaxRequest, tostService,$ionicModal, configuration, $localStorage, $state, localStorageService) {
         var self = this;
         $scope.image = configuration.ImageUrl + 'user.jpg';
+        var counter = 1;
+        self.findNots = function(){
+           ajaxRequest.send('findnots.php?email='+localStorageService.get('UserData')[0].email, '', 'GET', 'Notification').then(function(res){
+                   if(res > 0){
+                      $scope.showNot = true;
+                      $scope.notCount = res;
+                   }
+                   else
+                     $scope.showNot =  false;
+           })
+        }
        $rootScope.$on('profile_changed', function(){
-        console.log('red')
+           if(counter = 1){
+              var interval =  $interval(function () {
+                  self.findNots();
+              }, 10000);
+             self.findNots();
+           }else{
+             $interval.cancel(interval);
+           }
           $scope.userName = localStorageService.get('UserData')[0].fullname;
           $scope.userEmail = localStorageService.get('UserData')[0].email;
 	       	if (localStorageService.get('UserData')[0].profile_pic)
 	           $scope.image = localStorageService.get('UserData')[0].profile_pic;
 	        else
 	           $scope.image = configuration.ImageUrl + 'user.jpg';
+           counter++;
        });
-
-
+        var user = localStorageService.get('UserData');
+        if(user){
+            counter++;
+             var interval =  $interval(function () {
+                  self.findNots();
+              }, 10000);
+             self.findNots();
+             $scope.userName = localStorageService.get('UserData')[0].fullname;
+             $scope.userEmail = localStorageService.get('UserData')[0].email;
+            if (localStorageService.get('UserData')[0].profile_pic)
+               $scope.image = localStorageService.get('UserData')[0].profile_pic;
+            else
+               $scope.image = configuration.ImageUrl + 'user.jpg';
+        }
+        
         $scope.opensidemenu = function() {
             $ionicSideMenuDelegate.toggleLeft();
         }
 
         $scope.Logout = function() {
+           $interval.cancel(interval);
             $localStorage.$reset();
             $state.go('login');
         }
 
 
-           $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
+        $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
             self.optionProfile = $ionicModal;
         }, {
             scope: $scope
@@ -167,6 +200,14 @@
             $scope.dashclicked = !$scope.dashclicked;
         }
 
+        $scope.gonots = function(){
+            console.log('bb')
+            $state.go('nots');
+        }
+        
+ 
+     
+     
 
     }
 })();

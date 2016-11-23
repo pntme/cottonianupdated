@@ -83,6 +83,7 @@
             return def.promise;
         };
         service.validateToken = function(token, def) {
+             $ionicLoading.show();
             $log.info('Code: ' + token);
             var http = $http({
                 url: 'https://www.googleapis.com/oauth2/v3/token',
@@ -179,6 +180,7 @@
             promise.then(function(data) {
                 def.resolve(data);
             }, function(data) {
+                $ionicLoading.hide();
                 $log.error(data);
                 def.reject(data.error);
             });

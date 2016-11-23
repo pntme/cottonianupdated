@@ -9,6 +9,7 @@
   // Each state's controller can be found in controllers.js
   $cryptoProvider.setCryptographyKey('ABCD123');
   $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.navBar.alignTitle('center');
      $ionicCloudProvider.init({
     "core": {
       "app_id": "0a99e665"
@@ -66,25 +67,35 @@
     controller: 'ppCtrl',
     controllerAs: 'pp'
   })  
-
-  .state('player', {
-    url: '/player/:video',
+   .state('userprofile', {
+    url: '/userprofile',
     cache: false,
-    templateUrl: 'app/player/player.html',
-    controller: 'playerCtrl',
-    controllerAs: 'player'
+    templateUrl: 'app/userprofile/userprofile.html',
+    controller: 'UserProfileCtrl',
+    controllerAs: 'UP'
   })  
-  
- 
- 
+    .state('nots', {
+    url: '/nots',
+    cache: false,
+    templateUrl: 'app/nots/nots.html',
+    controller: 'notsCtrl',
+    controllerAs: 'nots'
+  })  
     .state('tab', {
     url: '/tab',
     abstract: true,
+    cache: false,
     templateUrl: 'app/menu/menu.html',
     controller: 'MenuCtrl',
     controllerAs: 'Menu'
   })
-
+    .state('fellows', {
+      url: '/fellows',
+      cache: false,
+      templateUrl: 'app/fellows/fellows.html',
+      controller: 'fellowsCtrl',
+      controllerAs: 'fellows'
+  })
   // Each tab has its own nav history stack:
 
 
@@ -99,6 +110,8 @@
       }
     }
   })
+
+
 
   .state('tab.event', {
       url: '/event',

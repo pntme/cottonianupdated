@@ -24,7 +24,7 @@
 
     document.addEventListener("deviceready", function() {
             var count = 0;
-            $ionicPlatform.registerBackButtonAction(function(event) {
+            $ionicPlatform.registerBackButtonAction(function() {
                if($state.current.name == 'tab.feed' || $state.current.name == 'login'){
                        if (count == 0) {
                         count++;

@@ -150,7 +150,6 @@
                 return image.defer.promise;
               }else{
                   $cordovaCapture.captureVideo(options).then(function(videoData) {
-                   console.log(videoData); 
                    image.binary = videoData[0].fullPath;
                    image.defer.resolve(videoData);
                   }, function(err) {

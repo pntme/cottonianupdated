@@ -1,4 +1,9 @@
 /* Empty. Add your own CSS if you like */
+body{
+    font-family: RobotoDraft;
+}
+
+
 ion-scroll[direction=x] {
   width: 100vw;
 }
@@ -273,6 +278,7 @@ display: none;
     margin-top: 18px;
     color: #fff !important;
     font-weight: bold;
+    width: 100%;
 }
 #dashboard .item-content{
   margin-left: 0px;
@@ -408,3 +414,14 @@ display: none;
     width: 29px;
     height: 49px;
 }
+.badge{
+        position: absolute !important;
+    left: 26px !important;
+    top: -3px;
+    background: red;
+        font-size: 12px !important;
+    line-height: 9px !important;
+}
+
+
+

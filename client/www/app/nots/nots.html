@@ -1,0 +1,20 @@
+<ion-view view-title="Notifications" hide-nav-bar="stuff.y">
+<ion-nav-buttons side="right">
+      <button class="button button-calm" ng-click="stuff.showSearch();" ng-if = "!stuff.showDelete">
+        <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
+      </button>
+      <button class="button button-calm" ng-click="stuff.delete();" ng-if = "stuff.showDelete">
+        <i class="icon ion-trash-b" style="color: #E40A5D;opacity: 3;" ></i>
+      </button>
+</ion-nav-buttons>
+  <ion-content class="has-header" scroll="true" overflow-scroll="false" ng-style="stuff.x && {'margin-top':'42px'} || !stuff.x &&  {'margin-top':'-1px'}">
+   <div id='center' ng-if='!stuff.stuffData'>
+    <ion-spinner icon="android" class='CenteredSpinner' ng-if='!stuff.stuffData && stuff.spinner'></ion-spinner>
+  </div>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" collection-repeat="data in nots.msg | filter:searchingText track by $index" type="item-text-wrap" ng-click = 'nots.go(data)'>
+        <p>{{data.m}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

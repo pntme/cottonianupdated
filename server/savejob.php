@@ -20,7 +20,7 @@ if($image){
 	  	echo 0;
 	  }
 }else if($video){
-	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`video`, `type`, `fullname`) values('$title','$date','$description','$user','$video', 'Event', '$fullname')";
+	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`video`, `type`, `fullname`) values('$title','$date','$description','$user','$video', 'Job', '$fullname')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	echo 1;

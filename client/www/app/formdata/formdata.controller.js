@@ -37,9 +37,7 @@
                                 ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
                                     console.log(res);
                                 });
-                                $state.go('stuff', {
-                                    title: $stateParams.FormTitle
-                                });
+                                $state.go('tab.feed');
                             } else
                                 tostService.notify('Failed to submit, Please try again', 'top');
                         });
@@ -81,9 +79,7 @@
                             ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
                                 console.log(res);
                             });
-                            $state.go('stuff', {
-                                title: $stateParams.FormTitle
-                            });
+                            $state.go('tab.feed');
                         } else
                             tostService.notify('Failed to submit, Please try again', 'top');
 
@@ -172,7 +168,7 @@
                     SendOtherData(result.response);
                 } else {
                     $ionicLoading.hide();
-                    tostService.notify('Uplaoding failed, Plesae try again');
+                    tostService.notify('Uploading failed, Plesae try again');
                 }
 
             }, function(err) {
@@ -205,9 +201,7 @@
                     ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
                         console.log(res);
                     });
-                    $state.go('stuff', {
-                        title: $stateParams.FormTitle
-                    });
+                    $state.go('tab.feed');
                 } else
                     tostService.notify('Failed to submit, Please try again', 'top');
             });

@@ -1,0 +1,45 @@
+<ion-view view-title="Cottonians" hide-nav-bar="fellows.y">
+    <ion-nav-buttons side="right">
+        <button class="button button-calm" ng-click="fellows.showSearch();">
+       <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
+      </button>
+    </ion-nav-buttons>
+    <div class="bar bar-header item-input-inset" ng-show="fellows.y">
+        <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search fellows" ng-model="searchingText">
+    </label>
+        <button class="button button-calm" ng-click="fellows.cancel()">
+      Cancel
+    </button>
+    </div>
+    <ion-content scroll='true' overflow-scroll="false" ng-style="fellows.x && {'margin-top':'42px'} || !fellows.x &&  {'margin-top':'-1px'}" has-subheader = 'true'>
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="fellows.doRefresh()" spinner="android">
+        </ion-refresher>
+        <div class="font17 m-t-30" style="text-align: center; color:#444;" ng-if='fellows.dataNotavailable'><span>We have not any News right now, Please check again later.</span></div>
+        <div id='center' ng-if='!fellows.fellowsData'>
+            <div ng-if='!fellows.fellowsData && fellows.spinner'>
+                <ion-spinner icon="android" class='CenteredSpinner'></ion-spinner>
+            </div>
+        </div>
+        <div ng-repeat="data in fellows.fellowsData | filter:searchingText">
+            <div class="list card"   >
+              <div class="item">
+                <h2>{{data.fullname}}</h2>
+                <p>{{data.email}}</p>
+                <p>Batch: {{data.school_batch}}</p>
+              </div>
+              <div class="item item-body">
+               <img class="cardmainimg" ng-src="{{data.profile_pic}}" >
+             
+                 <h2>{{data.businessarea}}</h2>
+                <p>
+                {{data.location}}
+                </p>
+                <p>
+                </p>
+              </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

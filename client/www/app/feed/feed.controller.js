@@ -2,16 +2,20 @@
     'use strict';
     angular.module('cot').controller('feedCtrl', feedCtrl);
 
-    function feedCtrl(ajaxRequest, configuration, video, $ionicPopup, $ionicLoading, $cordovaFileTransfer, formatData, $state, $ionicModal, $ionicScrollDelegate, $scope) {
+    function feedCtrl(ajaxRequest, configuration, video, $ionicPopup, localStorageService, $ionicLoading, $cordovaFileTransfer, formatData, $state, $ionicModal, $ionicScrollDelegate, $scope) {
         var self = this;
         self.spinner = true;
         self.noMoreItemsAvailable = false;
-
+        self.myid = localStorageService.get('UserData')[0].id;
         $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
             self.option = $ionicModal;
         }, {
             scope: $scope
         });
+        var OfflineData = ajaxRequest.OfflineData('fetchhome.php');
+        if(OfflineData)
+           self.feedData = formatData.format(OfflineData);        
+        
         self.ShowDetails = function(data) {
             $scope.OptionData = data;
             self.option.show();
@@ -43,7 +47,7 @@
         }
 
         self.doRefresh = function() {
-            ajaxRequest.send('fetchhome.php', '', 'GET').then(function(res) {
+            ajaxRequest.send('fetchhome.php', '', 'GET', 'NeedOffline').then(function(res) {
                 self.spinner = false;
                 if (res == 2)
                     self.dataNotavailable = true;
@@ -97,7 +101,20 @@
 
 
         self.accept = function(data){
-            console.log(data);
+            data.accepted = true;
+            data.accept.push(localStorageService.get('UserData')[0].reg_id);
+            ajaxRequest.send('accept.php?id='+localStorageService.get('UserData')[0].fullname +'&pid=' + data.id  + '&type=accept', '', 'GET').then(function(res){
+            });
         }
+
+        self.apply = function(data){
+            data.applied = true;
+            data.apply.push(localStorageService.get('UserData')[0].reg_id);
+            ajaxRequest.send('apply.php?id='+localStorageService.get('UserData')[0].fullname +'&pid=' + data.id + '&type=apply', '', 'GET').then(function(res){
+            });
+        }
+
+
+        
     }
 })();   

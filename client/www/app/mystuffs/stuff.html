@@ -1,3 +1,4 @@
+
 <ion-view view-title="{{stuff.title}}" hide-nav-bar="stuff.y">
 <ion-nav-buttons side="right">
       <button class="button button-calm" ng-click="stuff.showSearch();" ng-if = "!stuff.showDelete">
@@ -33,12 +34,60 @@
    <div id='center' ng-if='!stuff.stuffData'>
     <ion-spinner icon="android" class='CenteredSpinner' ng-if='!stuff.stuffData && stuff.spinner'></ion-spinner>
   </div>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="data in stuff.stuffData | filter:searchingText track by $index" type="item-text-wrap" ng-click="stuff.select(data)" ng-class="{ active: data.selected }">
-        <img ng-src="{{data.image}}" >
-        <h2>{{data.title}}</h2>
-        <p>{{data.description}}</p>
-      </ion-item>
-    </ion-list>
+         <div ng-repeat="data in stuff.stuffData | filter:searchingText track by $index" >
+            <div class="list card"   >
+              <div class="item item-avatar">
+                <img ng-src="{{data.titlePic}}">
+                <h2 style="width: 80%;">{{data.fullname}}</h2> <h2 style="float: right; font-size: 28px;"><i class="ion-edit colBlue" ng-click = 'stuff.edit(data)'></i>&nbsp;<i class='ion-trash-b' style="color: red;" ng-click = 'stuff.delete(data)'></i></h2>
+                <p style="width: 80%;">{{data.date_time}}</p>
+              </div>
+              <div class="item item-body">
+               <img class="cardmainimg" ng-src="{{data.image}}" ng-if='!data.video'>
+               <div style="min-width: 100px; min-height: 135px; background: black;" ng-if='data.video' >
+                    <div class = 'playButton' id ='playButton'>
+                       <i class="ion-android-arrow-dropright-circle" ng-if = '!data.downloading && !data.videoAvailable' ng-click = 'downloadFile(data)'></i>
+                      <ion-spinner icon = 'android' ng-if='data.downloading'></ion-spinner>
+                    </div>
+                     <div id = "{{'video'+data.id}}" ng-if= 'data.video'></div>
+                </div>             
+                 <h2>{{data.title}}</h2>
+                <p>
+                {{data.description}}
+                </p>
+                <p>
+                <a class="subdued colBlue"  ng-if='data.apply.length'   ng-click = 'stuff.showdeatilsapply(data, $event)'>
+                  {{data.apply.length}} Response</a>
+                 <a class="subdued colBlue"  ng-if='data.accept.length'   ng-click = 'stuff.showdeatilsaccept(data, $event)'>
+                  {{data.accept.length}} Response</a>  
+                   <a class="subdued colBlue"  ng-if='!data.apply.length && !data.accept.length'   >
+                  No Response</a>    
+                </p>
+              </div>
+            </div>
+        </div>
   </ion-content>
+   <script id="templates/popover.html" type="text/ng-template">
+      <ion-popover-view>
+        <ion-content scroll= 'true'>
+          <div class="list">
+            <a class="item colBlue" style="text-align: center;">
+              {{heading}}
+            </a>
+            <a class="item" ng-repeat= 'user in responsedUser track by $index'  ng-click="openProfile(user)">
+             {{user| capitalize}}
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
 </ion-view>
+
+
+
+
+
+
+
+
+
+

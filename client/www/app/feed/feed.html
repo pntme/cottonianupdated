@@ -13,7 +13,8 @@
       Cancel
     </button>
     </div>
-    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}" has-subheader = 'true'>
+<round></round>
+    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}" has-subheader = 'true' style="margin-bottom: 15px;">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="Feed.doRefresh()" spinner="android">
         </ion-refresher>
         <div class="font17 m-t-30" style="text-align: center; color:#444;" ng-if='Feed.dataNotavailable'><span>We have not any News right now, Please check again later.</span></div>
@@ -43,8 +44,15 @@
                 {{data.description}}
                 </p>
                 <p>
-                  <a href="#" class="subdued colBlue" ng-click = 'Feed.accept(data)'>Accept</a> 
-                  <a href="#" class="subdued colBlue">Apply</a>
+                  <a href="#" class="subdued colBlue" ng-click = 'Feed.accept(data)' ng-if='data.type == "Event" && !data.accepted' >
+                  <span>{{data.accept.length}}</span>&nbsp;Accept</a>
+
+                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Event" && data.accepted'   ng-click = 'Feed.accept(data)'>
+                  <span>{{data.accept.length}}</span>&nbsp;Accepted</a>   
+
+                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied' ng-click='Feed.apply(data)'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
+
+                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
                 </p>
               </div>
             </div>
