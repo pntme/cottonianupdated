@@ -8,6 +8,11 @@ $data= array();
 $total = 0;
 while($result=mysql_fetch_assoc($query))
 {
+$userData;	
+$user_email = $result[user];
+$userQuery = mysql_query("select * from phonegap_login where `email`='$user_email'");
+$userData = mysql_fetch_assoc($userQuery);
+$result[UserData] = $userData;
 $data[]=$result;
 $total++;
 }

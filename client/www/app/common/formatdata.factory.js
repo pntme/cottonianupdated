@@ -1,11 +1,12 @@
-(function() {
+(function() {   
     'use strict';
     angular
         .module('cot')
         .factory('formatData',formatData);
     function formatData(configuration, $crypto, localStorageService) {
-        return {
-            format: function(res) {
+        var service = {};
+        var self = this;
+            service.format =  function(res) {
                   _.forEach(res, function(value) {
                     if(value.accept){
                         value.accept = value.accept.split(",");
@@ -28,6 +29,7 @@
                         value.image = configuration.DefaultVideo;
                         value.TextInstruction = 'Video found, Click on icon to play';
                     }
+
                     else if (!value.image) {
                         if(value.type == 'News')
                            value.image = configuration.DefaultNewsLogo;
@@ -38,20 +40,39 @@
                     } else {
                         value.image = configuration.ImageUrl + value.image;
                     }
-                    
-                    // if(value.type == 'News')
-                    //    value.titlePic = 'img/news.png';
-                    // if(value.type == 'Job')
-                    //    value.titlePic = 'img/job.png';
-                    // if(value.type == 'Event')
-                    //    value.titlePic = 'img/event.png';
+                    value.titlePic = service.formatPic(value.UserData).User_image;
                     value.date_time = moment.unix(value.date_time).format("DD/MM/YYYY HH:mm");
                     value.title = $crypto.decrypt(value.title);
                     value.description = $crypto.decrypt(value.description);
                 });
                 return res; 
             },
-        };
+
+         service.formatPic = function(data){
+            if (data.profile_pic) {
+                    data.User_image = data.profile_pic;
+            }else if(data.socialpic){
+                 data.User_image = data.socialpic;
+            } else {
+                data.User_image = configuration.ImageUrl + 'user.jpg';
+            }
+            return data;
+         }
+
+         service.FormDatatoSend = function(data){
+            if(data.type == 'News'){
+                data.api = 'updatenews.php';
+                data.msg = 'New news posted';
+            }if(data.type == 'Event'){
+                data.api = 'updateevent.php';
+                data.msg = 'New event posted';
+            }if(data.type == 'Job'){
+                data.api = 'updatejob.php';
+                data.msg = 'New job posted';
+            }
+            return data;
+         }
+        return service;
     }
 
 })();

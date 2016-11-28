@@ -1,4 +1,4 @@
-<ion-view view-title="Cottonians" hide-nav-bar="fellows.y">
+ <ion-view view-title="Cottonians" hide-nav-bar="fellows.y">
     <ion-nav-buttons side="right">
         <button class="button button-calm" ng-click="fellows.showSearch();">
        <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
@@ -22,8 +22,17 @@
                 <ion-spinner icon="android" class='CenteredSpinner'></ion-spinner>
             </div>
         </div>
-        <div ng-repeat="data in fellows.fellowsData | filter:searchingText">
-            <div class="list card"   >
+        <div ng-repeat="data in fellows.fellowsData | filter:searchingText" ng-click = "fellows.OpenProfile(data);">
+
+
+<div class="list">
+    <a class="item item-avatar">
+      <img ng-src="{{data.profile_pic}}">
+      <h2>{{data.fullname}}</h2>
+      <p>{{data.email}}</p>
+    </a>
+</div>
+          <!--   <div class="list card"   >
               <div class="item">
                 <h2>{{data.fullname}}</h2>
                 <p>{{data.email}}</p>
@@ -39,7 +48,7 @@
                 <p>
                 </p>
               </div>
-            </div>
+            </div> -->
         </div>
     </ion-content>
 </ion-view>

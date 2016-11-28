@@ -22,7 +22,6 @@
         }
 
         $scope.showConfirm = function(url) {
-            console.log(url);
             var confirmPopup = $ionicPopup.confirm({
                 template: 'Video downloaded, successfully',
                 cancelText: 'Watch later',
@@ -35,8 +34,7 @@
                     $state.go('player', {
                         video: url
                     });
-                } else {
-                    console.log('You are not sure');
+    
                 }
             });
         };
@@ -53,6 +51,7 @@
                     self.dataNotavailable = true;
                 else
                     self.feedData = formatData.format(res);
+            
             }, function(e) {
                 console.log(e);
                 self.spinner = false;
@@ -80,7 +79,7 @@
             var options = {};
             $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
                 .then(function(result) {
-                    console.log(result);
+                    
                     obj.downloading = false;
                     obj.videoAvailable = true;
                     var frameid = 'videoframe' + obj.id;

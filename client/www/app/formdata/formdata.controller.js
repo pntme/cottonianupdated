@@ -44,7 +44,6 @@
                     }
                 }
             } else {
-                console.log('here')
                 tostService.notify('Title, Description & Location fields should not be empty', 'top');
             }
         }
@@ -206,6 +205,60 @@
                     tostService.notify('Failed to submit, Please try again', 'top');
             });
 
+        }
+
+
+
+        self.edit = 0;
+        var TempPic, TempVideo;
+        if($stateParams.id){
+            self.edit = 1;
+              var editableData = localStorageService.get('EditData');
+              console.log(editableData)
+              self.navtitle = 'Edit '+editableData.type;
+              self.title = editableData.title;
+              self.description = editableData.description;
+              if(editableData.image == configuration.DefaultNewsLogo || editableData.image == configuration.DefaultJobLogo || editableData.image == configuration.DefaultNewsLogo){
+              }else{
+                  self.media = 'image';
+                  self.picture = editableData.image;
+                  TempPic = editableData.image;
+              }
+
+              if(editableData.video){
+                self.media = 'video';
+                var v = "<video id='video'  controls class='video-responsive'></video>";
+                document.querySelector("#videoArea").innerHTML = v;
+                video.play(editableData.video);
+              }
+
+    
+        }
+
+        self.update = function(){
+            if (self.title && self.description) {
+                if (self.switchedHeading == false && self.location == 'Location') {
+                    tostService.notify('Unable to fetch location, Make sure location is on and then click on refresh icon', 'top');
+                } else if (self.switchedHeading == true && !self.customLocation) {
+                    tostService.notify('Enter your location', 'top');
+                } else {
+                    if(self.picture){
+                      if(self.picture != TempPic)
+                         FileUpload(FinalImg, FinalApi, self.title, self.description);
+                      else
+                        console.log(FinalApi)
+                    }
+                    if(self.video){
+                      if(self.video != TempVideo)
+                         FileUpload(FinalImg, FinalApi, self.title, self.description);
+                      else
+                        console.log(FinalApi)
+                    }
+
+                }
+            } else {
+                tostService.notify('Title, Description & Location fields should not be empty', 'top');
+            }
         }
     }
 })();

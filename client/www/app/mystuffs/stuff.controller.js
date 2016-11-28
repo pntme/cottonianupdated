@@ -14,7 +14,6 @@
         self.doRefresh = function() {
             ajaxRequest.send('mystuff.php?type='+$stateParams.title+'&user='+localStorageService.get('UserData')[0].email, '', 'GET', 'NeedOffline').then(function(res) {
                 $ionicLoading.hide();
-                console.log(res)
                 if(res == 2){
                     self.spinner = false;
                     self.dataNotavailable = true;
@@ -50,24 +49,7 @@
             });
 
         }
-        
-        //  self.select = function (data) {
-        //     var index = selected.indexOf(data.id);
-        //     if (index > -1) {
-        //        selected.splice(index, 1);
-        //         data.selected = false;
-        //     } else {
-        //         selected.push(data.id);
-        //         data.selected = true;
-        //     }
 
-        //     if(selected.length  == 0)
-        //         self.showDelete = false;
-        //     else
-        //         self.showDelete = true;
-        // }
-
-       
         self.showdeatilsapply = function(data, $event){
             $scope.popover.show($event);
             $scope.responsedUser = data.apply;
@@ -79,10 +61,7 @@
                 $scope.popover.show($event);
                 $scope.responsedUser = data.accept;
                 $scope.heading = 'Accepted by';
-
-        }
-
-
+        } 
 
         self.delete = function(data){
             console.log(data);
@@ -118,36 +97,44 @@
           });
 
           self.edit = function(data){
-            $scope.EditData = {};
-            $scope.EditData.title = data.title;
-            $scope.EditData.desc = data.description;
-            var editPopup = $ionicPopup.show({
-                template: '<input type="text" ng-model="EditData.title" placeholder="Title"><textarea  ng-model="EditData.desc" placeholder="Description" class="m-t-15"></textarea>',
-                title: 'Edit Information',
-                scope: $scope,
-                buttons: [
-                  { text: 'Cancel' },
-                  {
-                    text: '<b>Save</b>',
-                    type: 'button-positive',
-                    onTap: function(e) {
-                       ajaxRequest.send('edit.php?id='+ data.id,{
-                        title: $crypto.encrypt($scope.EditData.title),
-                        description: $crypto.encrypt($scope.EditData.desc)
-                       },'POST').then(function(res){
-                          if(res == 1){
-                            data.title = $scope.EditData.title;
-                            data.description = $scope.EditData.desc;
-                          }
-                       })
-                    }
-                  }
-                ]
-              });
+            data = formatData.FormDatatoSend(data);
+            localStorageService.set('EditData', data);
+            $state.go('formdata', {
+              FormTitle: data.type,
+              api: data.api,
+              msg: data.msg,
+              id: data.id
+            });
+            // $scope.EditData = {};
+            // $scope.EditData.title = data.title;
+            // $scope.EditData.desc = data.description;
+            // var editPopup = $ionicPopup.show({
+            //     template: '<input type="text" ng-model="EditData.title" placeholder="Title"><textarea  ng-model="EditData.desc" placeholder="Description" class="m-t-15"></textarea>',
+            //     title: 'Edit Information',
+            //     scope: $scope,
+            //     buttons: [
+            //       { text: 'Cancel' },
+            //       {
+            //         text: '<b>Save</b>',
+            //         type: 'button-positive',
+            //         onTap: function(e) {
+            //            ajaxRequest.send('edit.php?id='+ data.id,{
+            //             title: $crypto.encrypt($scope.EditData.title),
+            //             description: $crypto.encrypt($scope.EditData.desc)
+            //            },'POST').then(function(res){
+            //               if(res == 1){
+            //                 data.title = $scope.EditData.title;
+            //                 data.description = $scope.EditData.desc;
+            //               }
+            //            })
+            //         }
+            //       }
+            //     ]
+            //   });
 
-              editPopup.then(function(res) {
-                console.log('Tapped!', res);
-              });
+            //   editPopup.then(function(res) {
+            //     console.log('Tapped!', res);
+            //   });
 
           }
 

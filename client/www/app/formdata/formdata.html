@@ -60,7 +60,10 @@
         </form>
        </div>
     </ion-content>
-    <ion-footer-bar align-title="center" class="bar-balanced" style="height: 61px;" ng-click="publish()">
+    <ion-footer-bar align-title="center" class="bar-balanced" style="height: 61px;" ng-click="publish()" ng-if='Formdata.edit==0'>
           <h1 class="title" style="margin-top: 7px;">Submit</h1>
+      </ion-footer-bar>
+        <ion-footer-bar align-title="center" class="bar-balanced" style="height: 61px;" ng-click="Formdata.update()" ng-if='Formdata.edit==1'>
+          <h1 class="title" style="margin-top: 7px;">Update</h1>
       </ion-footer-bar>
 </ion-view>

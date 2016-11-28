@@ -1,8 +1,8 @@
 <?php 
 header("Access-Control-Allow-Origin: *");
 include('db.php');
-$name=$_GET['name'];
-$query=mysql_query("select * from phonegap_login where fullname = '$name'");
+$id=$_GET['id'];
+$query=mysql_query("select * from stuffs where id = '$id'");
 $data= array();
 $total = 0;
 while($result=mysql_fetch_assoc($query))
@@ -10,7 +10,6 @@ while($result=mysql_fetch_assoc($query))
 $data[]=$result;
 $total++;
 }
-
 if($total > 0)
   echo json_encode($data);
 else
