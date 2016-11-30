@@ -45,13 +45,13 @@
                 {{data.description}}
                 </p>
                 <p>
-                  <a  class="subdued colBlue" ng-click = 'Event.accept(data)' ng-if='data.type == "Event" && !data.accepted' >
+                  <a  class="subdued colBlue" ng-click = 'Event.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
                   <span>{{data.accept.length}}</span>&nbsp;Accept</a>
 
                   <a class="subdued colBlue"  ng-if='data.type == "Event" && data.accepted'>
                   <span>{{data.accept.length}}</span>&nbsp;Accepted</a>   
 
-                  <a  class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied' ng-click='Event.apply(data)'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
+                  <a  class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied' ng-click='Event.apply(data) && !data.me'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
 
                   <a  class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
                 </p>

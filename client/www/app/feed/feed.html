@@ -44,13 +44,13 @@
                 {{data.description}}
                 </p>
                 <p>
-                  <a href="#" class="subdued colBlue" ng-click = 'Feed.accept(data)' ng-if='data.type == "Event" && !data.accepted' >
+                  <a href="#" class="subdued colBlue" ng-click = 'Feed.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
                   <span>{{data.accept.length}}</span>&nbsp;Accept</a>
 
                   <a href="#" class="subdued colBlue"  ng-if='data.type == "Event" && data.accepted'   ng-click = 'Feed.accept(data)'>
                   <span>{{data.accept.length}}</span>&nbsp;Accepted</a>   
 
-                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied' ng-click='Feed.apply(data)'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
+                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied && !data.me' ng-click='Feed.apply(data)'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
 
                   <a href="#" class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
                 </p>

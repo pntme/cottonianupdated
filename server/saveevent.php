@@ -10,8 +10,9 @@ $image = $request->image;
 $date = $request->date;
 $video = $request->video;
 $fullname = $request->fullname;
+$location = $request->location;
 if($image){
-	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`image`, `type`, `fullname`) values('$title','$date','$description','$user','$image', 'Event', '$fullname')";
+	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`image`, `type`, `fullname`, `location`) values('$title','$date','$description','$user','$image', 'Event', '$fullname', '$location')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	echo 1;
@@ -19,7 +20,7 @@ if($image){
 	  	echo 0;
 	  }
 }else if($video){
-	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`video`, `type`, `fullname`) values('$title','$date','$description','$user','$video', 'Event', '$fullname')";
+	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`,`video`, `type`, `fullname`, `location`) values('$title','$date','$description','$user','$video', 'Event', '$fullname', '$location')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	echo 1;
@@ -27,7 +28,7 @@ if($image){
 	  	echo 0;
 	  }
 }else{
-	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`, `type`, `fullname`) values('".$title."','$date','$description','$user', 'Event', '$fullname')";
+	 $sql1    = "insert into `stuffs` (`title`,`date_time`,`description`,`user`, `type`, `fullname`, `location`) values('".$title."','$date','$description','$user', 'Event', '$fullname', '$location')";
 	  $result1 = mysql_query($sql1);
 	  if($result1){
 	  	echo 1;

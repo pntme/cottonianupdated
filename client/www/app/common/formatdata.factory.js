@@ -3,11 +3,19 @@
     angular
         .module('cot')
         .factory('formatData',formatData);
-    function formatData(configuration, $crypto, localStorageService) {
+    function formatData(configuration, $crypto, localStorageService, $filter) {
         var service = {};
         var self = this;
             service.format =  function(res) {
                   _.forEach(res, function(value) {
+                    if(value.user == localStorageService.get('UserData')[0].email)
+                        value.me = true;
+                    else
+                        value.me = false;
+                    if(value.type == 'News' || value.type == 'Job')
+                         value.fullname = $filter('name')(value.fullname)+' has posted a '+ value.type;
+                     else if(value.type == 'Event')
+                         value.fullname = $filter('name')(value.fullname)+' has posted an '+ value.type;  
                     if(value.accept){
                         value.accept = value.accept.split(",");
                         var find = _.find(value.accept, function(o) { return o == localStorageService.get('UserData')[0].fullname; });
@@ -29,6 +37,7 @@
                         value.image = configuration.DefaultVideo;
                         value.TextInstruction = 'Video found, Click on icon to play';
                     }
+                
 
                     else if (!value.image) {
                         if(value.type == 'News')

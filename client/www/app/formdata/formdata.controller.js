@@ -2,15 +2,15 @@
     'use strict';
     angular.module('cot').controller('FormdataCtrl', FormdataCtrl);
 
-    function FormdataCtrl($state, $localStorage, Image, $ionicLoading, $stateParams,
+    function FormdataCtrl($state, $localStorage, Image, $ionicLoading, $stateParams,   $ionicHistory,
         $ionicModal, tostService, $timeout, $cordovaFileTransfer, $scope, ajaxRequest, video, $sce, $crypto, localStorageService, location, configuration) {
         var self = this;
-        var FinalApi, FinalImg, FinalVideo;
+        var FinalApi, FinalImg, FinalVideo, FinalLocation;
         var user = localStorageService.get('UserData')[0].email;
         var fullname = localStorageService.get('UserData')[0].fullname;
         self.navtitle = "Create " + $stateParams.FormTitle;
         self.switchedHeading = false;
-        var FinalApi = $stateParams.api;
+        var FinalApi;
         $scope.publish = function() {
             if (self.title && self.description) {
                 if (self.switchedHeading == false && self.location == 'Location') {
@@ -18,29 +18,34 @@
                 } else if (self.switchedHeading == true && !self.customLocation) {
                     tostService.notify('Enter your location', 'top');
                 } else {
+                   if(!decideLocation)
+                      FinalLocation = self.location;
+                   else
+                      FinalLocation = self.customLocation;
                     $ionicLoading.show();
                     if (FinalImg)
                         FileUpload(FinalImg, FinalApi, self.title, self.description);
                     else if (self.video) {
                         $scope.uploadVideo();
                     } else {
-                        ajaxRequest.send(FinalApi, {
-                            title: $crypto.encrypt(self.title),
-                            description: $crypto.encrypt(self.description),
-                            user: user,
-                            date: moment().unix(),
-                            fullname: fullname
-                        }, 'POST').then(function(res) {
-                            $ionicLoading.hide();
-                            if (res == 1) {
-                                tostService.notify('Uploaded successfully', 'top');
-                                ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
-                                    console.log(res);
-                                });
-                                $state.go('tab.feed');
-                            } else
-                                tostService.notify('Failed to submit, Please try again', 'top');
-                        });
+                            ajaxRequest.send(FinalApi, {
+                                title: $crypto.encrypt(self.title),
+                                description: $crypto.encrypt(self.description),
+                                user: user,
+                                date: moment().unix(),
+                                fullname: fullname,
+                                location: FinalLocation
+                            }, 'POST').then(function(res) {
+                                $ionicLoading.hide();
+                                if (res == 1) {
+                                    tostService.notify('Uploaded successfully', 'top');
+                                    ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
+                                        console.log(res);
+                                    });
+                                    $state.go('tab.feed');
+                                } else
+                                    tostService.notify('Failed to submit, Please try again', 'top');
+                            });
                     }
                 }
             } else {
@@ -70,7 +75,9 @@
                         user: user,
                         image: filename,
                         date: moment().unix(),
-                        fullname: fullname
+                        fullname: fullname,
+                        location: FinalLocation,
+                        id: $stateParams.id
                     }, 'POST').then(function(res) {
                         $ionicLoading.hide();
                         if (res == 1) {
@@ -96,13 +103,17 @@
         }
 
 
-
+        var decideLocation;
         self.locationHeading = 'At your location';
         self.locationSwitched = function(value) {
-            if (value == true)
+            if (value == true){
+                decideLocation = true;
                 self.locationHeading = 'At other location';
-            else
+            }
+            else{
+                decideLocation = false;
                 self.locationHeading = 'At your location';
+            }
         }
 
         self.location = 'Location';
@@ -130,11 +141,13 @@
 
         self.mediaChanged = function(value) {
             if (value == 'image') {
+                TempVideo='';
                 $scope.select();
                 document.querySelector("#videoArea").innerHTML = '';
             } else if (value == 'video')
                 $scope.video();
             else {
+                TempVideo='';
                 self.picture = '';
                 self.video = '';
                 document.querySelector("#videoArea").innerHTML = '';
@@ -192,7 +205,9 @@
                 user: user,
                 video: filename,
                 date: moment().unix(),
-                fullname: fullname
+                fullname: fullname,
+                location: FinalLocation,
+                id : $stateParams.id
             }, 'POST').then(function(res) {
                 $ionicLoading.hide();
                 if (res == 1) {
@@ -211,54 +226,93 @@
 
         self.edit = 0;
         var TempPic, TempVideo;
-        if($stateParams.id){
+        if ($stateParams.id) {
+            FinalApi = 'edit.php';
             self.edit = 1;
-              var editableData = localStorageService.get('EditData');
-              console.log(editableData)
-              self.navtitle = 'Edit '+editableData.type;
-              self.title = editableData.title;
-              self.description = editableData.description;
-              if(editableData.image == configuration.DefaultNewsLogo || editableData.image == configuration.DefaultJobLogo || editableData.image == configuration.DefaultNewsLogo){
-              }else{
-                  self.media = 'image';
-                  self.picture = editableData.image;
-                  TempPic = editableData.image;
-              }
+            var editableData = localStorageService.get('EditData');
+            console.log(editableData)
+            self.navtitle = 'Edit ' + editableData.type;
+            self.title = editableData.title;
+            self.description = editableData.description;
+            if (editableData.image == configuration.DefaultNewsLogo || editableData.image == configuration.DefaultJobLogo || editableData.image == configuration.DefaultNewsLogo) {} else {
+                self.media = 'image';
+                self.picture = editableData.image;
+                TempPic = editableData.image;
+            }
 
-              if(editableData.video){
+            if (editableData.video) {
+                console.log(editableData.video)
+                self.picture = '';
                 self.media = 'video';
+                TempVideo = configuration.ApiHost+'video/'+ editableData.video;
                 var v = "<video id='video'  controls class='video-responsive'></video>";
                 document.querySelector("#videoArea").innerHTML = v;
-                video.play(editableData.video);
-              }
-
-    
+                video.play(TempVideo);
+            }
+        }else{
+             FinalApi = $stateParams.api;
         }
 
-        self.update = function(){
-            if (self.title && self.description) {
+
+
+        
+        self.update = function() {
+          if (self.title && self.description) {
                 if (self.switchedHeading == false && self.location == 'Location') {
                     tostService.notify('Unable to fetch location, Make sure location is on and then click on refresh icon', 'top');
                 } else if (self.switchedHeading == true && !self.customLocation) {
                     tostService.notify('Enter your location', 'top');
                 } else {
-                    if(self.picture){
-                      if(self.picture != TempPic)
-                         FileUpload(FinalImg, FinalApi, self.title, self.description);
-                      else
-                        console.log(FinalApi)
-                    }
-                    if(self.video){
-                      if(self.video != TempVideo)
-                         FileUpload(FinalImg, FinalApi, self.title, self.description);
-                      else
-                        console.log(FinalApi)
-                    }
-
+                   if(!decideLocation)
+                      FinalLocation = self.location;
+                   else
+                      FinalLocation = self.customLocation;
+                    $ionicLoading.show();
+                    if (FinalImg)
+                        FileUpload(FinalImg, FinalApi, self.title, self.description);
+                    else if (self.video) {
+                        $scope.uploadVideo();
+                    } else {
+                    if (self.picture) {
+                        if (self.picture != TempPic)
+                            FileUpload(FinalImg, FinalApi, self.title, self.description);
+                        else{
+                            ajaxRequest.send(FinalApi, {title: $crypto.encrypt(self.title), description: $crypto.encrypt(self.description), location: self.location, deletePic:0, id: $stateParams.id, deleteVideo: 1}, 'POST').then(function(data){
+                                afterApi(data);
+                            })                         
+                        }
+                    }else if(TempVideo){
+                            ajaxRequest.send(FinalApi, {title: $crypto.encrypt(self.title), description: $crypto.encrypt(self.description), location: self.location,  id: $stateParams.id, deleteVideo: 0}, 'POST').then(function(data){
+                                afterApi(data);
+                            })   
+                    }else if(self.video){
+                            $scope.uploadVideo(); 
+                    }else{
+                        ajaxRequest.send(FinalApi, {title: $crypto.encrypt(self.title), description: $crypto.encrypt(self.description), location: self.location, deletePic:1, id: $stateParams.id, deleteVideo: 1}, 'POST').then(function(data){
+                                afterApi(data);
+                        })  
+                    } 
+                  }
                 }
             } else {
                 tostService.notify('Title, Description & Location fields should not be empty', 'top');
             }
+        
+
+        }
+
+
+        function afterApi(data){
+            $ionicLoading.hide();
+            if(data == 1){
+                tostService.notify('Updated', 'top');
+                $state.go('tab.feed');
+            }else
+                tostService.notify('Failed', 'top');
+        }
+
+        self.canceled = function(){
+            $ionicHistory.goBack();
         }
     }
 })();

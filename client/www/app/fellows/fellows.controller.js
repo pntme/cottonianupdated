@@ -36,6 +36,8 @@ function fellowsCtrl( $scope, ajaxRequest, $ionicLoading, $ionicModal, configura
                if(!value.profile_pic){
                   if(value.socialpic){
                     value.profile_pic = value.socialpic;
+                  }else{
+                    value.profile_pic = 'img/user.jpg';
                   }
                }
            });
