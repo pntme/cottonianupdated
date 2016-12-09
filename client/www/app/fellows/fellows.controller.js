@@ -30,7 +30,7 @@ function fellowsCtrl( $scope, ajaxRequest, $ionicLoading, $ionicModal, configura
             self.x = true;
         }
 
-       ajaxRequest.send('fellows.php','','GET').then(function(res){
+       ajaxRequest.send('fellows.php','','GET', 'NeedOffline').then(function(res){
         $ionicLoading.hide();
            _.forEach(res, function(value) {
                if(!value.profile_pic){

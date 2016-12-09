@@ -25,6 +25,9 @@
                 res = JSON.parse(res);
                 return res;
             }
+            else{
+                return 0;
+            }
             return;
         }
 

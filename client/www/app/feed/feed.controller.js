@@ -27,7 +27,6 @@
                 cancelText: 'Watch later',
                 okText: 'Watch now'
             });
-
             confirmPopup.then(function(res) {
                 if (res) {
                     self.option.hide();

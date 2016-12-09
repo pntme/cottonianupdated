@@ -18,12 +18,14 @@
                     self.spinner = false;
                     self.dataNotavailable = true;
                 }
-                else
-                   self.stuffData = formatData.format(res);
+                else if(res == 0){
+                   self.spinner = false;
+                }else{
+                    self.stuffData = formatData.format(res);
+                }
                    
             }, function(e){
             console.log(e);
-                 $ionicLoading.hide();
                  self.spinner=false;
            });
         }
@@ -105,37 +107,6 @@
               msg: data.msg,
               id: data.id
             });
-            // $scope.EditData = {};
-            // $scope.EditData.title = data.title;
-            // $scope.EditData.desc = data.description;
-            // var editPopup = $ionicPopup.show({
-            //     template: '<input type="text" ng-model="EditData.title" placeholder="Title"><textarea  ng-model="EditData.desc" placeholder="Description" class="m-t-15"></textarea>',
-            //     title: 'Edit Information',
-            //     scope: $scope,
-            //     buttons: [
-            //       { text: 'Cancel' },
-            //       {
-            //         text: '<b>Save</b>',
-            //         type: 'button-positive',
-            //         onTap: function(e) {
-            //            ajaxRequest.send('edit.php?id='+ data.id,{
-            //             title: $crypto.encrypt($scope.EditData.title),
-            //             description: $crypto.encrypt($scope.EditData.desc)
-            //            },'POST').then(function(res){
-            //               if(res == 1){
-            //                 data.title = $scope.EditData.title;
-            //                 data.description = $scope.EditData.desc;
-            //               }
-            //            })
-            //         }
-            //       }
-            //     ]
-            //   });
-
-            //   editPopup.then(function(res) {
-            //     console.log('Tapped!', res);
-            //   });
-
           }
 
          $scope.downloadFile = function(obj) {

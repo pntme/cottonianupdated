@@ -16,6 +16,7 @@
            })
         }
        $rootScope.$on('profile_changed', function(){
+        console.log('picture changed')
            if(counter = 1){
               var interval =  $interval(function () {
                   self.findNots();
@@ -103,6 +104,7 @@
                         if(res == 1){
                             localStorageService.get('UserData')[0].profile_pic = configuration.ImageUrl+filename;
                             $scope.OptionData.image = configuration.ImageUrl+filename;
+                              $scope.image = configuration.ImageUrl+filename;;
                         }
                         else
                             alert('Faild, please try again');

@@ -123,6 +123,9 @@ font-family: 'MTCORSVA';
 	color: blue;
 
 }
+.ColBlue1{
+    color:  #032e77 !important;
+}
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
     opacity: 1.9 !important;
 }
@@ -132,7 +135,10 @@ ion-tabs.tabs-color-active-positive .tab-item {
 }
 
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
-    color: blue;
+    color: #010813 !important;
+}
+.tabs-icon-top .tab .nav-view-home {
+    color: #010813 !important;
 }
 
 .button icon .ion-close-round {

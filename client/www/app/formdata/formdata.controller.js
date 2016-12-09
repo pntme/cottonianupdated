@@ -314,5 +314,8 @@
         self.canceled = function(){
             $ionicHistory.goBack();
         }
+
+
+
     }
 })();

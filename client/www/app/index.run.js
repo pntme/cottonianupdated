@@ -33,13 +33,17 @@
                             count = 0;
                         }, 3000);
                     } else if (count == 1) {
+                         console.log('testing for cottonian page3')
                         navigator.app.exitApp();
                         count = 0;
                     }
                    
                 } else{
+                  console.log('testing for cottonian page4')
                   if($state.current.name != 'profile_pic')
                      $ionicHistory.goBack(); 
+                     if($state.current.name == 'fellows')
+                      $state.go('tab.feed');  
                 }
             
             }, 100);

@@ -1,0 +1,12 @@
+Options +FollowSymLinks 
+RewriteEngine on 
+RewriteCond %{HTTP_HOST} ^cyrusforgovernance.com [NC] 
+RewriteRule ^(.*)$ http://www.cyrusforgovernance.com/$1 [L,R=301]
+ErrorDocument 404 http://www.cyrusforgovernance.com
+
+# if folder does not exist
+RewriteCond %{REQUEST_FILENAME} !-d
+# if file does not exist
+RewriteCond %{REQUEST_FILENAME} !-f
+# redirect anything to
+#RewriteRule ^(.*)$ 404.php/$1 [L]

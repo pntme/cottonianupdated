@@ -47,12 +47,15 @@
                   <a href="#" class="subdued colBlue" ng-click = 'Feed.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
                   <span>{{data.accept.length}}</span>&nbsp;Accept</a>
 
-                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Event" && data.accepted'   ng-click = 'Feed.accept(data)'>
+                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Event" && data.accepted'>
                   <span>{{data.accept.length}}</span>&nbsp;Accepted</a>   
 
                   <a href="#" class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied && !data.me' ng-click='Feed.apply(data)'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
 
                   <a href="#" class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
+                </p>
+                 <p>
+                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
                 </p>
               </div>
             </div>
