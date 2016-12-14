@@ -33,7 +33,7 @@
                             count = 0;
                         }, 3000);
                     } else if (count == 1) {
-                         console.log('testing for cottonian page3')
+                  
                         navigator.app.exitApp();
                         count = 0;
                     }

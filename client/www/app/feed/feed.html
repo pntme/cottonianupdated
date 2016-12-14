@@ -1,20 +1,6 @@
 <ion-view view-title="News" hide-nav-bar="Feed.y">
-    <ion-nav-buttons side="right">
-        <button class="button button-calm" ng-click="Feed.showSearch();">
-       <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
-      </button>
-    </ion-nav-buttons>
-    <div class="bar bar-header item-input-inset" ng-show="Feed.y">
-        <label class="item-input-wrapper">
-      <i class="icon ion-ios-search placeholder-icon"></i>
-      <input type="search" placeholder="Search Feed" ng-model="searchingText">
-    </label>
-        <button class="button button-calm" ng-click="Feed.cancel()">
-      Cancel
-    </button>
-    </div>
 <round></round>
-    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}" has-subheader = 'true' style="margin-bottom: 15px;">
+    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}" >
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="Feed.doRefresh()" spinner="android">
         </ion-refresher>
         <div class="font17 m-t-30" style="text-align: center; color:#444;" ng-if='Feed.dataNotavailable'><span>We have not any News right now, Please check again later.</span></div>
@@ -25,9 +11,9 @@
         </div>
         <div ng-repeat="data in Feed.feedData | filter:searchingText track by $index">
             <div class="list card"   >
-              <div class="item item-avatar">
+              <div class="item item-avatar" ng-click='Feed.OpenProfile(data.UserData)'>
                 <img ng-src="{{data.titlePic}}">
-                <h2>{{data.fullname}}</h2>
+                <p ng-bind-html="data.fullname" class="font17"></p>
                 <p>{{data.date_time}}</p>
               </div>
               <div class="item item-body">
@@ -40,8 +26,11 @@
                      <div id = "{{'video'+data.id}}" ng-if= 'data.video'></div>
                 </div>             
                  <h2>{{data.title}}</h2>
-                <p>
-                {{data.description}}
+                  <!-- <a href="tel:+1-1800-555-5555" class="button button-positive">Call me</a> -->
+                <p ng-bind-html= "data.description | linky">
+                </p>
+                 <p>
+                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
                 </p>
                 <p>
                   <a href="#" class="subdued colBlue" ng-click = 'Feed.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
@@ -54,9 +43,7 @@
 
                   <a href="#" class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
                 </p>
-                 <p>
-                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
-                </p>
+                
               </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
                 </label>
                     <label class="item item-input loginInputField">
                     <i class="ion-clipboard  colBlue placeholder-icon" style="font-size: 22px;margin-top: -1px;"></i>
-                    <textarea type="text"   ng-model = 'Formdata.description' name='fdesc' placeholder='Description' style="padding-top: 16px;" required></textarea>
+                    <textarea type="text"   ng-model = 'Formdata.description' name='fdesc' placeholder='Description' style="padding-top: 16px;" class="greyBackground" required></textarea>
                 </label>
 
                 </div>
@@ -42,15 +42,12 @@
                     <div><i class="ion-android-refresh refreshicon" style="font-size: 23px;" ng-if="Formdata.locationRefresher"></i></div>
                 </label>
 
-              <label class = "item item-input item-select" style="border-left: none;border-right: none;">
+              <label class = "item item-input item-select" style="border-left: none;border-right: none;" ng-click='Formdata.MediaClicked();'>
                    <div class = "input-label">
                       Media
                    </div> 
-                   <select ng-model="Formdata.media" ng-change="Formdata.mediaChanged(Formdata.media)">
-                      <option value="">None</option>
-                      <option value="image">Image</option>
-                      <option value="video">Video</option>
-                   </select>
+                    <div style='position: absolute;
+    right: 31px;'>Select</div>
                 </label>
            <div id="videoArea">
             

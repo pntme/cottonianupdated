@@ -1,23 +1,6 @@
-<ion-view view-title="Jobs" hide-nav-bar="Job.y">
-<ion-nav-buttons side="right">
-      <button class="button button-calm" ng-click="Job.showSearch();">
-       <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
-      </button>
-    </ion-nav-buttons>
-
-
-<div class="bar bar-header item-input-inset" ng-show="Job.y">
-  <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="search" placeholder="Search Job" ng-model="searchingText" id='search'>
-  </label>
-  <button class="button button-calm" ng-click="Job.cancel()">
-    Cancel
-  </button>
-</div>
+<ion-view view-title="Jobs">
 <round></round>
-
-  <ion-content class="has-header" scroll="true" overflow-scroll="false" ng-style="Job.x && {'margin-top':'42px'} || !Job.x &&  {'margin-top':'-1px'}">
+  <ion-content class="has-header" scroll="true" overflow-scroll="false" ng-style="Job.x && {'margin-top':'42px'} || !Job.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}">
  <ion-refresher
     pulling-text="Pull to refresh..."
     on-refresh="Job.doRefresh()" spinner="android">
@@ -30,7 +13,7 @@
             <div class="list card"   >
               <div class="item item-avatar">
                 <img ng-src="{{data.titlePic}}">
-                <h2>{{data.fullname}}</h2>
+                <p ng-bind-html="data.fullname" class="font17"></p>
                 <p>{{data.date_time}}</p>
               </div>
               <div class="item item-body">
@@ -46,6 +29,9 @@
                 <p>
                 {{data.description}}
                 </p>
+                   <p>
+                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
+                </p>
                 <p>
                   <a  class="subdued colBlue" ng-click = 'Job.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
                   <span>{{data.accept.length}}</span>&nbsp;Accept</a>
@@ -57,9 +43,7 @@
 
                   <a  class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
                 </p>
-                 <p>
-                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
-                </p>
+              
               </div>
             </div>
         </div>

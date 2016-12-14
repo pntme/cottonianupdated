@@ -6,8 +6,15 @@
         self.title = "My "+$stateParams.title;
         self.subject =  $stateParams.title;
         self.spinner = true;
- 
+         $scope.$on('SearchStarted', function(event, data){
+            $scope.searchingText=data;
+            if(data)
+               $scope.subheader = 'has-subheader';
+            else
+              $scope.subheader='';
 
+        });
+  
         $scope.hide = function() {
             self.option.hide();
         }

@@ -1,21 +1,6 @@
-<ion-view view-title="Events" hide-nav-bar="Event.y">
- <ion-nav-buttons side="right">
-      <button class="button button-calm" ng-click="Event.showSearch();">
-       <i class="icon ion-ios-search-strong" style="color: #fff;opacity: 3;" ></i>
-      </button>
-    </ion-nav-buttons>
-<div class="bar bar-header item-input-inset" ng-show="Event.y">
-  <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="search" placeholder="Search Event" ng-model="searchingText">
-  </label>
-  <button class="button button-calm" ng-click="Event.cancel()">
-    Cancel
-  </button>
-</div>
-
+<ion-view view-title="Events">
 <round></round>
-  <ion-content scroll ='true' overflow-scroll="false"  ng-style="Event.x && {'margin-top':'42px'} || !Event.x &&  {'margin-top':'-1px'}">
+  <ion-content scroll ='true' overflow-scroll="false"  ng-style="Event.x && {'margin-top':'42px'} || !Event.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}">
   <ion-refresher
     pulling-text="Pull to refresh..."
     on-refresh="Event.doRefresh()" spinner="android">
@@ -26,9 +11,9 @@
   </div>
            <div ng-repeat="data in Event.eventData | filter:searchingText track by $index" style='margin-bottom: 10px;'>
             <div class="list card"   >
-              <div class="item item-avatar">
+              <div class="item item-avatar" ng-click="Event.OpenProfile(data.UserData)">
                 <img ng-src="{{data.titlePic}}">
-                <h2>{{data.fullname}}</h2>
+               <p ng-bind-html="data.fullname" class="font17"></p>
                 <p>{{data.date_time}}</p>
               </div>
               <div class="item item-body">
@@ -44,6 +29,9 @@
                 <p>
                 {{data.description}}
                 </p>
+                  <p>
+                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
+                </p>
                 <p>
                   <a  class="subdued colBlue" ng-click = 'Event.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
                   <span>{{data.accept.length}}</span>&nbsp;Accept</a>
@@ -55,9 +43,7 @@
 
                   <a  class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
                 </p>
-                <p>
-                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
-                </p>
+              
               </div>
             </div>
         </div>

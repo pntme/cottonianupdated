@@ -5,6 +5,13 @@
     function EventCtrl(ajaxRequest, configuration, video, $ionicModal, $cordovaFileTransfer, formatData, $scope, localStorageService) {
         var self = this;
         self.spinner=true;
+        $scope.$on('SearchStarted', function(event, data){
+            $scope.searchingText=data;
+            if(data)
+               $scope.subheader = 'has-subheader';
+            else
+              $scope.subheader='';
+        });
         var OfflineData = ajaxRequest.OfflineData('fetchevent.php');
         if(OfflineData)
             self.eventData = formatData.format(OfflineData);
@@ -35,8 +42,23 @@
         }
         self.doRefresh();
 
+
+        $ionicModal.fromTemplateUrl('app/common/option2.html', function($ionicModal) {
+            self.optionProfile = $ionicModal;
+        }, {
+            scope: $scope
+        });
+        
+        self.OpenProfile = function(data){
+          self.optionProfile.show();
+          $scope.OptionData = formatData.formatPic(data);
+          $scope.OptionData.title = 'Profile';
+        }
+
+
         $scope.hide = function() {
             self.option.hide();
+            self.optionProfile.hide();
         }
 
         self.cancel = function(){

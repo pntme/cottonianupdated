@@ -7,7 +7,8 @@
    	'ngFileUpload',
    	'ionic.cloud',
    	'mdo-angular-cryptography',
-   	'ng-mfb'
+   	'ng-mfb',
+      'ngSanitize'
 
    	 ]);
 })();

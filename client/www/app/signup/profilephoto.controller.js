@@ -6,6 +6,7 @@
         self.image = 'img/user.jpg';
         self.username = localStorageService.get('UserData')[0].fullname;
         var FinalBlob;
+        $scope.$emit('FormOpen');
             self.select = function() {
                 Image.takePhoto1('Profile photo').then(function(blob) {
                     console.log(blob);

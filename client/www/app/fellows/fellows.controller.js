@@ -3,7 +3,34 @@
 angular.module('cot').controller('fellowsCtrl', fellowsCtrl);
 function fellowsCtrl( $scope, ajaxRequest, $ionicLoading, $ionicModal, configuration){
   var self = this;
-  $ionicLoading.show();
+   var OfflineData = ajaxRequest.OfflineData('fellows.php');
+        if(OfflineData){
+            _.forEach(OfflineData, function(value) {
+               if(!value.profile_pic){
+                  if(value.socialpic){
+                    value.profile_pic = value.socialpic;
+                  }else{
+                    value.profile_pic = 'img/user.jpg';
+                  }
+               }
+           });
+        }
+         else
+            $ionicLoading.show();       
+
+
+       $scope.$on('SearchStarted', function(event, data){
+            $scope.searchingText=data;
+            if(data)
+               $scope.subheader = 'has-subheader';
+            else
+              $scope.subheader='';
+        });
+
+
+
+
+     
         self.cancel = function() {
             self.y = false;
             self.x = false;
@@ -20,6 +47,7 @@ function fellowsCtrl( $scope, ajaxRequest, $ionicLoading, $ionicModal, configura
         });
         
         self.OpenProfile = function(data){
+          console.log(data);
           self.optionProfile.show();
           $scope.OptionData = data;
           $scope.OptionData.title = 'Profile';

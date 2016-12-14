@@ -9,7 +9,7 @@
   // Each state's controller can be found in controllers.js
   $cryptoProvider.setCryptographyKey('ABCD123');
   $ionicConfigProvider.tabs.position('bottom');
-  $ionicConfigProvider.navBar.alignTitle('center');
+  $ionicConfigProvider.navBar.alignTitle('left');
      $ionicCloudProvider.init({
     "core": {
       "app_id": "0a99e665"

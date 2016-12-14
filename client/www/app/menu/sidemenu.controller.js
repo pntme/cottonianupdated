@@ -207,9 +207,33 @@
             $state.go('nots');
         }
         
- 
-     
-     
+        $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope,
+    animation :"slide-in-up"
+  }).then(function(popover) {
+    $scope.popover = popover;
+
+  });
+
+     $scope.exit = function(){
+       navigator.app.exitApp();
+     }
+
+     $scope.showSearchFt = function(){
+      $scope.showSearch = !$scope.showSearch;
+      self.SeachingText='';
+       $scope.$broadcast('SearchStarted', self.SeachingText);
+     }
+      
+     $scope.SearchTypingStarted = function(){
+      $scope.$broadcast('SearchStarted', self.SeachingText);
+     }
+  
+
+     $scope.$on('FormOpen', function(){
+      if($scope.showSearch)
+        $scope.showSearch = false;
+     })
 
     }
 })();

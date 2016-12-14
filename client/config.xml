@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="1008" id="com.cottonian.pr" version="1.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="1009" id="com.cottonian.pr" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="http://api.phonegap.com/1.0/battery" />
     <feature name="http://api.phonegap.com/1.0/camera" />
@@ -10,6 +10,13 @@
     <feature name="http://api.phonegap.com/1.0/capture" />
     <feature name="http://api.phonegap.com/1.0/notification" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="http://example.com/*" />
+    <allow-intent href="*://*.example.com/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="mailto:*" />
+
     <name>cottonian</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -27,6 +34,7 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>

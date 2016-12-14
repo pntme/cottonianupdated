@@ -5,6 +5,13 @@
         var self = this;
         self.spinner = true;
         var OfflineData = ajaxRequest.OfflineData('fetchevent.php');
+         $scope.$on('SearchStarted', function(event, data){
+            $scope.searchingText=data;
+            if(data)
+               $scope.subheader = 'has-subheader';
+            else
+              $scope.subheader='';
+        });
         if(OfflineData)
             self.jobData = formatData.format(OfflineData);
 

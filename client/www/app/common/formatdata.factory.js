@@ -13,9 +13,9 @@
                     else
                         value.me = false;
                     if(value.type == 'News' || value.type == 'Job')
-                         value.fullname = $filter('name')(value.fullname)+' has posted a '+ value.type;
+                         value.fullname ="<span class='colBlue'>" +$filter('Fname')($filter('name')(value.fullname))+"</span>"+' has posted a '+ value.type;
                      else if(value.type == 'Event')
-                         value.fullname = $filter('name')(value.fullname)+' has posted an '+ value.type;  
+                         value.fullname = "<span class='colBlue'>" +$filter('Fname')($filter('name')(value.fullname))+"</span>"+' has posted an '+ value.type;  
                     if(value.accept){
                         value.accept = value.accept.split(",");
                         var find = _.find(value.accept, function(o) { return o == localStorageService.get('UserData')[0].fullname; });

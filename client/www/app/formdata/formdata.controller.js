@@ -2,7 +2,7 @@
     'use strict';
     angular.module('cot').controller('FormdataCtrl', FormdataCtrl);
 
-    function FormdataCtrl($state, $localStorage, Image, $ionicLoading, $stateParams,   $ionicHistory,
+    function FormdataCtrl($state, $localStorage, Image, $ionicActionSheet, $ionicLoading, $stateParams, $ionicHistory,
         $ionicModal, tostService, $timeout, $cordovaFileTransfer, $scope, ajaxRequest, video, $sce, $crypto, localStorageService, location, configuration) {
         var self = this;
         var FinalApi, FinalImg, FinalVideo, FinalLocation;
@@ -11,6 +11,7 @@
         self.navtitle = "Create " + $stateParams.FormTitle;
         self.switchedHeading = false;
         var FinalApi;
+    $scope.$emit('FormOpen');
         $scope.publish = function() {
             if (self.title && self.description) {
                 if (self.switchedHeading == false && self.location == 'Location') {
@@ -18,34 +19,34 @@
                 } else if (self.switchedHeading == true && !self.customLocation) {
                     tostService.notify('Enter your location', 'top');
                 } else {
-                   if(!decideLocation)
-                      FinalLocation = self.location;
-                   else
-                      FinalLocation = self.customLocation;
+                    if (!decideLocation)
+                        FinalLocation = self.location;
+                    else
+                        FinalLocation = self.customLocation;
                     $ionicLoading.show();
                     if (FinalImg)
                         FileUpload(FinalImg, FinalApi, self.title, self.description);
                     else if (self.video) {
                         $scope.uploadVideo();
                     } else {
-                            ajaxRequest.send(FinalApi, {
-                                title: $crypto.encrypt(self.title),
-                                description: $crypto.encrypt(self.description),
-                                user: user,
-                                date: moment().unix(),
-                                fullname: fullname,
-                                location: FinalLocation
-                            }, 'POST').then(function(res) {
-                                $ionicLoading.hide();
-                                if (res == 1) {
-                                    tostService.notify('Uploaded successfully', 'top');
-                                    ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
-                                        console.log(res);
-                                    });
-                                    $state.go('tab.feed');
-                                } else
-                                    tostService.notify('Failed to submit, Please try again', 'top');
-                            });
+                        ajaxRequest.send(FinalApi, {
+                            title: $crypto.encrypt(self.title),
+                            description: $crypto.encrypt(self.description),
+                            user: user,
+                            date: moment().unix(),
+                            fullname: fullname,
+                            location: FinalLocation
+                        }, 'POST').then(function(res) {
+                            $ionicLoading.hide();
+                            if (res == 1) {
+                                tostService.notify('Uploaded successfully', 'top');
+                                ajaxRequest.send("push.php?msg=" + self.description + "&title=" + $stateParams.msg, '', 'GET').then(function(res) {
+                                    console.log(res);
+                                });
+                                $state.go('tab.feed');
+                            } else
+                                tostService.notify('Failed to submit, Please try again', 'top');
+                        });
                     }
                 }
             } else {
@@ -106,11 +107,10 @@
         var decideLocation;
         self.locationHeading = 'At your location';
         self.locationSwitched = function(value) {
-            if (value == true){
+            if (value == true) {
                 decideLocation = true;
                 self.locationHeading = 'At other location';
-            }
-            else{
+            } else {
                 decideLocation = false;
                 self.locationHeading = 'At your location';
             }
@@ -141,13 +141,13 @@
 
         self.mediaChanged = function(value) {
             if (value == 'image') {
-                TempVideo='';
+                TempVideo = '';
                 $scope.select();
                 document.querySelector("#videoArea").innerHTML = '';
             } else if (value == 'video')
                 $scope.video();
             else {
-                TempVideo='';
+                TempVideo = '';
                 self.picture = '';
                 self.video = '';
                 document.querySelector("#videoArea").innerHTML = '';
@@ -207,7 +207,7 @@
                 date: moment().unix(),
                 fullname: fullname,
                 location: FinalLocation,
-                id : $stateParams.id
+                id: $stateParams.id
             }, 'POST').then(function(res) {
                 $ionicLoading.hide();
                 if (res == 1) {
@@ -244,78 +244,121 @@
                 console.log(editableData.video)
                 self.picture = '';
                 self.media = 'video';
-                TempVideo = configuration.ApiHost+'video/'+ editableData.video;
+                TempVideo = configuration.ApiHost + 'video/' + editableData.video;
                 var v = "<video id='video'  controls class='video-responsive'></video>";
                 document.querySelector("#videoArea").innerHTML = v;
                 video.play(TempVideo);
             }
-        }else{
-             FinalApi = $stateParams.api;
+        } else {
+            FinalApi = $stateParams.api;
         }
 
 
 
-        
+
         self.update = function() {
-          if (self.title && self.description) {
+            if (self.title && self.description) {
                 if (self.switchedHeading == false && self.location == 'Location') {
                     tostService.notify('Unable to fetch location, Make sure location is on and then click on refresh icon', 'top');
                 } else if (self.switchedHeading == true && !self.customLocation) {
                     tostService.notify('Enter your location', 'top');
                 } else {
-                   if(!decideLocation)
-                      FinalLocation = self.location;
-                   else
-                      FinalLocation = self.customLocation;
+                    if (!decideLocation)
+                        FinalLocation = self.location;
+                    else
+                        FinalLocation = self.customLocation;
                     $ionicLoading.show();
                     if (FinalImg)
                         FileUpload(FinalImg, FinalApi, self.title, self.description);
                     else if (self.video) {
                         $scope.uploadVideo();
                     } else {
-                    if (self.picture) {
-                        if (self.picture != TempPic)
-                            FileUpload(FinalImg, FinalApi, self.title, self.description);
-                        else{
-                            ajaxRequest.send(FinalApi, {title: $crypto.encrypt(self.title), description: $crypto.encrypt(self.description), location: self.location, deletePic:0, id: $stateParams.id, deleteVideo: 1}, 'POST').then(function(data){
+                        if (self.picture) {
+                            if (self.picture != TempPic)
+                                FileUpload(FinalImg, FinalApi, self.title, self.description);
+                            else {
+                                ajaxRequest.send(FinalApi, {
+                                    title: $crypto.encrypt(self.title),
+                                    description: $crypto.encrypt(self.description),
+                                    location: self.location,
+                                    deletePic: 0,
+                                    id: $stateParams.id,
+                                    deleteVideo: 1
+                                }, 'POST').then(function(data) {
+                                    afterApi(data);
+                                })
+                            }
+                        } else if (TempVideo) {
+                            ajaxRequest.send(FinalApi, {
+                                title: $crypto.encrypt(self.title),
+                                description: $crypto.encrypt(self.description),
+                                location: self.location,
+                                id: $stateParams.id,
+                                deleteVideo: 0
+                            }, 'POST').then(function(data) {
                                 afterApi(data);
-                            })                         
+                            })
+                        } else if (self.video) {
+                            $scope.uploadVideo();
+                        } else {
+                            ajaxRequest.send(FinalApi, {
+                                title: $crypto.encrypt(self.title),
+                                description: $crypto.encrypt(self.description),
+                                location: self.location,
+                                deletePic: 1,
+                                id: $stateParams.id,
+                                deleteVideo: 1
+                            }, 'POST').then(function(data) {
+                                afterApi(data);
+                            })
                         }
-                    }else if(TempVideo){
-                            ajaxRequest.send(FinalApi, {title: $crypto.encrypt(self.title), description: $crypto.encrypt(self.description), location: self.location,  id: $stateParams.id, deleteVideo: 0}, 'POST').then(function(data){
-                                afterApi(data);
-                            })   
-                    }else if(self.video){
-                            $scope.uploadVideo(); 
-                    }else{
-                        ajaxRequest.send(FinalApi, {title: $crypto.encrypt(self.title), description: $crypto.encrypt(self.description), location: self.location, deletePic:1, id: $stateParams.id, deleteVideo: 1}, 'POST').then(function(data){
-                                afterApi(data);
-                        })  
-                    } 
-                  }
+                    }
                 }
             } else {
                 tostService.notify('Title, Description & Location fields should not be empty', 'top');
             }
-        
+
 
         }
 
 
-        function afterApi(data){
+        function afterApi(data) {
             $ionicLoading.hide();
-            if(data == 1){
+            if (data == 1) {
                 tostService.notify('Updated', 'top');
                 $state.go('tab.feed');
-            }else
+            } else
                 tostService.notify('Failed', 'top');
         }
 
-        self.canceled = function(){
+        self.canceled = function() {
             $ionicHistory.goBack();
         }
 
 
+        self.MediaClicked = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+                buttons: [{
+                    text: 'Picture'
+                }, {
+                    text: 'Video'
+                }],
+                titleText: 'Select Media',
+                cancelText: 'Cancel',
+                cancel: function() {
+                     self.mediaChanged('none');
+                },
+                buttonClicked: function(index) {
+                    if(index == 0)
+                          self.mediaChanged('image');
+                    else if(index == 1)
+                          self.mediaChanged('video');  
+                    return true;
+                }
+            });
+
+        };
 
     }
 })();

@@ -7,6 +7,13 @@
         self.spinner = true;
         self.noMoreItemsAvailable = false;
         self.myid = localStorageService.get('UserData')[0].id;
+         $scope.$on('SearchStarted', function(event, data){
+            $scope.searchingText=data;
+            if(data)
+               $scope.subheader = 'has-subheader';
+            else
+              $scope.subheader='';
+         });
         $ionicModal.fromTemplateUrl('app/common/option.html', function($ionicModal) {
             self.option = $ionicModal;
         }, {
@@ -38,9 +45,22 @@
             });
         };
 
+        $ionicModal.fromTemplateUrl('app/common/option2.html', function($ionicModal) {
+            self.optionProfile = $ionicModal;
+        }, {
+            scope: $scope
+        });
+        
+        self.OpenProfile = function(data){
+          self.optionProfile.show();
+          $scope.OptionData = data;
+          $scope.OptionData.title = 'Profile';
+        }
+
 
         $scope.hide = function() {
             self.option.hide();
+            self.optionProfile.hide();
         }
 
         self.doRefresh = function() {
