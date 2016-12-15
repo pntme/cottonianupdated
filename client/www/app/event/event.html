@@ -1,6 +1,6 @@
 <ion-view view-title="Events">
 <round></round>
-  <ion-content scroll ='true' overflow-scroll="false"  ng-style="Event.x && {'margin-top':'42px'} || !Event.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}">
+  <ion-content scroll ='true' overflow-scroll="false"  ng-style="Event.x && {'margin-top':'42px'} || !Event.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}" has-bouncing="true">
   <ion-refresher
     pulling-text="Pull to refresh..."
     on-refresh="Event.doRefresh()" spinner="android">
@@ -9,12 +9,12 @@
   <div id='center' ng-if='!Event.eventData'>
     <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Event.eventData && Event.spinner'></ion-spinner>
   </div>
-           <div ng-repeat="data in Event.eventData | filter:searchingText track by $index" style='margin-bottom: 10px;'>
-            <div class="list card"   >
+           <div ng-repeat="data in Event.eventData track by $index" style='margin-bottom: 10px;'>
+              <div class="list card">
               <div class="item item-avatar" ng-click="Event.OpenProfile(data.UserData)">
                 <img ng-src="{{data.titlePic}}">
-               <p ng-bind-html="data.fullname" class="font17"></p>
-                <p>{{data.date_time}}</p>
+                <p><span ng-bind-html="data.fullname|Fname|name|highlight:searchingText" class="colBlue font17"></span><span ng-bind-html="data.message | highlight:searchingText" class="font17"></span></p>
+                <p ng-bind-html="data.date_time | highlight:searchingText"></p>
               </div>
               <div class="item item-body">
                <img class="cardmainimg" ng-src="{{data.image}}" ng-if='!data.video'>
@@ -25,12 +25,11 @@
                     </div>
                      <div id = "{{'video'+data.id}}" ng-if= 'data.video'></div>
                 </div>             
-                 <h2>{{data.title}}</h2>
-                <p>
-                {{data.description}}
+                 <h2 ng-bind-html= "data.title | highlight:searchingText"> </h2>
+                 <p ng-bind-html= "data.description | highlight:searchingText">
                 </p>
-                  <p>
-                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
+                   <p>
+                 <i class="icon ion-ios-location-outline colBlue"></i> <span ng-bind-html= "data.location | highlight:searchingText"></span>
                 </p>
                 <p>
                   <a  class="subdued colBlue" ng-click = 'Event.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
@@ -39,7 +38,7 @@
                   <a class="subdued colBlue"  ng-if='data.type == "Event" && data.accepted'>
                   <span>{{data.accept.length}}</span>&nbsp;Accepted</a>   
 
-                  <a  class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied' ng-click='Event.apply(data) && !data.me'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
+                  <a  class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied && !data.me'  ng-click='Event.apply(data) && !data.me'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
 
                   <a  class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
                 </p>

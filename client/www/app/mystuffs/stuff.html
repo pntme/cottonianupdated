@@ -7,7 +7,7 @@
   <button mfb-button icon="ion-android-create" label="Make an Event" ng-click = "stuff.Open('Event', 'saveevent.php', 'New event posted')"></button>
   <button mfb-button icon="ion-ios-paper" label="Publish News" ng-click = "stuff.Open('News', 'savenews.php','New news Posted')"></button>
 </nav>
-  <ion-content class="has-header" scroll="true" overflow-scroll="false" ng-style="stuff.x && {'margin-top':'42px'} || !stuff.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}">
+  <ion-content class="has-header" scroll="true" overflow-scroll="false" ng-style="stuff.x && {'margin-top':'42px'} || !stuff.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}" has-bouncing="true">
  <ion-refresher
     pulling-text="Pull to refresh..."
     on-refresh="stuff.doRefresh()" spinner="android">
@@ -33,8 +33,7 @@
                      <div id = "{{'video'+data.id}}" ng-if= 'data.video'></div>
                 </div>             
                  <h2>{{data.title}}</h2>
-                <p>
-                {{data.description}}
+               <p ng-bind-html= "data.description | linky">
                 </p>
                   <p>
                  <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}

@@ -1,6 +1,6 @@
 <ion-view view-title="News" hide-nav-bar="Feed.y">
 <round></round>
-    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}" >
+    <ion-content scroll='true' overflow-scroll="false" ng-style="Feed.x && {'margin-top':'42px'} || !Feed.x &&  {'margin-top':'-1px'}" ng-class="{'has-subheader': subheader}" has-bouncing="true">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="Feed.doRefresh()" spinner="android">
         </ion-refresher>
         <div class="font17 m-t-30" style="text-align: center; color:#444;" ng-if='Feed.dataNotavailable'><span>We have not any News right now, Please check again later.</span></div>
@@ -10,11 +10,11 @@
             </div>
         </div>
         <div ng-repeat="data in Feed.feedData | filter:searchingText track by $index">
-            <div class="list card"   >
-              <div class="item item-avatar" ng-click='Feed.OpenProfile(data.UserData)'>
+          <div class="list card">
+              <div class="item item-avatar"  ng-click="Feed.OpenProfile(data.UserData)">
                 <img ng-src="{{data.titlePic}}">
-                <p ng-bind-html="data.fullname" class="font17"></p>
-                <p>{{data.date_time}}</p>
+                <p><span ng-bind-html="data.fullname|Fname|name|highlight:searchingText" class="colBlue font17"></span><span ng-bind-html="data.message | highlight:searchingText" class="font17"></span></p>
+                <p ng-bind-html="data.date_time | highlight:searchingText"></p>
               </div>
               <div class="item item-body">
                <img class="cardmainimg" ng-src="{{data.image}}" ng-if='!data.video'>
@@ -25,25 +25,24 @@
                     </div>
                      <div id = "{{'video'+data.id}}" ng-if= 'data.video'></div>
                 </div>             
-                 <h2>{{data.title}}</h2>
-                  <!-- <a href="tel:+1-1800-555-5555" class="button button-positive">Call me</a> -->
-                <p ng-bind-html= "data.description | linky">
+                 <h2 ng-bind-html= "data.title | highlight:searchingText"> </h2>
+                 <p ng-bind-html= "data.description | highlight:searchingText">
                 </p>
-                 <p>
-                 <i class="icon ion-ios-location-outline colBlue"></i>  {{data.location}}
+                   <p>
+                 <i class="icon ion-ios-location-outline colBlue"></i> <span ng-bind-html= "data.location | highlight:searchingText"></span>
                 </p>
                 <p>
-                  <a href="#" class="subdued colBlue" ng-click = 'Feed.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
+                  <a  class="subdued colBlue" ng-click = 'Feed.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
                   <span>{{data.accept.length}}</span>&nbsp;Accept</a>
 
-                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Event" && data.accepted'>
+                  <a class="subdued colBlue"  ng-if='data.type == "Event" && data.accepted'>
                   <span>{{data.accept.length}}</span>&nbsp;Accepted</a>   
 
-                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied && !data.me' ng-click='Feed.apply(data)'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
+                  <a  class="subdued colBlue"  ng-if='data.type == "Job" && !data.applied && !data.me'  ng-click='Feed.apply(data) && !data.me'> <span>{{data.apply.length}}</span>&nbsp;Apply </a>
 
-                  <a href="#" class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
+                  <a  class="subdued colBlue"  ng-if='data.type == "Job"  && data.applied' > <span>{{data.apply.length}}</span>&nbsp;Applied </a>
                 </p>
-                
+              
               </div>
             </div>
         </div>

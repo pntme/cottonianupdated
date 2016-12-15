@@ -40,6 +40,25 @@
                  self.spinner=false;
            });
         }
+          $ionicModal.fromTemplateUrl('app/common/option2.html', function($ionicModal) {
+            self.optionProfile = $ionicModal;
+        }, {
+            scope: $scope
+        });
+        
+        self.OpenProfile = function(data){
+          self.optionProfile.show();
+          $scope.OptionData = data;
+          $scope.OptionData.title = 'Profile';
+        }
+
+
+        $scope.hide=function(){
+             self.optionProfile.hide();
+        }
+  
+
+
 
          self.doRefresh();
 

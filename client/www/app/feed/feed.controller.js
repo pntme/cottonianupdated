@@ -66,6 +66,7 @@
         self.doRefresh = function() {
             ajaxRequest.send('fetchhome.php', '', 'GET', 'NeedOffline').then(function(res) {
                 self.spinner = false;
+                console.log(res)
                 if (res == 2)
                     self.dataNotavailable = true;
                 else

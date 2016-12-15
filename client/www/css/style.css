@@ -9,6 +9,10 @@ ion-content{
         color: #788288;
     background-color: #E5E5E5;
 }
+.highlighted{
+    color: yellow !important;
+    background: #007333 !important;
+}
 ion-scroll[direction=x] {
   width: 100vw;
 }
