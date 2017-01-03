@@ -1,11 +1,32 @@
- <ion-modal-view class="modal image-modal transparent" >
+<!--  <ion-modal-view class="modal image-modal transparent" >
+
  <i class="icon ion-close-round model-close ZoomImgIcon"></i>
           <div class="modal image-modal transparent" ng-click="hide()">
                   <ion-pane class="transparent">
-                     <img ng-src="{{imgUrl}}" class="fullscreen-image"/>
+                     <img ng-src="{{imgUrl}}" class="fullscreen-image" id="eventCiao" ng-style="{'width': zoomWidth}"/>
                   </ion-pane>
               </div>
-</ion-modal-view>
+</ion-modal-view> -->
 
-
- 
+<!-- <ion-modal-view>
+    <ion-content scroll='false'>
+    <ion-scroll zooming="true" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" scrollbar-x="false" scrollbar-y="false">
+     <img ng-src="{{imgUrl}}" class="fullscreen-image" id="eventCiao" ng-style="{'width': zoomWidth}"/>
+     </ion-scroll>
+    </ion-content>
+</ion-modal-view> -->
+<ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-stable">
+          <h1 class="title">View Image</h1>
+          <button class="button button-clear button-primary" ng-click="hide()">Close</button>
+        </ion-header-bar>
+        <ion-content class="" scroll="false" >
+          
+          <ion-scroll zooming="true" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" ng-style="{'width': zoomWidthParent}" id="ZoomImg">   
+          <div class="zoomInDiv" ng-style="{'width': zoomWidth , 'overflow': 'scroll'}">
+            <img ng-src="{{imgUrl}}" class="fullscreen-image" id="eventCiao" />
+            </div>
+        </ion-scroll>
+          
+        </ion-content>
+      </ion-modal-view>

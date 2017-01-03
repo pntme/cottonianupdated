@@ -2,7 +2,7 @@
     'use strict';
     angular.module('cot').controller('feedCtrl', feedCtrl);
 
-    function feedCtrl(ajaxRequest, configuration, video, $ionicPopup, localStorageService, $ionicLoading, $cordovaFileTransfer, formatData, $state, $ionicModal, $ionicScrollDelegate, $scope) {
+    function feedCtrl(ajaxRequest, $window, configuration, $ionicGesture, video, $ionicPopup, localStorageService, $ionicLoading, $cordovaFileTransfer, formatData, $state, $ionicModal, $ionicScrollDelegate, $scope) {
         var self = this;
         self.spinner = true;
         self.noMoreItemsAvailable = false;
@@ -140,11 +140,48 @@
             scope: $scope
         });
 
-
+       var zooomInCount = 0;
+       var zoomOutCount = 0;
        self.zoomimgIMG = function(data){
         console.log(data)
+
         $scope.imgUrl = data;
           self.zoomimg.show();
+          console.log($window.innerWidth)
+          $scope.zoomWidth = $window.innerWidth + 'px';
+          // $scope.zoomWidth = '400px';
+          var element = angular.element(document.querySelector('#eventCiao'));
+          // var ZoomImg  = angular.element(document.querySelector('#ZoomImg .scroll').style);
+          // angular.element(document.querySelector('#ZoomImg .scroll').style)
+
+          console.log(ZoomImg)
+            $ionicGesture.on('pinch', function(e)
+        {
+           if($scope.zoom && $scope.zoom < e.gesture.scale){
+            zoomOutCount = 0; 
+                if(zooomInCount < 4){
+                    $scope.zoomWidth = 100 + 20*zooomInCount + '%';
+                      // angular.element(document.querySelector('#ZoomImg .scroll'))[0].style.width = 100 + 20*zooomInCount  + '%';
+                    $scope.$apply();
+                    zooomInCount++;
+                }else{
+                    console.log("zoom in max");
+                }           
+           }
+           else if($scope.zoom && $scope.zoom > e.gesture.scale){
+            zooomInCount=0;
+                 if(zoomOutCount < 4){
+                    $scope.zoomWidth = 100 - 20*zooomInCount + '%';
+                    $scope.$apply();
+                     // angular.element(document.querySelector('#ZoomImg .scroll'))[0].style.width = 100 - 20*zooomInCount  + '%';
+                    zoomOutCount++;
+                }else{
+                  console.log('zoom out max')
+                   // angular.element(document.querySelector('#ZoomImg .scroll'))[0].style.width = 100  + '%';
+                }           
+           } 
+          $scope.zoom = e.gesture.scale;
+        },element);
         }
 
         
