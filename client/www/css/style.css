@@ -1,3 +1,5 @@
+
+
 /* Empty. Add your own CSS if you like */
 body{
     font-family: RobotoDraft;
@@ -126,8 +128,8 @@ color: #fff;
 font-family: 'MTCORSVA';
 }
 .header-item{
-	font-family: 'MTCORSVA';
-	font-size: 29px !important;
+	/*font-family: 'MTCORSVA';*/
+	font-size: 23px !important;
 }
 .GridIcon{
  font-size: 40px;
@@ -150,7 +152,9 @@ font-family: 'MTCORSVA';
 .BgWhite{
 	background: #fff;
 }
-
+a{
+    text-decoration: none !important;
+}
 .ColBlue{
 	color: blue;
 
@@ -441,7 +445,7 @@ display: none;
 }
 .cardmainimg{
     display: -webkit-box;
-    width: 227px;
+    width: 100%;
     height: auto;
     margin: 0 auto;
 }
@@ -502,3 +506,49 @@ padding-left: 56px !important; }
 @-webkit-keyframes fadeAndSlideToLeft{from{opacity:1}to{opacity:0;-webkit-transform:translateX(-20%);transform:translateX(-20%)}}@keyframes fadeAndSlideToLeft{from{opacity:1}to{opacity:0;-webkit-transform:translateX(-20%);transform:translateX(-20%)}}.am-fade{-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-timing-function:linear;animation-timing-function:linear;-webkit-animation-fill-mode:backwards;animation-fill-mode:backwards;opacity:1}.am-fade.am-fade-add,.am-fade.ng-hide-remove,.am-fade.ng-move{-webkit-animation-name:fadeIn;animation-name:fadeIn}.am-fade.am-fade-remove,.am-fade.ng-hide{-webkit-animation-name:fadeOut;animation-name:fadeOut}.am-fade.ng-enter{visibility:hidden;-webkit-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-play-state:paused;animation-play-state:paused}.am-fade.ng-enter.ng-enter-active{visibility:visible;-webkit-animation-play-state:running;animation-play-state:running}.am-fade.ng-leave{-webkit-animation-name:fadeOut;animation-name:fadeOut;-webkit-animation-play-state:paused;animation-play-state:paused}.am-fade.ng-leave.ng-leave-active{-webkit-animation-play-state:running;animation-play-state:running}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.tab-pane.am-fade.active-remove{display:none!important}.tab-pane.am-fade.active-add{-webkit-animation-name:fadeIn;animation-name:fadeIn}.modal-backdrop.am-fade,.aside-backdrop.am-fade{background:rgba(0,0,0,.5);-webkit-animation-duration:.15s;animation-duration:.15s}.modal-backdrop.am-fade.ng-leave,.aside-backdrop.am-fade.ng-leave{-webkit-animation-delay:.3s;animation-delay:.3s}.am-flip-x{-webkit-animation-duration:.4s;animation-duration:.4s;-webkit-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:backwards;animation-fill-mode:backwards}.am-flip-x.am-flip-x-add,.am-flip-x.ng-hide-remove,.am-flip-x.ng-move{-webkit-animation-name:flipInXBounce;animation-name:flipInXBounce}.am-flip-x.am-flip-x-remove,.am-flip-x.ng-hide{-webkit-animation-name:flipOutX;animation-name:flipOutX}.am-flip-x.ng-enter{visibility:hidden;-webkit-animation-name:flipInXBounce;animation-name:flipInXBounce;-webkit-animation-play-state:paused;animation-play-state:paused}.am-flip-x.ng-enter.ng-enter-active{visibility:visible;-webkit-animation-play-state:running;animation-play-state:running}.am-flip-x.ng-leave{-webkit-animation-name:flipOutX;animation-name:flipOutX;-webkit-animation-play-state:paused;animation-play-state:paused}.am-flip-x.ng-leave.ng-leave-active{-webkit-animation-play-state:running;animation-play-state:running}.am-flip-x-linear{-webkit-animation-duration:.4s;animation-duration:.4s;-webkit-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:backwards;animation-fill-mode:backwards}.am-flip-x-linear.am-flip-x-add,.am-flip-x-linear.ng-hide-remove,.am-flip-x-linear.ng-move{-webkit-animation-name:flipInX;animation-name:flipInX}.am-flip-x-linear.am-flip-x-remove,.am-flip-x-linear.ng-hide{-webkit-animation-name:flipOutX;animation-name:flipOutX}.am-flip-x-linear.ng-enter{visibility:hidden;-webkit-animation-name:flipInX;animation-name:flipInX;-webkit-animation-play-state:paused;animation-play-state:paused}.am-flip-x-linear.ng-enter.ng-enter-active{visibility:visible;-webkit-animation-play-state:running;animation-play-state:running}.am-flip-x-linear.ng-leave{-webkit-animation-name:flipOutX;animation-name:flipOutX;-webkit-animation-play-state:paused;animation-play-state:paused}.am-flip-x-linear.ng-leave.ng-leave-active{-webkit-animation-play-state:running;animation-play-state:running}@-webkit-keyframes flipInX{from{opacity:0;-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg)}to{opacity:1;-webkit-transform:perspective(400px) rotateX(0deg);transform:perspective(400px) rotateX(0deg)}}@keyframes flipInX{from{opacity:0;-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg)}to{opacity:1;-webkit-transform:perspective(400px) rotateX(0deg);transform:perspective(400px) rotateX(0deg)}}@-webkit-keyframes flipInXBounce{from{opacity:0;-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg)}40%{-webkit-transform:perspective(400px) rotateX(-10deg);transform:perspective(400px) rotateX(-10deg)}70%{-webkit-transform:perspective(400px) rotateX(10deg);transform:perspective(400px) rotateX(10deg)}to{opacity:1;-webkit-transform:perspective(400px) rotateX(0deg);transform:perspective(400px) rotateX(0deg)}}@keyframes flipInXBounce{from{opacity:0;-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg)}40%{-webkit-transform:perspective(400px) rotateX(-10deg);transform:perspective(400px) rotateX(-10deg)}70%{-webkit-transform:perspective(400px) rotateX(10deg);transform:perspective(400px) rotateX(10deg)}to{opacity:1;-webkit-transform:perspective(400px) rotateX(0deg);transform:perspective(400px) rotateX(0deg)}}@-webkit-keyframes flipOutX{from{opacity:1;-webkit-transform:perspective(400px) rotateX(0deg);transform:perspective(400px) rotateX(0deg)}to{opacity:0;-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg)}}@keyframes flipOutX{from{opacity:1;-webkit-transform:perspective(400px) rotateX(0deg);transform:perspective(400px) rotateX(0deg)}to{opacity:0;-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg)}}.am-slide-top{-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-fill-mode:backwards;animation-fill-mode:backwards}.am-slide-top.am-slide-top-add,.am-slide-top.ng-hide-remove,.am-slide-top.ng-move{-webkit-animation-name:slideFromTop;animation-name:slideFromTop}.am-slide-top.am-slide-top-remove,.am-slide-top.ng-hide{-webkit-animation-name:slideToTop;animation-name:slideToTop}.am-slide-top.ng-enter{visibility:hidden;-webkit-animation-name:slideFromTop;animation-name:slideFromTop;-webkit-animation-play-state:paused;animation-play-state:paused}.am-slide-top.ng-enter.ng-enter-active{visibility:visible;-webkit-animation-play-state:running;animation-play-state:running}.am-slide-top.ng-leave{-webkit-animation-name:slideToTop;animation-name:slideToTop;-webkit-animation-play-state:paused;animation-play-state:paused}.am-slide-top.ng-leave.ng-leave-active{-webkit-animation-play-state:running;animation-play-state:running}.am-slide-right{-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-fill-mode:backwards;animation-fill-mode:backwards}.am-slide-right.am-slide-right-add,.am-slide-right.ng-hide-remove,.am-slide-right.ng-move{-webkit-animation-name:slideFromRight;animation-name:slideFromRight}.am-slide-right.am-slide-right-remove,.am-slide-right.ng-hide{-webkit-animation-name:slideToRight;animation-name:slideToRight}.am-slide-right.ng-enter{visibility:hidden;-webkit-animation-name:slideFromRight;animation-name:slideFromRight;-webkit-animation-play-state:paused;animation-play-state:paused}.am-slide-right.ng-enter.ng-enter-active{visibility:visible;-webkit-animation-play-state:running;animation-play-state:running}.am-slide-right.ng-leave{-webkit-animation-name:slideToRight;animation-name:slideToRight;-webkit-animation-play-state:paused;animation-play-state:paused}.am-slide-right.ng-leave.ng-leave-active{-webkit-animation-play-state:running;animation-play-state:running}.am-slide-bottom{-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-fill-mode:backwards;animation-fill-mode:backwards}.am-slide-bottom.am-slide-bottom-add,.am-slide-bottom.ng-hide-remove,.am-slide-bottom.ng-move{-webkit-animation-name:slideFromBottom;animation-name:slideFromBottom}.am-slide-bottom.am-slide-bottom-remove,.am-slide-bottom.ng-hide{-webkit-animation-name:slideToBottom;animation-name:slideToBottom}.am-slide-bottom.ng-enter{visibility:hidden;-webkit-animation-name:slideFromBottom;animation-name:slideFromBottom;-webkit-animation-play-state:paused;animation-play-state:paused}.am-slide-bottom.ng-enter.ng-enter-active{visibility:visible;-webkit-animation-play-state:running;animation-play-state:running}.am-slide-bottom.ng-leave{-webkit-animation-name:slideToBottom;animation-name:slideToBottom;-webkit-animation-play-state:paused;animation-play-state:paused}.am-slide-bottom.ng-leave.ng-leave-active{-webkit-animation-play-state:running;animation-play-state:running}.am-slide-left{-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-fill-mode:backwards;animation-fill-mode:backwards}.am-slide-left.am-slide-left-add,.am-slide-left.ng-hide-remove,.am-slide-left.ng-move{-webkit-animation-name:slideFromLeft;animation-name:slideFromLeft}.am-slide-left.am-slide-left-remove,.am-slide-left.ng-hide{-webkit-animation-name:slideToLeft;animation-name:slideToLeft}.am-slide-left.ng-enter{visibility:hidden;-webkit-animation-name:slideFromLeft;animation-name:slideFromLeft;-webkit-animation-play-state:paused;animation-play-state:paused}.am-slide-left.ng-enter.ng-enter-active{visibility:visible;-webkit-animation-play-state:running;animation-play-state:running}.am-slide-left.ng-leave{-webkit-animation-name:slideToLeft;animation-name:slideToLeft;-webkit-animation-play-state:paused;animation-play-state:paused}.am-slide-left.ng-leave.ng-leave-active{-webkit-animation-play-state:running;animation-play-state:running}@-webkit-keyframes slideFromTop{from{-webkit-transform:translateY(-100%);transform:translateY(-100%)}
 }@keyframes slideFromTop{from{-webkit-transform:translateY(-100%);transform:translateY(-100%)}}@-webkit-keyframes slideToTop{to{-webkit-transform:translateY(-100%);transform:translateY(-100%)}}@keyframes slideToTop{to{-webkit-transform:translateY(-100%);transform:translateY(-100%)}}@-webkit-keyframes slideFromRight{from{-webkit-transform:translateX(100%);transform:translateX(100%)}}@keyframes slideFromRight{from{-webkit-transform:translateX(100%);transform:translateX(100%)}}@-webkit-keyframes slideToRight{to{-webkit-transform:translateX(100%);transform:translateX(100%)}}@keyframes slideToRight{to{-webkit-transform:translateX(100%);transform:translateX(100%)}}@-webkit-keyframes slideFromBottom{from{-webkit-transform:translateY(100%);transform:translateY(100%)}}@keyframes slideFromBottom{from{-webkit-transform:translateY(100%);transform:translateY(100%)}}@-webkit-keyframes slideToBottom{to{-webkit-transform:translateY(100%);transform:translateY(100%)}}@keyframes slideToBottom{to{-webkit-transform:translateY(100%);transform:translateY(100%)}}@-webkit-keyframes slideFromLeft{from{-webkit-transform:translateX(-100%);transform:translateX(-100%)}}@keyframes slideFromLeft{from{-webkit-transform:translateX(-100%);transform:translateX(-100%)}}@-webkit-keyframes slideToLeft{to{-webkit-transform:translateX(-100%);transform:translateX(-100%)}}@keyframes slideToLeft{to{-webkit-transform:translateX(-100%);transform:translateX(-100%)}}
 */
+
+
+
+
+.transparent {
+  background: transparent !important;
+}
+.image-modal {
+  width: 100% !important;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+}
+.fullscreen-image {
+  padding-top: 73px;  
+  width: 100%;
+  height: auto;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+.ZoomImgIcon{
+        top: 47px;
+    text-align: -webkit-auto;
+    position: absolute;
+    right: 17px;
+    color: #dfdfdf;
+    font-size: 20px;
+}
+
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}

@@ -18,7 +18,7 @@ if($image)
 else if($video)
 	 $sql =  "UPDATE `stuffs` SET `title`='$title', `description`='$description', `location` = '$location', `image` = '' , `video` = '$video' WHERE id='$id'";
 else
-    $sql = "UPDATE `stuffs` SET `title`='$title', `description`='$description', `location` = '$location', `image` = '' , `video` = '' WHERE id='$id'";
+    $sql = "UPDATE `stuffs` SET `title`='$title', `description`='$description', `location` = '$location' WHERE id='$id'";
 // else if($delete == 0)
 //      $sql =  "UPDATE `stuffs` SET `title`='$title', `description`='$description', `location` = '$location', `video` = '' WHERE id='$id'";
 // else if

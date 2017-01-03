@@ -12,10 +12,11 @@
                         value.me = true;
                     else
                         value.me = false;
-                    if(value.type == 'News' || value.type == 'Job'){
+                    if(value.type == 'News')
+                          value.message = ' has posted a '+ value.type + ' update';
+                    else if(value.type == 'Job')
                          value.message = ' has posted a '+ value.type;
-                        //value.fullname ="<span class='colBlue'>" +$filter('Fname')($filter('name')(value.fullname))+"</span>"+' has posted a '+ value.type;
-                    }else if(value.type == 'Event')
+                    else if(value.type == 'Event')
                          value.message = ' has posted an '+ value.type;
                     if(value.accept){
                         value.accept = value.accept.split(",");
@@ -38,8 +39,6 @@
                         value.image = configuration.DefaultVideo;
                         value.TextInstruction = 'Video found, Click on icon to play';
                     }
-                
-
                     else if (!value.image) {
                         if(value.type == 'News')
                            value.image = configuration.DefaultNewsLogo;

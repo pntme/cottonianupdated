@@ -13,11 +13,11 @@
           <div class="list card">
               <div class="item item-avatar"  ng-click="Feed.OpenProfile(data.UserData)">
                 <img ng-src="{{data.titlePic}}">
-                <p><span ng-bind-html="data.fullname|Fname|name|highlight:searchingText" class="colBlue font17"></span><span ng-bind-html="data.message | highlight:searchingText" class="font17"></span></p>
+                <p><span ng-bind-html="data.fullname|Fname|name|highlight:searchingText" class="colBlue font17"></span><span ng-bind-html="data.message | highlight:searchingText"></span></p>
                 <p ng-bind-html="data.date_time | highlight:searchingText"></p>
               </div>
               <div class="item item-body">
-               <img class="cardmainimg" ng-src="{{data.image}}" ng-if='!data.video'>
+               <img class="cardmainimg" ng-src="{{data.image}}" ng-if='!data.video' ng-click="Feed.zoomimgIMG(data.image)">
                <div style="min-width: 100px; min-height: 135px; background: black;" ng-if='data.video' >
                     <div class = 'playButton' id ='playButton'>
                        <i class="ion-android-arrow-dropright-circle" ng-if = '!data.downloading && !data.videoAvailable' ng-click = 'downloadFile(data)'></i>
@@ -26,10 +26,12 @@
                      <div id = "{{'video'+data.id}}" ng-if= 'data.video'></div>
                 </div>             
                  <h2 ng-bind-html= "data.title | highlight:searchingText"> </h2>
-                 <p ng-bind-html= "data.description | highlight:searchingText">
+                 <p ng-bind-html= "data.description |  highlight:searchingText ">
                 </p>
                    <p>
+                   <a  ng-href="https://www.google.co.in/maps/search/{{data.location}}" target="_system" class="colBlue">
                  <i class="icon ion-ios-location-outline colBlue"></i> <span ng-bind-html= "data.location | highlight:searchingText"></span>
+                 </a>
                 </p>
                 <p>
                   <a  class="subdued colBlue" ng-click = 'Feed.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >

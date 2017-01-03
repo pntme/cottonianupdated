@@ -47,7 +47,7 @@ function fellowsCtrl( $scope, ajaxRequest, $ionicLoading, $ionicModal, configura
         });
         
         self.OpenProfile = function(data){
-          console.log(data);
+          data.User_image =  data.profile_pic;
           self.optionProfile.show();
           $scope.OptionData = data;
           $scope.OptionData.title = 'Profile';

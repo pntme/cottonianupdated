@@ -9,15 +9,15 @@
    <div id='center' ng-if='!Job.jobData'>
     <ion-spinner icon="android" class='CenteredSpinner' ng-if='!Job.jobData && Job.spinner'></ion-spinner>
   </div>
-       <div ng-repeat="data in Job.jobData track by $index">
+       <div ng-repeat="data in Job.jobData | filter:searchingText track by $index">
             <div class="list card">
               <div class="item item-avatar"  ng-click="Job.OpenProfile(data.UserData)">
                 <img ng-src="{{data.titlePic}}">
-                <p><span ng-bind-html="data.fullname|Fname|name|highlight:searchingText" class="colBlue font17"></span><span ng-bind-html="data.message | highlight:searchingText" class="font17"></span></p>
+                <p><span ng-bind-html="data.fullname|Fname|name|highlight:searchingText" class="colBlue font17"></span><span ng-bind-html="data.message | highlight:searchingText" class=""></span></p>
                 <p ng-bind-html="data.date_time | highlight:searchingText"></p>
               </div>
               <div class="item item-body">
-               <img class="cardmainimg" ng-src="{{data.image}}" ng-if='!data.video'>
+               <img class="cardmainimg" ng-src="{{data.image}}" ng-if='!data.video' ng-click="Job.zoomimgIMG(data.image)">
                <div style="min-width: 100px; min-height: 135px; background: black;" ng-if='data.video' >
                     <div class = 'playButton' id ='playButton'>
                        <i class="ion-android-arrow-dropright-circle" ng-if = '!data.downloading && !data.videoAvailable' ng-click = 'downloadFile(data)'></i>
@@ -29,7 +29,9 @@
                  <p ng-bind-html= "data.description | highlight:searchingText">
                 </p>
                    <p>
+                   <a  ng-href="https://www.google.co.in/maps/search/{{data.location}}" target="_system" class="colBlue">
                  <i class="icon ion-ios-location-outline colBlue"></i> <span ng-bind-html= "data.location | highlight:searchingText"></span>
+                 </a>
                 </p>
                 <p>
                   <a  class="subdued colBlue" ng-click = 'Job.accept(data)' ng-if='data.type == "Event" && !data.accepted && !data.me' >
@@ -48,3 +50,4 @@
         </div>
   </ion-content>
 </ion-view>
+

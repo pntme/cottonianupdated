@@ -55,6 +55,7 @@
 
         $scope.hide=function(){
              self.optionProfile.hide();
+             self.zoomimg.hide();
         }
   
 
@@ -114,6 +115,19 @@
                     }
                 });
         } 
+
+        $ionicModal.fromTemplateUrl('app/common/zoomimg.html', function($ionicModal) {
+            self.zoomimg = $ionicModal;
+        }, {
+            scope: $scope
+        });
+
+
+       self.zoomimgIMG = function(data){
+        console.log(data)
+        $scope.imgUrl = data;
+          self.zoomimg.show();
+        }
 
     }
 })();

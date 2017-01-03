@@ -61,6 +61,7 @@
         $scope.hide = function() {
             self.option.hide();
             self.optionProfile.hide();
+             self.zoomimg.hide();
         }
 
         self.doRefresh = function() {
@@ -133,6 +134,18 @@
             });
         }
 
+        $ionicModal.fromTemplateUrl('app/common/zoomimg.html', function($ionicModal) {
+            self.zoomimg = $ionicModal;
+        }, {
+            scope: $scope
+        });
+
+
+       self.zoomimgIMG = function(data){
+        console.log(data)
+        $scope.imgUrl = data;
+          self.zoomimg.show();
+        }
 
         
     }
